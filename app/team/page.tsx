@@ -1,6 +1,13 @@
+import type { Metadata } from 'next';
 import { getTeamMembers } from '@/lib/queries';
 import { TEAM_PAGE_CONTENT } from '@/constants';
 import { Instagram, Linkedin, Facebook, Shield, Users, Building } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: 'Leadership Team',
+  description: 'Meet the leadership team of Leo Club of Biyagama North — BN Leos. Executive committee, directors, and advisory panel of our Leo Club in Biyagama, Sri Lanka.',
+  keywords: ['BN Leos team', 'Leo Club Biyagama North members', 'Leo Club Biyagama leadership', 'Biyagama North Leo executives'],
+};
 
 const SectionIcon: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
   ADVISORY: Building,
