@@ -33,16 +33,16 @@ export default function HomePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           >
-            <span className="inline-block px-5 py-2 border border-red-900/30 text-red-500/80 text-[11px] font-bold uppercase tracking-[0.4em] mb-12 rounded-full bg-red-950/5 backdrop-blur-md">
-              {HERO_CONTENT.subtitle}
-            </span>
-            <h1 className="text-4xl md:text-6xl font-heading font-black mb-10 leading-[0.9] tracking-tighter uppercase">
+            <h1 className="text-4xl md:text-6xl font-heading font-black mb-4 leading-[0.9] tracking-tighter uppercase">
               {HERO_CONTENT.titlePrefix} <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-b from-red-600 via-red-800 to-red-950 text-glow">
                 {HERO_CONTENT.titleMain.split(' ')[0]} <br className="md:hidden" />
                 {HERO_CONTENT.titleMain.split(' ').slice(1).join(' ')}
               </span>
             </h1>
+            <p className="text-[11px] font-bold uppercase tracking-[0.35em] text-red-700/80 mb-10">
+              Leo District 306 D4 — Sri Lanka &amp; Maldives
+            </p>
             <p className="text-sm md:text-base max-w-2xl mx-auto mb-16 text-gray-400 font-medium leading-relaxed tracking-tight">
               {HERO_CONTENT.description}
             </p>

@@ -1,10 +1,25 @@
 @import "tailwindcss";
 
+/* ─── Custom Red Scale ───────────────────────────────────────────────────────
+   Replaces Tailwind's default orange-warm reds with a colder, purer crimson
+   that reads as authoritative and vivid on pure black backgrounds.
+   All red-* utility classes in every component update automatically.
+──────────────────────────────────────────────────────────────────────────── */
+@theme {
+  --color-red-400: #ff5262;
+  --color-red-500: #ff1f35;
+  --color-red-600: #e8001d;
+  --color-red-700: #b30019;
+  --color-red-800: #77000f;
+  --color-red-900: #3d0009;
+  --color-red-950: #1a0004;
+}
+
 @layer base {
   :root {
-    --electric-red: #dc2626;
-    --deep-red: #7f1d1d;
-    --glow-red: rgba(220, 38, 38, 0.25);
+    --electric-red: #e8001d;
+    --deep-red: #77000f;
+    --glow-red: rgba(232, 0, 29, 0.25);
   }
 
   body {
@@ -18,11 +33,11 @@
     background: #000;
   }
   ::-webkit-scrollbar-thumb {
-    background: #450a0a;
+    background: #1a0004;
     border-radius: 10px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #991b1b;
+    background: #77000f;
   }
 }
 
@@ -34,21 +49,21 @@
   }
 
   .glass-nav {
-    background: rgba(0, 0, 0, 0.75);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
   }
 
   .neon-text {
-    text-shadow: 0 0 10px var(--glow-red);
+    text-shadow: 0 0 12px var(--glow-red);
   }
 
   .text-glow {
-    text-shadow: 0 0 30px rgba(220, 38, 38, 0.3);
+    text-shadow: 0 0 35px rgba(232, 0, 29, 0.35);
   }
 
   .btn-shimmer {
-    background: linear-gradient(135deg, #991b1b 0%, #450a0a 100%);
+    background: linear-gradient(to bottom, #980016 0%, #3d0009 100%);
     position: relative;
     overflow: hidden;
   }
@@ -56,22 +71,24 @@
   .btn-shimmer::after {
     content: '';
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
     background: linear-gradient(
-      to bottom right,
+      to right,
       rgba(255, 255, 255, 0) 0%,
-      rgba(255, 255, 255, 0.1) 50%,
+      rgba(255, 255, 255, 0.18) 50%,
       rgba(255, 255, 255, 0) 100%
     );
-    transform: rotate(45deg);
-    transition: all 0.5s;
+    transform: skewX(-20deg);
+    opacity: 0;
+    transition: left 0.5s ease, opacity 0.3s ease;
   }
 
   .btn-shimmer:hover::after {
-    left: 100%;
-    top: 100%;
+    left: 125%;
+    opacity: 1;
   }
+
 }

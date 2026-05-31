@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React from 'react';
 import { motion } from 'framer-motion';
@@ -7,7 +7,7 @@ import { Trophy, Calendar, Award, ShieldCheck } from 'lucide-react';
 
 export default function AchievementsPage() {
   return (
-    <div className="bg-black min-h-screen pt-56 pb-40 relative overflow-hidden">
+    <div className="bg-black min-h-screen pt-40 pb-40 relative overflow-hidden">
       <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-red-950/10 rounded-full blur-[250px] -z-10" />
       <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-red-900/5 rounded-full blur-[200px] -z-10 animate-pulse" />
 
@@ -81,3 +81,4 @@ export default function AchievementsPage() {
     </div>
   );
 }
+

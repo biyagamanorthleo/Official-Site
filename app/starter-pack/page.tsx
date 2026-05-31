@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React from 'react';
 import { motion } from 'framer-motion';
@@ -11,7 +11,7 @@ const IconMap: Record<string, React.ComponentType<{ size?: number; className?: s
 
 export default function StarterPackPage() {
   return (
-    <div className="bg-black pt-56 pb-32 min-h-screen relative overflow-hidden">
+    <div className="bg-black pt-40 pb-32 min-h-screen relative overflow-hidden">
       <div className="absolute top-1/4 left-0 w-[600px] h-[600px] bg-red-950/10 rounded-full blur-[150px] -z-10 animate-pulse" />
 
       <div className="container mx-auto px-6">
@@ -106,3 +106,4 @@ export default function StarterPackPage() {
     </div>
   );
 }
+

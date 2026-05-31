@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React from 'react';
 import { motion } from 'framer-motion';
@@ -48,7 +48,7 @@ function MemberCard({ member, size = 'md' }: { member: TeamMember; size?: 'lg' |
           {member.name}
         </h3>
         <span className="text-[10px] font-black text-red-500 uppercase tracking-[0.35em] block opacity-80">
-          {member.position}{member.avenue && <span className="text-gray-500 ml-2">— {member.avenue}</span>}
+          {member.position}{member.avenue && <span className="text-gray-500 ml-2">â€” {member.avenue}</span>}
         </span>
       </div>
     </motion.div>
@@ -57,7 +57,7 @@ function MemberCard({ member, size = 'md' }: { member: TeamMember; size?: 'lg' |
 
 export default function TeamPage() {
   return (
-    <div className="min-h-screen bg-black pt-56 pb-40 relative overflow-hidden">
+    <div className="min-h-screen bg-black pt-40 pb-40 relative overflow-hidden">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-red-950/10 rounded-full blur-[180px] -z-10 animate-pulse" />
 
       <div className="container mx-auto px-6">
@@ -152,3 +152,4 @@ export default function TeamPage() {
     </div>
   );
 }
+

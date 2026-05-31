@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React from 'react';
 import { motion } from 'framer-motion';
@@ -11,7 +11,7 @@ const IconMap: Record<string, React.ComponentType<{ size?: number; className?: s
 
 export default function AboutPage() {
   return (
-    <div className="bg-black pt-56 pb-32 relative overflow-hidden">
+    <div className="bg-black pt-40 pb-32 relative overflow-hidden">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-red-950/10 rounded-full blur-[180px] -z-10 animate-pulse" />
 
       <div className="container mx-auto px-6">
@@ -44,7 +44,7 @@ export default function AboutPage() {
         <div className="flex flex-col items-center mb-24">
           <div className="w-px h-16 bg-gradient-to-b from-red-500/50 to-transparent mb-6" />
           <div className="px-6 py-2 border border-red-500/20 rounded-full bg-red-500/5 backdrop-blur-md">
-            <span className="text-red-500 font-black uppercase tracking-[0.4em] text-[8px]">Est. {new Date().getFullYear() - 9} — Present</span>
+            <span className="text-red-500 font-black uppercase tracking-[0.4em] text-[8px]">Est. {new Date().getFullYear() - 9} â€” Present</span>
           </div>
         </div>
 
@@ -110,3 +110,4 @@ export default function AboutPage() {
     </div>
   );
 }
+

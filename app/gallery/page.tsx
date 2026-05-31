@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React from 'react';
 import { motion } from 'framer-motion';
@@ -6,7 +6,7 @@ import { GALLERY_PHOTOS, GALLERY_PAGE_CONTENT } from '@/constants';
 
 export default function GalleryPage() {
   return (
-    <div className="bg-black pt-56 pb-32 min-h-screen relative overflow-hidden">
+    <div className="bg-black pt-40 pb-32 min-h-screen relative overflow-hidden">
       <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-red-950/10 rounded-full blur-[150px] -z-10 animate-pulse" />
       <div className="absolute bottom-1/4 left-0 w-[500px] h-[500px] bg-red-900/5 rounded-full blur-[150px] -z-10" />
 
@@ -51,3 +51,4 @@ export default function GalleryPage() {
     </div>
   );
 }
+
