@@ -1,9 +1,9 @@
-'use client';
+import { getGalleryPhotos } from '@/lib/queries';
+import { GALLERY_PAGE_CONTENT } from '@/constants';
 
-import React from 'react';
-import { GALLERY_PHOTOS, GALLERY_PAGE_CONTENT } from '@/constants';
+export default async function GalleryPage() {
+  const photos = await getGalleryPhotos();
 
-export default function GalleryPage() {
   return (
     <div className="bg-black pt-40 pb-32 min-h-screen relative overflow-hidden">
       <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-red-950/10 rounded-full blur-[150px] -z-10 animate-pulse" />
@@ -23,13 +23,13 @@ export default function GalleryPage() {
         </header>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {GALLERY_PHOTOS.map((photo, idx) => (
-            <div key={idx} className="group relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-zinc-900 border border-white/5">
-              <img src={photo} alt={`Gallery image ${idx + 1}`} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
+          {photos.map((photo) => (
+            <div key={photo.id} className="group relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-zinc-900 border border-white/5">
+              <img src={photo.url} alt={photo.caption ?? 'Gallery photo'} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <div className="absolute bottom-10 left-10 right-10 translate-y-10 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
                 <span className="text-red-500 font-black uppercase tracking-[0.4em] text-[10px]">Service Archive</span>
-                <p className="text-white text-xs font-bold uppercase tracking-widest mt-2">Biyagama North Legacy</p>
+                <p className="text-white text-xs font-bold uppercase tracking-widest mt-2">{photo.caption ?? 'Biyagama North Legacy'}</p>
               </div>
             </div>
           ))}

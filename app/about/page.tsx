@@ -1,14 +1,14 @@
-'use client';
-
-import React from 'react';
-import { PRESIDENTS, ABOUT_CONTENT } from '@/constants';
+import { getPresidents } from '@/lib/queries';
+import { ABOUT_CONTENT } from '@/constants';
 import { Target, Shield, Award, Globe } from 'lucide-react';
 
 const IconMap: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
   Target, Shield, Award,
 };
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const presidents = await getPresidents();
+
   return (
     <div className="bg-black pt-40 pb-32 relative overflow-hidden">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-red-950/10 rounded-full blur-[180px] -z-10 animate-pulse" />
@@ -56,18 +56,13 @@ export default function AboutPage() {
             <div className="relative">
               <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px bg-red-600 opacity-20 hidden md:block" />
               <div className="space-y-32 md:space-y-48">
-                {PRESIDENTS.map((pres, idx) => (
-                  <div
-                    key={pres.year}
-                    className={`flex flex-col md:flex-row items-center justify-center relative ${idx % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
-                  >
+                {presidents.map((pres, idx) => (
+                  <div key={pres.id} className={`flex flex-col md:flex-row items-center justify-center relative ${idx % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
                     <div className="absolute left-1/2 -translate-x-1/2 w-3 h-3 bg-red-600 rounded-full border-2 border-black shadow-[0_0_15px_rgba(239,68,68,0.8)] hidden md:block z-10" />
                     <div className="md:w-1/2 flex justify-center">
-                      <div className="relative group p-3 bg-black border border-white/10 rounded-[2.5rem] transition-all duration-700 shadow-3xl hover:border-red-500/40">
+                      <div className="relative group p-3 bg-black border border-white/10 rounded-[2.5rem] transition-all duration-700 hover:border-red-500/40">
                         <img src={pres.photo} className="w-56 h-56 md:w-72 md:h-72 object-cover rounded-[2rem] grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-1000" alt={pres.name} />
-                        <div className="absolute -bottom-6 -right-6 bg-red-600 text-white px-6 py-2.5 rounded-xl font-black text-[9px] tracking-[0.3em] uppercase shadow-3xl">
-                          {pres.year}
-                        </div>
+                        <div className="absolute -bottom-6 -right-6 bg-red-600 text-white px-6 py-2.5 rounded-xl font-black text-[9px] tracking-[0.3em] uppercase">{pres.year}</div>
                       </div>
                     </div>
                     <div className={`md:w-1/2 mt-16 md:mt-0 ${idx % 2 === 0 ? 'md:pl-24 text-center md:text-left' : 'md:pr-24 text-center md:text-right'}`}>
@@ -83,7 +78,7 @@ export default function AboutPage() {
         </section>
 
         <section className="py-40 text-center">
-          <div className="inline-block p-8 bg-red-600/10 border border-red-500/20 rounded-[2.5rem] text-red-500 mb-10 shadow-3xl">
+          <div className="inline-block p-8 bg-red-600/10 border border-red-500/20 rounded-[2.5rem] text-red-500 mb-10">
             <Globe size={48} className="animate-pulse" />
           </div>
           <h2 className="text-2xl md:text-4xl font-heading font-black mb-6 uppercase tracking-tighter text-white">{ABOUT_CONTENT.footerTitle}</h2>

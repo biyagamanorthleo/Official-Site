@@ -1,10 +1,10 @@
-'use client';
-
-import React from 'react';
-import { ACHIEVEMENTS, ACHIEVEMENTS_PAGE_CONTENT } from '@/constants';
+import { getAchievements } from '@/lib/queries';
+import { ACHIEVEMENTS_PAGE_CONTENT } from '@/constants';
 import { Trophy, Calendar, Award, ShieldCheck } from 'lucide-react';
 
-export default function AchievementsPage() {
+export default async function AchievementsPage() {
+  const achievements = await getAchievements();
+
   return (
     <div className="bg-black min-h-screen pt-40 pb-40 relative overflow-hidden">
       <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-red-950/10 rounded-full blur-[250px] -z-10" />
@@ -30,13 +30,9 @@ export default function AchievementsPage() {
               <Award className="mr-6 text-red-600" size={36} /> {ACHIEVEMENTS_PAGE_CONTENT.awardsTitle}
             </h2>
           </div>
-
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
-            {ACHIEVEMENTS.map((achievement) => (
-              <div
-                key={achievement.id}
-                className="group relative bg-[#050505] border border-white/5 rounded-[3rem] overflow-hidden hover:border-red-600/30 transition-all duration-500 shadow-2xl"
-              >
+            {achievements.map((achievement) => (
+              <div key={achievement.id} className="group relative bg-[#050505] border border-white/5 rounded-[3rem] overflow-hidden hover:border-red-600/30 transition-all duration-500 shadow-2xl">
                 <div className="flex flex-col md:flex-row h-full">
                   {achievement.image && (
                     <div className="md:w-1/3 relative overflow-hidden h-64 md:h-auto">
@@ -48,9 +44,7 @@ export default function AchievementsPage() {
                     <div className="flex items-center text-red-500 text-[10px] font-black uppercase tracking-widest mb-6 border-l-2 border-red-600 pl-4">
                       <Calendar size={14} className="mr-2" /> {achievement.year}
                     </div>
-                    <h3 className="text-2xl font-heading font-black text-white uppercase tracking-tighter mb-4 group-hover:text-red-500 transition-colors">
-                      {achievement.title}
-                    </h3>
+                    <h3 className="text-2xl font-heading font-black text-white uppercase tracking-tighter mb-4 group-hover:text-red-500 transition-colors">{achievement.title}</h3>
                     <p className="text-gray-500 text-xs leading-relaxed font-medium mb-8 uppercase tracking-widest">{achievement.description}</p>
                     <div className="flex items-center space-x-3">
                       <Trophy size={16} className="text-red-900" />
