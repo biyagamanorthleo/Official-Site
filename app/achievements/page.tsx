@@ -1,11 +1,11 @@
-import type { Metadata } from 'next';
+﻿import type { Metadata } from 'next';
 import { getAchievements } from '@/lib/queries';
 import { ACHIEVEMENTS_PAGE_CONTENT } from '@/constants';
 import { Trophy, Calendar, Award, ShieldCheck } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Awards & Achievements',
-  description: 'Awards and honors of Leo Club of Biyagama North — BN Leos. District and regional recognition for outstanding community service in Sri Lanka.',
+  description: 'Awards and honors of Leo Club of Biyagama North - BN Leos. District and regional recognition for outstanding community service in Sri Lanka.',
   keywords: ['BN Leos awards', 'Leo Club Biyagama North achievements', 'Leo District 306 D4 awards', 'outstanding Leo Club Sri Lanka'],
 };
 
@@ -70,3 +70,4 @@ export default async function AchievementsPage() {
     </div>
   );
 }
+

@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState } from 'react';
 import { createClient } from '@/lib/supabase/client';
@@ -110,11 +110,11 @@ export default function TeamForm({ member }: { member?: Member }) {
 
       <div>
         <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-2">
-          Position <span className="text-gray-700 font-normal normal-case tracking-normal ml-2">— auto-sets display order</span>
+          Position <span className="text-gray-700 font-normal normal-case tracking-normal ml-2">- auto-sets display order</span>
         </label>
         <select value={form.position} onChange={e => handlePositionChange(e.target.value)} required
           className="w-full bg-black border border-white/10 rounded-xl px-5 py-4 text-white text-sm focus:outline-none focus:border-red-700 transition-colors">
-          <option value="">— Select position —</option>
+          <option value="">- Select position -</option>
           {(POSITIONS[form.category] ?? []).map(p => <option key={p}>{p}</option>)}
         </select>
       </div>
@@ -124,7 +124,7 @@ export default function TeamForm({ member }: { member?: Member }) {
           <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-2">Avenue / Department</label>
           <select value={form.avenue} onChange={e => set('avenue', e.target.value)}
             className="w-full bg-black border border-white/10 rounded-xl px-5 py-4 text-white text-sm focus:outline-none focus:border-red-700 transition-colors">
-            <option value="">— Select avenue —</option>
+            <option value="">- Select avenue -</option>
             {AVENUES.map(a => <option key={a}>{a}</option>)}
           </select>
         </div>
@@ -132,7 +132,7 @@ export default function TeamForm({ member }: { member?: Member }) {
 
       <div>
         <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-2">
-          Display Order <span className="text-gray-700 font-normal normal-case tracking-normal ml-2">— auto-filled, adjust if needed</span>
+          Display Order <span className="text-gray-700 font-normal normal-case tracking-normal ml-2">- auto-filled, adjust if needed</span>
         </label>
         <input type="number" min={1} value={form.priority} onChange={e => set('priority', +e.target.value)}
           className="w-full bg-black border border-white/10 rounded-xl px-5 py-4 text-white text-sm focus:outline-none focus:border-red-700 transition-colors" />
@@ -166,3 +166,4 @@ export default function TeamForm({ member }: { member?: Member }) {
     </form>
   );
 }
+

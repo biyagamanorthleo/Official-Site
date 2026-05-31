@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+﻿import type { Metadata } from 'next';
 import { Inter, Outfit } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/Navbar';
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     template: '%s | Leo Club of Biyagama North',
   },
   description:
-    'Leo Club of Biyagama North — BN Leos. A premier Leo Club in Biyagama, Sri Lanka under Leo District 306 D4 (Sri Lanka & Maldives). Dedicated to leadership, service, and community excellence.',
+    'Leo Club of Biyagama North - BN Leos. A premier Leo Club in Biyagama, Sri Lanka under Leo District 306 D4 (Sri Lanka & Maldives). Dedicated to leadership, service, and community excellence.',
   keywords: [
     'Leo Club of Biyagama North',
     'BN Leos',
@@ -60,13 +60,13 @@ export const metadata: Metadata = {
     siteName: 'Leo Club of Biyagama North',
     title: 'Leo Club of Biyagama North | BN Leos | District 306 D4',
     description:
-      'BN Leos — Leo Club of Biyagama North. A premier youth leadership club in Biyagama, Sri Lanka. Leo District 306 D4.',
+      'BN Leos - Leo Club of Biyagama North. A premier youth leadership club in Biyagama, Sri Lanka. Leo District 306 D4.',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Leo Club of Biyagama North | BN Leos',
     description:
-      'BN Leos — Leo Club of Biyagama North. Youth leadership & community service. Leo District 306 D4, Sri Lanka.',
+      'BN Leos - Leo Club of Biyagama North. Youth leadership & community service. Leo District 306 D4, Sri Lanka.',
   },
   category: 'community organization',
 };
@@ -88,3 +88,4 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
+

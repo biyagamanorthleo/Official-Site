@@ -1,4 +1,4 @@
-import { createClient } from '@/lib/supabase/server';
+﻿import { createClient } from '@/lib/supabase/server';
 import Link from 'next/link';
 import { FolderOpen, Users, Trophy, Image, Star } from 'lucide-react';
 
@@ -30,7 +30,7 @@ export default async function AdminDashboard() {
   return (
     <div>
       <h1 className="text-3xl font-heading font-black text-white uppercase tracking-tight mb-2">Dashboard</h1>
-      <p className="text-gray-600 text-xs uppercase tracking-widest font-bold mb-12">Leo Club of Biyagama North — Content Management</p>
+      <p className="text-gray-600 text-xs uppercase tracking-widest font-bold mb-12">Leo Club of Biyagama North - Content Management</p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {cards.map(({ label, count, href, icon: Icon }) => (
@@ -52,3 +52,4 @@ export default async function AdminDashboard() {
     </div>
   );
 }
+

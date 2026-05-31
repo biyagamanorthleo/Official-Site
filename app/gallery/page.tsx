@@ -1,10 +1,10 @@
-import type { Metadata } from 'next';
+﻿import type { Metadata } from 'next';
 import { getGalleryPhotos } from '@/lib/queries';
 import { GALLERY_PAGE_CONTENT } from '@/constants';
 
 export const metadata: Metadata = {
   title: 'Photo Gallery',
-  description: 'Photo gallery of Leo Club of Biyagama North — BN Leos. Visual archive of community service events and projects across Biyagama, Sri Lanka.',
+  description: 'Photo gallery of Leo Club of Biyagama North - BN Leos. Visual archive of community service events and projects across Biyagama, Sri Lanka.',
   keywords: ['BN Leos gallery', 'Leo Club Biyagama North photos', 'Leo Club Sri Lanka events', 'Biyagama community service photos'],
 };
 
@@ -45,3 +45,4 @@ export default async function GalleryPage() {
     </div>
   );
 }
+

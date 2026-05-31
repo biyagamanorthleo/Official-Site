@@ -1,11 +1,11 @@
-import type { Metadata } from 'next';
+﻿import type { Metadata } from 'next';
 import { getTeamMembers } from '@/lib/queries';
 import { TEAM_PAGE_CONTENT } from '@/constants';
 import { Instagram, Linkedin, Facebook, Shield, Users, Building } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Leadership Team',
-  description: 'Meet the leadership team of Leo Club of Biyagama North — BN Leos. Executive committee, directors, and advisory panel of our Leo Club in Biyagama, Sri Lanka.',
+  description: 'Meet the leadership team of Leo Club of Biyagama North - BN Leos. Executive committee, directors, and advisory panel of our Leo Club in Biyagama, Sri Lanka.',
   keywords: ['BN Leos team', 'Leo Club Biyagama North members', 'Leo Club Biyagama leadership', 'Biyagama North Leo executives'],
 };
 
@@ -31,22 +31,22 @@ type Member = {
 function MemberCard({ member, size = 'md' }: { member: Member; size?: 'lg' | 'md' }) {
   return (
     <div className={`group ${size === 'lg' ? 'md:col-span-2' : ''}`}>
-      <div className={`relative ${size === 'lg' ? 'aspect-[1/1] md:aspect-[16/10]' : 'aspect-[4/5]'} rounded-[3rem] overflow-hidden mb-10 border border-white/5 bg-[#0a0a0a] group-hover:border-red-500/30 transition-all duration-700`}>
-        <img src={member.photo} alt={member.name} className="w-full h-full object-cover grayscale opacity-50 transition-all duration-1000 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end justify-center pb-14">
-          <div className="flex space-x-4">
-            {member.instagram && <a href={member.instagram} className="w-12 h-12 bg-white/10 backdrop-blur-xl rounded-full flex items-center justify-center text-white hover:bg-red-600 transition-all border border-white/10"><Instagram size={20} /></a>}
-            {member.linkedin && <a href={member.linkedin} className="w-12 h-12 bg-white/10 backdrop-blur-xl rounded-full flex items-center justify-center text-white hover:bg-red-600 transition-all border border-white/10"><Linkedin size={20} /></a>}
-            {member.facebook && <a href={member.facebook} className="w-12 h-12 bg-white/10 backdrop-blur-xl rounded-full flex items-center justify-center text-white hover:bg-red-600 transition-all border border-white/10"><Facebook size={20} /></a>}
+      <div className={`relative ${size === 'lg' ? 'aspect-[3/2]' : 'aspect-[3/4]'} rounded-2xl overflow-hidden mb-4 border border-white/5 bg-[#0a0a0a] group-hover:border-red-500/30 transition-all duration-700`}>
+        <img src={member.photo} alt={member.name} className="w-full h-full object-cover grayscale opacity-50 transition-all duration-700 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end justify-center pb-5">
+          <div className="flex space-x-2">
+            {member.instagram && <a href={member.instagram} className="w-8 h-8 bg-white/10 backdrop-blur-xl rounded-full flex items-center justify-center text-white hover:bg-red-600 transition-all border border-white/10"><Instagram size={14} /></a>}
+            {member.linkedin && <a href={member.linkedin} className="w-8 h-8 bg-white/10 backdrop-blur-xl rounded-full flex items-center justify-center text-white hover:bg-red-600 transition-all border border-white/10"><Linkedin size={14} /></a>}
+            {member.facebook && <a href={member.facebook} className="w-8 h-8 bg-white/10 backdrop-blur-xl rounded-full flex items-center justify-center text-white hover:bg-red-600 transition-all border border-white/10"><Facebook size={14} /></a>}
           </div>
         </div>
       </div>
-      <div className="text-center px-6">
-        <h3 className={`${size === 'lg' ? 'text-2xl md:text-3xl' : 'text-xl'} font-heading font-black text-white mb-2 leading-tight uppercase tracking-tight group-hover:text-red-500 transition-colors`}>
+      <div className="text-center px-2">
+        <h3 className={`${size === 'lg' ? 'text-lg md:text-xl' : 'text-sm'} font-heading font-black text-white mb-1 leading-tight uppercase tracking-tight group-hover:text-red-500 transition-colors`}>
           {member.name}
         </h3>
-        <span className="text-[10px] font-black text-red-500 uppercase tracking-[0.35em] block opacity-80">
-          {member.position}{member.avenue && <span className="text-gray-500 ml-2">— {member.avenue}</span>}
+        <span className="text-[9px] font-black text-red-500 uppercase tracking-[0.3em] block opacity-80">
+          {member.position}{member.avenue && <span className="text-gray-500 ml-1"> {member.avenue}</span>}
         </span>
       </div>
     </div>
@@ -61,7 +61,7 @@ export default async function TeamPage() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-red-950/10 rounded-full blur-[180px] -z-10 animate-pulse" />
 
       <div className="container mx-auto px-6">
-        <header className="mb-48 text-center">
+        <header className="mb-20 text-center">
           <span className="text-red-500/80 font-black uppercase tracking-[0.6em] text-[11px] block mb-10">{TEAM_PAGE_CONTENT.header}</span>
           <h1 className="text-4xl md:text-6xl font-heading font-black text-white tracking-tighter uppercase leading-[0.85]">
             {TEAM_PAGE_CONTENT.titlePrefix} <br className="hidden md:block" />
@@ -82,19 +82,19 @@ export default async function TeamPage() {
             }, {});
 
             return (
-              <section key={section.title} className="mb-64">
-                <div className="flex flex-col items-center mb-32">
+              <section key={section.title} className="mb-24">
+                <div className="flex flex-col items-center mb-10">
                   <div className="p-5 bg-red-900/10 border border-red-500/20 rounded-[1.5rem] text-red-500 mb-10"><Icon size={32} /></div>
                   <h2 className="text-2xl md:text-4xl font-heading font-black uppercase tracking-tight text-white mb-6">{section.title}</h2>
                   <div className="h-1 w-20 bg-red-600 rounded-full" />
                 </div>
-                <div className="space-y-48">
+                <div className="space-y-16">
                   {Object.entries(byAvenue).map(([avenue, avenueMembers]) => (
                     <div key={avenue}>
-                      <div className="flex items-center space-x-6 mb-16 border-l-4 border-red-900 pl-8">
+                      <div className="flex items-center space-x-6 mb-6 border-l-4 border-red-900 pl-6">
                         <span className="text-red-500 font-black text-xs uppercase tracking-[0.5em]">{avenue}</span>
                       </div>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-16 gap-y-32">
+                      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
                         {avenueMembers.sort((a, b) => a.priority - b.priority).map(m => <MemberCard key={m.id} member={m} />)}
                       </div>
                     </div>
@@ -105,13 +105,13 @@ export default async function TeamPage() {
           }
 
           return (
-            <section key={section.title} className="mb-64">
-              <div className="flex flex-col items-center mb-32">
+            <section key={section.title} className="mb-24">
+              <div className="flex flex-col items-center mb-10">
                 <div className="p-5 bg-red-900/10 border border-red-500/20 rounded-[1.5rem] text-red-500 mb-10"><Icon size={32} /></div>
                 <h2 className="text-2xl md:text-4xl font-heading font-black uppercase tracking-tight text-white mb-6">{section.title}</h2>
                 <div className="h-1 w-20 bg-red-600 rounded-full" />
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-16 gap-y-32">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
                 {members.sort((a, b) => a.priority - b.priority).map(m => (
                   <MemberCard key={m.id} member={m} size={section.category === 'EXECUTIVE' && m.position.includes('President') ? 'lg' : 'md'} />
                 ))}
@@ -123,3 +123,4 @@ export default async function TeamPage() {
     </div>
   );
 }
+

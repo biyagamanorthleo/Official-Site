@@ -1,11 +1,11 @@
-import type { Metadata } from 'next';
+﻿import type { Metadata } from 'next';
 import { getPresidents } from '@/lib/queries';
 import { ABOUT_CONTENT } from '@/constants';
 import { Target, Shield, Award, Globe } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Our Legacy',
-  description: 'The legacy and history of Leo Club of Biyagama North — BN Leos. Hall of honor, past presidents, and the mission of our Leo Club in Biyagama, Sri Lanka.',
+  description: 'The legacy and history of Leo Club of Biyagama North - BN Leos. Hall of honor, past presidents, and the mission of our Leo Club in Biyagama, Sri Lanka.',
   keywords: ['Leo Club Biyagama North history', 'BN Leos legacy', 'Biyagama North Leo Club presidents', 'Leo District 306 D4 history'],
 };
 
@@ -49,7 +49,7 @@ export default async function AboutPage() {
         <div className="flex flex-col items-center mb-24">
           <div className="w-px h-16 bg-gradient-to-b from-red-500/50 to-transparent mb-6" />
           <div className="px-6 py-2 border border-red-500/20 rounded-full bg-red-500/5 backdrop-blur-md">
-            <span className="text-red-500 font-black uppercase tracking-[0.4em] text-[8px]">Est. {new Date().getFullYear() - 9} — Present</span>
+            <span className="text-red-500 font-black uppercase tracking-[0.4em] text-[8px]">Est. {new Date().getFullYear() - 9} - Present</span>
           </div>
         </div>
 
@@ -95,3 +95,4 @@ export default async function AboutPage() {
     </div>
   );
 }
+

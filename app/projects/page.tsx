@@ -1,11 +1,11 @@
-import type { Metadata } from 'next';
+﻿import type { Metadata } from 'next';
 import { getProjects } from '@/lib/queries';
 import { PROJECTS_PAGE_CONTENT } from '@/constants';
 import ProjectsClient from './ProjectsClient';
 
 export const metadata: Metadata = {
   title: 'Projects & Impact',
-  description: 'Service projects by Leo Club of Biyagama North — BN Leos. Community service initiatives across Biyagama, Sri Lanka under Leo District 306 D4.',
+  description: 'Service projects by Leo Club of Biyagama North - BN Leos. Community service initiatives across Biyagama, Sri Lanka under Leo District 306 D4.',
   keywords: ['BN Leos projects', 'Leo Club Biyagama North service', 'community service Biyagama', 'Leo District 306 D4 projects'],
 };
 
@@ -34,3 +34,4 @@ export default async function ProjectsPage() {
     </div>
   );
 }
+
