@@ -32,7 +32,7 @@ export default async function GalleryPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {photos.map((photo) => (
             <div key={photo.id} className="group relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-zinc-900 border border-white/5">
-              <img src={photo.url} alt={photo.caption ?? 'Gallery photo'} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
+              <img loading="lazy" src={photo.url} alt={photo.caption ?? 'Gallery photo'} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <div className="absolute bottom-10 left-10 right-10 translate-y-10 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
                 <span className="text-red-500 font-black uppercase tracking-[0.4em] text-[10px]">Service Archive</span>
@@ -45,4 +45,5 @@ export default async function GalleryPage() {
     </div>
   );
 }
+
 

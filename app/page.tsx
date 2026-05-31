@@ -1,7 +1,8 @@
-'use client';
+﻿'use client';
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { CLUB_STATS, PROJECTS, HERO_CONTENT } from '@/constants';
 import { ArrowRight, CheckCircle, Users, Clock, DollarSign, Calendar } from 'lucide-react';
@@ -19,7 +20,7 @@ export default function HomePage() {
       {/* Hero */}
       <section className="relative min-h-screen flex items-center justify-center pt-20">
         <div className="absolute inset-0 z-0">
-          <img src="/herobg.webp" alt="Hero Background" className="w-full h-full object-cover" />
+          <Image src="/herobg.webp" alt="Hero Background" fill className="object-cover" priority quality={80} />
           <div className="absolute inset-0 bg-black/60" />
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black" />
         </div>
@@ -99,7 +100,7 @@ export default function HomePage() {
         <div className="relative z-10 w-full flex flex-col md:flex-row items-center justify-end px-6 md:px-20 py-24 gap-10">
           <div className="flex flex-col items-center md:items-start">
             <div className="relative group mb-8 inline-block">
-              <img src="/president.png" alt="Leo Lion Anjana Dineth MAF" className="w-72 md:w-[28rem] object-contain drop-shadow-2xl" />
+              <Image src="/president.png" alt="Leo Lion Anjana Dineth MAF" width={448} height={600} className="w-72 md:w-[28rem] object-contain drop-shadow-2xl" quality={85} />
               <div className="absolute bottom-4 right-0 px-4 py-2 rounded-xl font-black text-[9px] tracking-[0.3em] uppercase text-white"
                 style={{ background: 'linear-gradient(135deg, #980016, #3d0009)' }}>
                 2026/27
@@ -133,7 +134,7 @@ export default function HomePage() {
             {recentProjects.map((project) => (
               <div key={project.id} className="group flex flex-col">
                 <div className="relative aspect-[3/4] rounded-2xl overflow-hidden border border-white/5 bg-gray-900">
-                  <img src={project.image} alt={project.title} className="w-full h-full object-cover grayscale opacity-60 transition-all duration-1000 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110" />
+                  <img loading="lazy" src={project.image} alt={project.title} className="w-full h-full object-cover grayscale opacity-60 transition-all duration-1000 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
                   <div className="absolute bottom-5 left-5 right-5">
                     <span className="inline-block px-2 py-0.5 bg-red-950/40 border border-red-900/30 text-red-400 text-[8px] font-black uppercase tracking-widest rounded mb-2">
@@ -178,3 +179,4 @@ export default function HomePage() {
     </div>
   );
 }
+

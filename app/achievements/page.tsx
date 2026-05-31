@@ -43,7 +43,7 @@ export default async function AchievementsPage() {
                 <div className="flex flex-col md:flex-row h-full">
                   {achievement.image && (
                     <div className="md:w-1/3 relative overflow-hidden h-64 md:h-auto">
-                      <img src={achievement.image} alt={achievement.title} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
+                      <img loading="lazy" src={achievement.image} alt={achievement.title} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
                       <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent" />
                     </div>
                   )}
@@ -70,4 +70,5 @@ export default async function AchievementsPage() {
     </div>
   );
 }
+
 

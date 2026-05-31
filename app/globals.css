@@ -26,18 +26,29 @@
     scroll-behavior: smooth;
   }
 
-  ::-webkit-scrollbar {
-    width: 6px;
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #000; }
+  ::-webkit-scrollbar-thumb { background: #1a0004; border-radius: 10px; }
+  ::-webkit-scrollbar-thumb:hover { background: #77000f; }
+
+  /* Disable expensive effects on mobile */
+  @media (max-width: 768px) {
+    .animate-pulse {
+      animation: none !important;
+    }
+    * {
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
   }
-  ::-webkit-scrollbar-track {
-    background: #000;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #1a0004;
-    border-radius: 10px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: #77000f;
+
+  /* Respect user's reduced-motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
@@ -49,7 +60,7 @@
   }
 
   .glass-nav {
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.92);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
   }
@@ -68,27 +79,30 @@
     overflow: hidden;
   }
 
-  .btn-shimmer::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -75%;
-    width: 50%;
-    height: 100%;
-    background: linear-gradient(
-      to right,
-      rgba(255, 255, 255, 0) 0%,
-      rgba(255, 255, 255, 0.18) 50%,
-      rgba(255, 255, 255, 0) 100%
-    );
-    transform: skewX(-20deg);
-    opacity: 0;
-    transition: left 0.5s ease, opacity 0.3s ease;
-  }
+  /* Disable hover shimmer on touch devices */
+  @media (hover: hover) {
+    .btn-shimmer::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -75%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.18) 50%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      transform: skewX(-20deg);
+      opacity: 0;
+      transition: left 0.5s ease, opacity 0.3s ease;
+    }
 
-  .btn-shimmer:hover::after {
-    left: 125%;
-    opacity: 1;
+    .btn-shimmer:hover::after {
+      left: 125%;
+      opacity: 1;
+    }
   }
 
   .animate-shimmer-text {
@@ -107,5 +121,14 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
     animation: shimmer-text 8s linear infinite;
+  }
+
+  /* Stop shimmer on mobile — too expensive */
+  @media (max-width: 768px) {
+    .animate-shimmer-text {
+      animation: none;
+      background: linear-gradient(150deg, #e8001d 0%, #b30019 100%);
+      background-size: auto;
+    }
   }
 }
