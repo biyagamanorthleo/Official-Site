@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import { useRouter } from 'next/navigation';
+import ImageUpload from '../_components/ImageUpload';
 
 export default function GalleryForm() {
   const router = useRouter();
@@ -12,24 +13,41 @@ export default function GalleryForm() {
 
   async function handleAdd(e: React.FormEvent) {
     e.preventDefault();
+    if (!url) return;
     setSaving(true);
     const supabase = createClient();
     await supabase.from('gallery_photos').insert({ url, caption });
-    setUrl(''); setCaption('');
+    setUrl('');
+    setCaption('');
     setSaving(false);
     router.refresh();
   }
 
   return (
-    <form onSubmit={handleAdd} className="flex flex-col md:flex-row gap-4">
-      <input type="url" placeholder="Image URL" value={url} onChange={e => setUrl(e.target.value)} required
-        className="flex-1 bg-black border border-white/10 rounded-xl px-5 py-3 text-white text-sm focus:outline-none focus:border-red-700 transition-colors" />
-      <input type="text" placeholder="Caption (optional)" value={caption} onChange={e => setCaption(e.target.value)}
-        className="flex-1 bg-black border border-white/10 rounded-xl px-5 py-3 text-white text-sm focus:outline-none focus:border-red-700 transition-colors" />
-      <button type="submit" disabled={saving}
-        className="px-6 py-3 rounded-xl text-white text-xs font-black uppercase tracking-widest disabled:opacity-50 whitespace-nowrap"
-        style={{ background: 'linear-gradient(to bottom, #980016, #3d0009)' }}>
-        {saving ? 'Adding...' : 'Add Photo'}
+    <form onSubmit={handleAdd} className="space-y-5">
+      <div>
+        <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-3">Photo</label>
+        <ImageUpload value={url} onChange={setUrl} folder="gallery" />
+      </div>
+
+      <div>
+        <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-2">Caption (optional)</label>
+        <input
+          type="text"
+          placeholder="e.g. Vision For All 2024"
+          value={caption}
+          onChange={e => setCaption(e.target.value)}
+          className="w-full bg-black border border-white/10 rounded-xl px-5 py-3 text-white text-sm focus:outline-none focus:border-red-700 transition-colors"
+        />
+      </div>
+
+      <button
+        type="submit"
+        disabled={saving || !url}
+        className="px-8 py-4 rounded-xl text-white text-xs font-black uppercase tracking-widest disabled:opacity-40 transition-all"
+        style={{ background: 'linear-gradient(to bottom, #980016, #3d0009)' }}
+      >
+        {saving ? 'Adding...' : 'Add to Gallery'}
       </button>
     </form>
   );
