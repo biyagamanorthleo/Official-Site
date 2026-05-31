@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --electric-red: #dc2626;
+    --deep-red: #7f1d1d;
+    --glow-red: rgba(220, 38, 38, 0.25);
+  }
+
+  body {
+    scroll-behavior: smooth;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #000;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #450a0a;
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #991b1b;
+  }
+}
+
+@layer utilities {
+  .font-heading {
+    font-family: var(--font-outfit), sans-serif;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+  }
+
+  .glass-nav {
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .neon-text {
+    text-shadow: 0 0 10px var(--glow-red);
+  }
+
+  .text-glow {
+    text-shadow: 0 0 30px rgba(220, 38, 38, 0.3);
+  }
+
+  .btn-shimmer {
+    background: linear-gradient(135deg, #991b1b 0%, #450a0a 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-shimmer::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      to bottom right,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    transform: rotate(45deg);
+    transition: all 0.5s;
+  }
+
+  .btn-shimmer:hover::after {
+    left: 100%;
+    top: 100%;
+  }
+}
