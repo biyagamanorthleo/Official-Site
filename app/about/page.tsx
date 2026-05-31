@@ -13,6 +13,8 @@ const IconMap: Record<string, React.ComponentType<{ size?: number; className?: s
   Target, Shield, Award,
 };
 
+export const revalidate = 3600;
+
 export default async function AboutPage() {
   const presidents = await getPresidents();
 
@@ -95,5 +97,6 @@ export default async function AboutPage() {
     </div>
   );
 }
+
 
 

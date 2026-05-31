@@ -9,6 +9,8 @@ export const metadata: Metadata = {
   keywords: ['BN Leos projects', 'Leo Club Biyagama North service', 'community service Biyagama', 'Leo District 306 D4 projects'],
 };
 
+export const revalidate = 3600; // re-fetch from Supabase at most once per hour
+
 export default async function ProjectsPage() {
   const projects = await getProjects();
 

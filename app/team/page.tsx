@@ -53,6 +53,8 @@ function MemberCard({ member, size = 'md' }: { member: Member; size?: 'lg' | 'md
   );
 }
 
+export const revalidate = 3600;
+
 export default async function TeamPage() {
   const allMembers = await getTeamMembers();
 
@@ -94,7 +96,7 @@ export default async function TeamPage() {
                       <div className="flex items-center space-x-6 mb-6 border-l-4 border-red-900 pl-6">
                         <span className="text-red-500 font-black text-xs uppercase tracking-[0.5em]">{avenue}</span>
                       </div>
-                      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
+                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
                         {avenueMembers.sort((a, b) => a.priority - b.priority).map(m => <MemberCard key={m.id} member={m} />)}
                       </div>
                     </div>
@@ -111,9 +113,9 @@ export default async function TeamPage() {
                 <h2 className="text-2xl md:text-4xl font-heading font-black uppercase tracking-tight text-white mb-6">{section.title}</h2>
                 <div className="h-1 w-20 bg-red-600 rounded-full" />
               </div>
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
                 {members.sort((a, b) => a.priority - b.priority).map(m => (
-                  <MemberCard key={m.id} member={m} size={section.category === 'EXECUTIVE' && m.position.includes('President') ? 'lg' : 'md'} />
+                  <MemberCard key={m.id} member={m} />
                 ))}
               </div>
             </section>
@@ -123,5 +125,6 @@ export default async function TeamPage() {
     </div>
   );
 }
+
 
 

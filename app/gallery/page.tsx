@@ -8,6 +8,8 @@ export const metadata: Metadata = {
   keywords: ['BN Leos gallery', 'Leo Club Biyagama North photos', 'Leo Club Sri Lanka events', 'Biyagama community service photos'],
 };
 
+export const revalidate = 3600;
+
 export default async function GalleryPage() {
   const photos = await getGalleryPhotos();
 
@@ -45,5 +47,6 @@ export default async function GalleryPage() {
     </div>
   );
 }
+
 
 

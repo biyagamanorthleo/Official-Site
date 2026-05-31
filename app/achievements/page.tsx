@@ -9,6 +9,8 @@ export const metadata: Metadata = {
   keywords: ['BN Leos awards', 'Leo Club Biyagama North achievements', 'Leo District 306 D4 awards', 'outstanding Leo Club Sri Lanka'],
 };
 
+export const revalidate = 3600;
+
 export default async function AchievementsPage() {
   const achievements = await getAchievements();
 
@@ -70,5 +72,6 @@ export default async function AchievementsPage() {
     </div>
   );
 }
+
 
 
