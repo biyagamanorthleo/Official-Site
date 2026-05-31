@@ -1,7 +1,6 @@
-﻿'use client';
+'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
 import { GALLERY_PHOTOS, GALLERY_PAGE_CONTENT } from '@/constants';
 
 export default function GalleryPage() {
@@ -25,30 +24,17 @@ export default function GalleryPage() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {GALLERY_PHOTOS.map((photo, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.05 }}
-              whileHover={{ scale: 1.02 }}
-              className="group relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-zinc-900 border border-white/5"
-            >
-              <img
-                src={photo}
-                alt={`Gallery image ${idx + 1}`}
-                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
-              />
+            <div key={idx} className="group relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-zinc-900 border border-white/5">
+              <img src={photo} alt={`Gallery image ${idx + 1}`} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <div className="absolute bottom-10 left-10 right-10 translate-y-10 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
                 <span className="text-red-500 font-black uppercase tracking-[0.4em] text-[10px]">Service Archive</span>
                 <p className="text-white text-xs font-bold uppercase tracking-widest mt-2">Biyagama North Legacy</p>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
     </div>
   );
 }
-

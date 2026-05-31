@@ -1,7 +1,6 @@
-﻿'use client';
+'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
 import { ACHIEVEMENTS, ACHIEVEMENTS_PAGE_CONTENT } from '@/constants';
 import { Trophy, Calendar, Award, ShieldCheck } from 'lucide-react';
 
@@ -33,23 +32,15 @@ export default function AchievementsPage() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
-            {ACHIEVEMENTS.map((achievement, idx) => (
-              <motion.div
+            {ACHIEVEMENTS.map((achievement) => (
+              <div
                 key={achievement.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
                 className="group relative bg-[#050505] border border-white/5 rounded-[3rem] overflow-hidden hover:border-red-600/30 transition-all duration-500 shadow-2xl"
               >
                 <div className="flex flex-col md:flex-row h-full">
                   {achievement.image && (
                     <div className="md:w-1/3 relative overflow-hidden h-64 md:h-auto">
-                      <img
-                        src={achievement.image}
-                        alt={achievement.title}
-                        className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
-                      />
+                      <img src={achievement.image} alt={achievement.title} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
                       <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent" />
                     </div>
                   )}
@@ -60,20 +51,17 @@ export default function AchievementsPage() {
                     <h3 className="text-2xl font-heading font-black text-white uppercase tracking-tighter mb-4 group-hover:text-red-500 transition-colors">
                       {achievement.title}
                     </h3>
-                    <p className="text-gray-500 text-xs leading-relaxed font-medium mb-8 uppercase tracking-widest">
-                      {achievement.description}
-                    </p>
+                    <p className="text-gray-500 text-xs leading-relaxed font-medium mb-8 uppercase tracking-widest">{achievement.description}</p>
                     <div className="flex items-center space-x-3">
                       <Trophy size={16} className="text-red-900" />
                       <span className="text-red-900 text-[10px] font-black uppercase tracking-[0.3em]">{achievement.category}</span>
                     </div>
                   </div>
                 </div>
-
                 <div className="absolute top-10 right-10 text-white/5 pointer-events-none transform group-hover:scale-110 transition-transform">
                   <ShieldCheck size={120} strokeWidth={0.5} />
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </section>
@@ -81,4 +69,3 @@ export default function AchievementsPage() {
     </div>
   );
 }
-

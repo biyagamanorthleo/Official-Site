@@ -1,7 +1,7 @@
-﻿'use client';
+'use client';
 
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { PROJECTS, PROJECTS_PAGE_CONTENT } from '@/constants';
 import { ProjectStatus, Project } from '@/types';
 import { Calendar, X, TrendingUp } from 'lucide-react';
@@ -53,53 +53,40 @@ export default function ProjectsPage() {
           ))}
         </div>
 
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 lg:gap-20">
-          <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project, idx) => (
-              <motion.div
-                layout
-                key={project.id}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.6, delay: idx * 0.05 }}
-                className="group cursor-pointer flex flex-col"
-                onClick={() => setSelectedProject(project)}
-              >
-                <div className="relative aspect-[3/4] rounded-[3rem] overflow-hidden mb-10 border border-white/10 bg-[#0a0a0a] shadow-3xl group-hover:border-red-500/50 transition-all duration-700">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover grayscale opacity-40 transition-all duration-1000 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80" />
-                  <div className="absolute top-8 left-8">
-                    <span className="inline-block px-4 py-1 bg-red-600/20 border border-red-500/30 text-red-400 text-[9px] font-black uppercase tracking-widest rounded-lg">
-                      {project.status}
-                    </span>
-                  </div>
-                  <div className="absolute bottom-12 left-10 right-10">
-                    <div className="flex items-center text-red-500 text-[9px] font-black uppercase tracking-[0.3em] mb-4">
-                      <Calendar size={12} className="mr-3" /> {project.date}
-                    </div>
-                    <h3 className="text-2xl font-heading font-black text-white leading-tight uppercase tracking-tight group-hover:text-red-400 transition-colors">
-                      {project.title}
-                    </h3>
-                  </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {filteredProjects.map((project) => (
+            <div
+              key={project.id}
+              className="group cursor-pointer flex flex-col"
+              onClick={() => setSelectedProject(project)}
+            >
+              <div className="relative aspect-[3/4] rounded-2xl overflow-hidden border border-white/10 bg-[#0a0a0a] group-hover:border-red-500/50 transition-all duration-700">
+                <img src={project.image} alt={project.title} className="w-full h-full object-cover grayscale opacity-40 transition-all duration-1000 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80" />
+                <div className="absolute top-4 left-4">
+                  <span className="inline-block px-2 py-0.5 bg-red-600/20 border border-red-500/30 text-red-400 text-[8px] font-black uppercase tracking-widest rounded">
+                    {project.status}
+                  </span>
                 </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
+                <div className="absolute bottom-5 left-5 right-5">
+                  <div className="flex items-center text-red-500 text-[9px] font-black uppercase tracking-[0.3em] mb-2">
+                    <Calendar size={10} className="mr-2" /> {project.date}
+                  </div>
+                  <h3 className="text-sm font-heading font-black text-white leading-tight uppercase tracking-tight group-hover:text-red-400 transition-colors">
+                    {project.title}
+                  </h3>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
+      {/* Modal — keep open/close animation for UX */}
       <AnimatePresence>
         {selectedProject && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-6">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
               onClick={() => setSelectedProject(null)}
               className="absolute inset-0 bg-black/90 backdrop-blur-2xl"
             />
@@ -109,17 +96,13 @@ export default function ProjectsPage() {
               exit={{ scale: 0.9, opacity: 0, y: 50 }}
               className="relative w-full max-w-5xl bg-[#050505] rounded-[4rem] overflow-hidden shadow-[0_0_120px_rgba(239,68,68,0.15)] flex flex-col md:flex-row max-h-[85vh] border border-white/10"
             >
-              <button
-                onClick={() => setSelectedProject(null)}
-                className="absolute top-8 right-8 z-20 w-14 h-14 bg-white/5 backdrop-blur-md border border-white/10 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-all hover:rotate-90"
-              >
+              <button onClick={() => setSelectedProject(null)}
+                className="absolute top-8 right-8 z-20 w-14 h-14 bg-white/5 backdrop-blur-md border border-white/10 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-all hover:rotate-90">
                 <X size={24} />
               </button>
-
               <div className="md:w-1/2 h-80 md:h-auto overflow-hidden border-r border-white/5">
                 <img src={selectedProject.image} className="w-full h-full object-cover" alt={selectedProject.title} />
               </div>
-
               <div className="md:w-1/2 p-12 md:p-16 overflow-y-auto">
                 <div className="flex items-center space-x-4 mb-10">
                   <div className="px-4 py-1.5 bg-red-600/10 border border-red-500/20 text-red-500 text-[10px] font-black uppercase tracking-widest rounded-lg">
@@ -156,4 +139,3 @@ export default function ProjectsPage() {
     </div>
   );
 }
-

@@ -11,21 +11,18 @@ const IconMap: Record<string, React.ComponentType<{ size?: number; className?: s
 };
 
 export default function HomePage() {
-  const recentProjects = PROJECTS.slice(0, 3);
+  const recentProjects = PROJECTS.slice(0, 4);
 
   return (
     <div className="bg-black overflow-hidden">
+
+      {/* Hero */}
       <section className="relative min-h-screen flex items-center justify-center pt-20">
         <div className="absolute inset-0 z-0">
-          <img
-            src="/herobg.webp"
-            alt="Hero Background"
-            className="w-full h-full object-cover"
-          />
+          <img src="/herobg.webp" alt="Hero Background" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-black/60" />
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black" />
         </div>
-
         <div className="container mx-auto px-6 relative z-10 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -45,16 +42,10 @@ export default function HomePage() {
               {HERO_CONTENT.description}
             </p>
             <div className="flex flex-col md:flex-row justify-center items-center space-y-5 md:space-y-0 md:space-x-10">
-              <Link
-                href="/projects"
-                className="btn-shimmer w-full md:w-auto text-white px-14 py-5 rounded-full font-black text-[12px] uppercase tracking-[0.2em] shadow-2xl transition-all transform hover:scale-105 active:scale-95"
-              >
+              <Link href="/projects" className="btn-shimmer w-full md:w-auto text-white px-14 py-5 rounded-full font-black text-[12px] uppercase tracking-[0.2em] shadow-2xl transition-all transform hover:scale-105 active:scale-95">
                 {HERO_CONTENT.primaryBtnText}
               </Link>
-              <Link
-                href="/about"
-                className="w-full md:w-auto bg-white/5 border border-white/10 text-white px-14 py-5 rounded-full font-black text-[12px] uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all"
-              >
+              <Link href="/about" className="w-full md:w-auto bg-white/5 border border-white/10 text-white px-14 py-5 rounded-full font-black text-[12px] uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all">
                 {HERO_CONTENT.secondaryBtnText}
               </Link>
             </div>
@@ -62,27 +53,21 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Stats */}
       <section className="py-24 border-y border-white/5 bg-[#030303]">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-4">
             {CLUB_STATS.map((stat, idx) => {
               const Icon = IconMap[stat.icon];
               return (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1 }}
-                  className="text-center group"
-                >
+                <div key={idx} className="text-center group">
                   <div className="text-3xl md:text-6xl font-heading font-black mb-2 text-white group-hover:text-red-500 transition-colors">
                     {stat.value.toLocaleString()}{stat.suffix}
                   </div>
                   <div className="text-gray-500 text-[10px] uppercase tracking-[0.3em] font-black">
                     {stat.label}
                   </div>
-                </motion.div>
+                </div>
               );
             })}
           </div>
@@ -91,15 +76,7 @@ export default function HomePage() {
 
       {/* President Spotlight */}
       <section className="relative min-h-[80vh] flex items-center overflow-hidden bg-black">
-
-        {/* Background number — sits behind everything */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.2 }}
-          className="absolute inset-0 flex flex-col items-start justify-center pl-6 md:pl-12 select-none pointer-events-none z-0"
-        >
+        <div className="absolute inset-0 flex flex-col items-start justify-center pl-6 md:pl-12 select-none pointer-events-none z-0">
           <span
             className="font-heading font-black leading-none tracking-tighter"
             style={{
@@ -115,37 +92,19 @@ export default function HomePage() {
           <span className="text-[10px] font-black uppercase tracking-[0.5em] text-red-900/60 mt-4 pl-2">
             2026/27 Leostic Year
           </span>
-        </motion.div>
-
-        {/* Subtle glow — toned down */}
+        </div>
         <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full blur-[180px] pointer-events-none z-0"
           style={{ background: 'radial-gradient(circle, rgba(120,0,15,0.25) 0%, transparent 70%)' }}
         />
-
-        {/* Foreground content — president card on the right */}
         <div className="relative z-10 w-full flex flex-col md:flex-row items-center justify-end px-6 md:px-20 py-24 gap-10">
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col items-center md:items-start"
-          >
+          <div className="flex flex-col items-center md:items-start">
             <div className="relative group mb-8 inline-block">
-              <img
-                src="/president.png"
-                alt="Leo Lion Anjana Dineth MAF"
-                className="w-72 md:w-[28rem] object-contain drop-shadow-2xl"
-              />
-              <div
-                className="absolute bottom-4 right-0 px-4 py-2 rounded-xl font-black text-[9px] tracking-[0.3em] uppercase text-white"
-                style={{ background: 'linear-gradient(135deg, #980016, #3d0009)' }}
-              >
+              <img src="/president.png" alt="Leo Lion Anjana Dineth MAF" className="w-72 md:w-[28rem] object-contain drop-shadow-2xl" />
+              <div className="absolute bottom-4 right-0 px-4 py-2 rounded-xl font-black text-[9px] tracking-[0.3em] uppercase text-white"
+                style={{ background: 'linear-gradient(135deg, #980016, #3d0009)' }}>
                 2026/27
               </div>
             </div>
-
             <span className="text-red-700 font-black uppercase tracking-[0.5em] text-[9px] mb-3">Club President</span>
             <h3 className="text-2xl md:text-3xl font-heading font-black text-white uppercase tracking-tighter leading-tight text-center md:text-left">
               Leo Lion<br />Anjana Dineth<br />
@@ -154,10 +113,11 @@ export default function HomePage() {
             <p className="text-gray-700 text-[10px] uppercase tracking-[0.4em] font-black mt-4">
               Leo Club of Biyagama North
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
+      {/* Projects */}
       <section className="py-40">
         <div className="container mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-end mb-32">
@@ -169,57 +129,35 @@ export default function HomePage() {
               EXPLORE ALL <ArrowRight className="ml-4 group-hover:translate-x-3 transition-transform" size={18} />
             </Link>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-16 lg:gap-24 mb-24">
-            {recentProjects.map((project, idx) => (
-              <motion.div
-                key={project.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.2 }}
-                className="group flex flex-col"
-              >
-                <div className="relative aspect-[3/4] rounded-[2.5rem] overflow-hidden mb-10 border border-white/5 bg-gray-900 shadow-3xl">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover grayscale opacity-60 transition-all duration-1000 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110"
-                  />
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-24">
+            {recentProjects.map((project) => (
+              <div key={project.id} className="group flex flex-col">
+                <div className="relative aspect-[3/4] rounded-2xl overflow-hidden border border-white/5 bg-gray-900">
+                  <img src={project.image} alt={project.title} className="w-full h-full object-cover grayscale opacity-60 transition-all duration-1000 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
-                  <div className="absolute bottom-12 left-12 right-12">
-                    <span className="inline-block px-3 py-1 bg-red-950/40 border border-red-900/30 text-red-400 text-[9px] font-black uppercase tracking-widest rounded-lg mb-4">
+                  <div className="absolute bottom-5 left-5 right-5">
+                    <span className="inline-block px-2 py-0.5 bg-red-950/40 border border-red-900/30 text-red-400 text-[8px] font-black uppercase tracking-widest rounded mb-2">
                       {project.status}
                     </span>
-                    <h3 className="text-2xl font-heading font-black text-white leading-tight uppercase tracking-tight">{project.title}</h3>
-                    <div className="flex items-center text-gray-500 text-[10px] uppercase tracking-widest mt-4">
-                      <Calendar size={12} className="mr-2" /> {project.date}
+                    <h3 className="text-sm font-heading font-black text-white leading-tight uppercase tracking-tight">{project.title}</h3>
+                    <div className="flex items-center text-gray-500 text-[9px] uppercase tracking-widest mt-2">
+                      <Calendar size={10} className="mr-1.5" /> {project.date}
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
-
           <div className="flex justify-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4 }}
-            >
-              <Link
-                href="/projects"
-                className="inline-flex items-center space-x-4 px-12 py-5 rounded-full border border-red-950/50 bg-red-950/5 hover:bg-red-800 transition-all group shadow-2xl"
-              >
-                <span className="text-[12px] font-black uppercase tracking-[0.2em] text-white">Explore All Projects</span>
-                <ArrowRight size={18} className="text-red-400 group-hover:text-white group-hover:translate-x-2 transition-all" />
-              </Link>
-            </motion.div>
+            <Link href="/projects" className="inline-flex items-center space-x-4 px-12 py-5 rounded-full border border-red-950/50 bg-red-950/5 hover:bg-red-800 transition-all group shadow-2xl">
+              <span className="text-[12px] font-black uppercase tracking-[0.2em] text-white">Explore All Projects</span>
+              <ArrowRight size={18} className="text-red-400 group-hover:text-white group-hover:translate-x-2 transition-all" />
+            </Link>
           </div>
         </div>
       </section>
 
+      {/* Gallery CTA */}
       <section className="py-40 bg-[#020202] relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-red-950/10 rounded-full blur-[150px] -z-10 animate-pulse" />
         <div className="container mx-auto px-6 text-center">
