@@ -18,13 +18,12 @@ export default function HomePage() {
       <section className="relative min-h-screen flex items-center justify-center pt-20">
         <div className="absolute inset-0 z-0">
           <img
-            src={HERO_CONTENT.backgroundImage}
-            alt="Leo Background"
-            className="w-full h-full object-cover opacity-10"
+            src="/herobg.webp"
+            alt="Hero Background"
+            className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/80 to-black" />
-          <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-red-950/20 rounded-full blur-[180px] animate-pulse" />
-          <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-red-900/10 rounded-full blur-[180px] animate-pulse" style={{ animationDelay: '1.5s' }} />
+          <div className="absolute inset-0 bg-black/60" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black" />
         </div>
 
         <div className="container mx-auto px-6 relative z-10 text-center">
@@ -33,15 +32,14 @@ export default function HomePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           >
-            <h1 className="text-4xl md:text-6xl font-heading font-black mb-4 leading-[0.9] tracking-tighter uppercase">
-              {HERO_CONTENT.titlePrefix} <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-b from-red-600 via-red-800 to-red-950 text-glow">
-                {HERO_CONTENT.titleMain.split(' ')[0]} <br className="md:hidden" />
-                {HERO_CONTENT.titleMain.split(' ').slice(1).join(' ')}
+            <h1 className="font-heading font-black mb-4 leading-[0.9] tracking-tighter uppercase">
+              <span className="block text-4xl md:text-6xl">{HERO_CONTENT.titlePrefix}</span>
+              <span className="block text-6xl md:text-9xl animate-shimmer-text">
+                {HERO_CONTENT.titleMain}
               </span>
             </h1>
             <p className="text-[11px] font-bold uppercase tracking-[0.35em] text-red-700/80 mb-10">
-              Leo District 306 D4 — Sri Lanka &amp; Maldives
+              Leo District 306 D4 - Sri Lanka & Maldives
             </p>
             <p className="text-sm md:text-base max-w-2xl mx-auto mb-16 text-gray-400 font-medium leading-relaxed tracking-tight">
               {HERO_CONTENT.description}
@@ -88,6 +86,75 @@ export default function HomePage() {
               );
             })}
           </div>
+        </div>
+      </section>
+
+      {/* President Spotlight */}
+      <section className="relative min-h-[80vh] flex items-center overflow-hidden bg-black">
+
+        {/* Background number — sits behind everything */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.2 }}
+          className="absolute inset-0 flex flex-col items-start justify-center pl-6 md:pl-12 select-none pointer-events-none z-0"
+        >
+          <span
+            className="font-heading font-black leading-none tracking-tighter"
+            style={{
+              fontSize: 'clamp(10rem, 28vw, 28rem)',
+              background: 'linear-gradient(160deg, #5a0010 0%, #2a0007 50%, #0d0002 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+            }}
+          >
+            26/27
+          </span>
+          <span className="text-[10px] font-black uppercase tracking-[0.5em] text-red-900/60 mt-4 pl-2">
+            2026/27 Leostic Year
+          </span>
+        </motion.div>
+
+        {/* Subtle glow — toned down */}
+        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full blur-[180px] pointer-events-none z-0"
+          style={{ background: 'radial-gradient(circle, rgba(120,0,15,0.25) 0%, transparent 70%)' }}
+        />
+
+        {/* Foreground content — president card on the right */}
+        <div className="relative z-10 w-full flex flex-col md:flex-row items-center justify-end px-6 md:px-20 py-24 gap-10">
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="flex flex-col items-center md:items-start"
+          >
+            <div className="relative group mb-8 inline-block">
+              <img
+                src="/president.png"
+                alt="Leo Lion Anjana Dineth MAF"
+                className="w-72 md:w-[28rem] object-contain drop-shadow-2xl"
+              />
+              <div
+                className="absolute bottom-4 right-0 px-4 py-2 rounded-xl font-black text-[9px] tracking-[0.3em] uppercase text-white"
+                style={{ background: 'linear-gradient(135deg, #980016, #3d0009)' }}
+              >
+                2026/27
+              </div>
+            </div>
+
+            <span className="text-red-700 font-black uppercase tracking-[0.5em] text-[9px] mb-3">Club President</span>
+            <h3 className="text-2xl md:text-3xl font-heading font-black text-white uppercase tracking-tighter leading-tight text-center md:text-left">
+              Leo Lion<br />Anjana Dineth<br />
+              <span className="text-red-600">MAF</span>
+            </h3>
+            <p className="text-gray-700 text-[10px] uppercase tracking-[0.4em] font-black mt-4">
+              Leo Club of Biyagama North
+            </p>
+          </motion.div>
         </div>
       </section>
 

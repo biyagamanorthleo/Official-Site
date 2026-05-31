@@ -1,10 +1,5 @@
 @import "tailwindcss";
 
-/* ─── Custom Red Scale ───────────────────────────────────────────────────────
-   Replaces Tailwind's default orange-warm reds with a colder, purer crimson
-   that reads as authoritative and vivid on pure black backgrounds.
-   All red-* utility classes in every component update automatically.
-──────────────────────────────────────────────────────────────────────────── */
 @theme {
   --color-red-400: #ff5262;
   --color-red-500: #ff1f35;
@@ -13,6 +8,11 @@
   --color-red-800: #77000f;
   --color-red-900: #3d0009;
   --color-red-950: #1a0004;
+}
+
+@keyframes shimmer-text {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
 }
 
 @layer base {
@@ -91,4 +91,21 @@
     opacity: 1;
   }
 
+  .animate-shimmer-text {
+    background: linear-gradient(
+      150deg,
+      #7a0011 0%,
+      #b30019 20%,
+      #e8001d 35%,
+      #ff5262 50%,
+      #e8001d 65%,
+      #b30019 80%,
+      #7a0011 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer-text 8s linear infinite;
+  }
 }
