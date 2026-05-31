@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "migrate": "node scripts/migrate.js",
+    "migrate:status": "node scripts/migrate.js status"
   },
   "dependencies": {
     "@supabase/ssr": "^0.10.3",
@@ -22,6 +24,8 @@
     "@types/node": "^22.14.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
+    "dotenv": "^17.4.2",
+    "pg": "^8.21.0",
     "postcss": "^8.5.0",
     "tailwindcss": "^4.1.0",
     "typescript": "~5.8.2"

@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import { useRouter } from 'next/navigation';
+import ImageUpload from '../_components/ImageUpload';
 
 type Achievement = { id?: string; title: string; description: string; year: string; category: string; image: string; sort_order: number };
 
@@ -23,13 +24,23 @@ export default function AchievementForm({ achievement }: { achievement?: Achieve
 
   return (
     <form onSubmit={handleSave} className="space-y-6 max-w-2xl">
-      {[{ label: 'Title', field: 'title' as const }, { label: 'Year', field: 'year' as const }, { label: 'Image URL', field: 'image' as const }].map(({ label, field }) => (
-        <div key={field}>
-          <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-2">{label}</label>
-          <input value={form[field] as string} onChange={e => set(field, e.target.value)} required={field === 'title'}
-            className="w-full bg-black border border-white/10 rounded-xl px-5 py-4 text-white text-sm focus:outline-none focus:border-red-700 transition-colors" />
-        </div>
-      ))}
+      <div>
+        <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-2">Title</label>
+        <input value={form.title} onChange={e => set('title', e.target.value)} required
+          className="w-full bg-black border border-white/10 rounded-xl px-5 py-4 text-white text-sm focus:outline-none focus:border-red-700 transition-colors" />
+      </div>
+
+      <div>
+        <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-3">Image</label>
+        <ImageUpload value={form.image} onChange={url => set('image', url)} folder="achievements" />
+      </div>
+
+      <div>
+        <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-2">Year</label>
+        <input value={form.year} onChange={e => set('year', e.target.value)}
+          className="w-full bg-black border border-white/10 rounded-xl px-5 py-4 text-white text-sm focus:outline-none focus:border-red-700 transition-colors" />
+      </div>
+
       <div>
         <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-2">Category</label>
         <select value={form.category} onChange={e => set('category', e.target.value)}
@@ -37,11 +48,13 @@ export default function AchievementForm({ achievement }: { achievement?: Achieve
           <option>District Award</option><option>Regional Recognition</option><option>Club Milestone</option>
         </select>
       </div>
+
       <div>
         <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-2">Description</label>
         <textarea value={form.description} onChange={e => set('description', e.target.value)} rows={3}
           className="w-full bg-black border border-white/10 rounded-xl px-5 py-4 text-white text-sm focus:outline-none focus:border-red-700 transition-colors resize-none" />
       </div>
+
       <div className="flex gap-4 pt-4">
         <button type="submit" disabled={saving} className="px-8 py-4 rounded-xl text-white text-xs font-black uppercase tracking-widest disabled:opacity-50"
           style={{ background: 'linear-gradient(to bottom, #980016, #3d0009)' }}>{saving ? 'Saving...' : form.id ? 'Update' : 'Create'}</button>

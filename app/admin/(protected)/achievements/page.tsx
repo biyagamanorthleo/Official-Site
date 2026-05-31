@@ -1,4 +1,4 @@
-import { createClient } from '@/lib/supabase/server';
+﻿import { createClient } from '@/lib/supabase/server';
 import Link from 'next/link';
 import { Plus, Pencil } from 'lucide-react';
 import DeleteButton from '../_components/DeleteButton';
@@ -26,7 +26,7 @@ export default async function AdminAchievements() {
           <div key={a.id} className="flex items-center justify-between bg-[#050505] border border-white/5 rounded-2xl px-8 py-5 hover:border-white/10 transition-all">
             <div>
               <p className="text-white font-black text-sm uppercase tracking-tight">{a.title}</p>
-              <span className="text-[9px] font-black uppercase tracking-widest text-red-800">{a.category} · {a.year}</span>
+              <span className="text-[9px] font-black uppercase tracking-widest text-red-800">{a.category} Â· {a.year}</span>
             </div>
             <div className="flex items-center gap-3">
               <Link href={`/admin/achievements/${a.id}`} className="p-2 text-gray-500 hover:text-white transition-colors"><Pencil size={16} /></Link>
@@ -38,3 +38,4 @@ export default async function AdminAchievements() {
     </div>
   );
 }
+

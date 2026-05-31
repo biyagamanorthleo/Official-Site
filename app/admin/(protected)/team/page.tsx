@@ -1,4 +1,4 @@
-import { createClient } from '@/lib/supabase/server';
+﻿import { createClient } from '@/lib/supabase/server';
 import Link from 'next/link';
 import { Plus, Pencil } from 'lucide-react';
 import DeleteButton from '../_components/DeleteButton';
@@ -28,7 +28,7 @@ export default async function AdminTeam() {
               <img src={m.photo} alt={m.name} className="w-10 h-10 rounded-full object-cover grayscale opacity-60" />
               <div>
                 <p className="text-white font-black text-sm uppercase tracking-tight">{m.name}</p>
-                <span className="text-[9px] font-black uppercase tracking-widest text-red-800">{m.position} · {m.category}</span>
+                <span className="text-[9px] font-black uppercase tracking-widest text-red-800">{m.position} Â· {m.category}</span>
               </div>
             </div>
             <div className="flex items-center gap-3">
@@ -41,3 +41,4 @@ export default async function AdminTeam() {
     </div>
   );
 }
+

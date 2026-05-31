@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import { useRouter } from 'next/navigation';
+import ImageUpload from '../_components/ImageUpload';
 
 type Project = {
   id?: string;
@@ -43,19 +44,16 @@ export default function ProjectForm({ project }: { project?: Project }) {
 
   return (
     <form onSubmit={handleSave} className="space-y-6 max-w-2xl">
-      {[
-        { label: 'Title', field: 'title' as const, type: 'text' },
-        { label: 'Image URL', field: 'image' as const, type: 'text' },
-        { label: 'Date', field: 'date' as const, type: 'text' },
-        { label: 'Impact', field: 'impact' as const, type: 'text' },
-        { label: 'Sort Order', field: 'sort_order' as const, type: 'number' },
-      ].map(({ label, field, type }) => (
-        <div key={field}>
-          <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-2">{label}</label>
-          <input type={type} value={form[field] as string} onChange={e => set(field, type === 'number' ? +e.target.value : e.target.value)} required={field === 'title'}
-            className="w-full bg-black border border-white/10 rounded-xl px-5 py-4 text-white text-sm focus:outline-none focus:border-red-700 transition-colors" />
-        </div>
-      ))}
+      <div>
+        <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-2">Title</label>
+        <input value={form.title} onChange={e => set('title', e.target.value)} required
+          className="w-full bg-black border border-white/10 rounded-xl px-5 py-4 text-white text-sm focus:outline-none focus:border-red-700 transition-colors" />
+      </div>
+
+      <div>
+        <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-3">Image</label>
+        <ImageUpload value={form.image} onChange={url => set('image', url)} folder="projects" />
+      </div>
 
       <div>
         <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-2">Status</label>
@@ -66,6 +64,17 @@ export default function ProjectForm({ project }: { project?: Project }) {
           <option>Coming Soon</option>
         </select>
       </div>
+
+      {[
+        { label: 'Date (e.g. March 2024)', field: 'date' as const },
+        { label: 'Impact (e.g. 200 people helped)', field: 'impact' as const },
+      ].map(({ label, field }) => (
+        <div key={field}>
+          <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-2">{label}</label>
+          <input value={form[field] as string} onChange={e => set(field, e.target.value)}
+            className="w-full bg-black border border-white/10 rounded-xl px-5 py-4 text-white text-sm focus:outline-none focus:border-red-700 transition-colors" />
+        </div>
+      ))}
 
       <div>
         <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-2">Short Description</label>
@@ -79,9 +88,15 @@ export default function ProjectForm({ project }: { project?: Project }) {
           className="w-full bg-black border border-white/10 rounded-xl px-5 py-4 text-white text-sm focus:outline-none focus:border-red-700 transition-colors resize-none" />
       </div>
 
+      <div>
+        <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-2">Display Order</label>
+        <input type="number" value={form.sort_order} onChange={e => set('sort_order', +e.target.value)}
+          className="w-full bg-black border border-white/10 rounded-xl px-5 py-4 text-white text-sm focus:outline-none focus:border-red-700 transition-colors" />
+      </div>
+
       <div className="flex gap-4 pt-4">
         <button type="submit" disabled={saving}
-          className="px-8 py-4 rounded-xl text-white text-xs font-black uppercase tracking-widest disabled:opacity-50 transition-all"
+          className="px-8 py-4 rounded-xl text-white text-xs font-black uppercase tracking-widest disabled:opacity-50"
           style={{ background: 'linear-gradient(to bottom, #980016, #3d0009)' }}>
           {saving ? 'Saving...' : form.id ? 'Update Project' : 'Create Project'}
         </button>

@@ -1,4 +1,4 @@
-import { createClient } from '@/lib/supabase/server';
+﻿import { createClient } from '@/lib/supabase/server';
 import Link from 'next/link';
 import { Plus, Pencil } from 'lucide-react';
 import DeleteButton from '../_components/DeleteButton';
@@ -38,3 +38,4 @@ export default async function AdminGallery() {
     </div>
   );
 }
+
