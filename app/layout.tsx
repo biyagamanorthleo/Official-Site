@@ -1,9 +1,7 @@
 ﻿import type { Metadata } from 'next';
 import { Inter, Outfit } from 'next/font/google';
 import './globals.css';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import LoadingScreenWrapper from '@/components/LoadingScreenWrapper';
+import SiteShell from '@/components/SiteShell';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -78,12 +76,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         className="bg-black text-white selection:bg-red-600 selection:text-white"
         style={{ fontFamily: 'var(--font-inter), sans-serif' }}
       >
-        <div className="flex flex-col min-h-screen">
-          <LoadingScreenWrapper />
-          <Navbar />
-          <main className="flex-grow">{children}</main>
-          <Footer />
-        </div>
+        <SiteShell>{children}</SiteShell>
       </body>
     </html>
   );

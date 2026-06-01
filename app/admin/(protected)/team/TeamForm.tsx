@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import { useState } from 'react';
 import { createClient } from '@/lib/supabase/client';
@@ -22,17 +22,8 @@ const POSITIONS: Record<string, string[]> = {
   'Advisory Panel': ['Guiding Lion', 'Club Advisor', 'Zone Chairperson'],
   'Executive Committee': ['President', 'Vice President', 'Secretary', 'Joint Secretary', 'Treasurer', 'PRO', 'Sergeant at Arms'],
   'Director': ['Director'],
+  'Members': ['Member'],
 };
-
-const AVENUES = [
-  'Information Technology',
-  'Community Service',
-  'Professional Development',
-  'Environmental Service',
-  'Health & Wellness',
-  'Education',
-  'Arts & Culture',
-];
 
 const EXEC_ORDER: Record<string, number> = {
   'President': 1, 'Vice President': 2, 'Secretary': 3,
@@ -43,11 +34,18 @@ const ADVISORY_ORDER: Record<string, number> = {
   'Guiding Lion': 1, 'Club Advisor': 2, 'Zone Chairperson': 3,
 };
 
+const CATEGORY_DEFAULTS: Record<string, { position: string; priority: number }> = {
+  'Advisory Panel':      { position: 'Guiding Lion', priority: ADVISORY_ORDER['Guiding Lion'] },
+  'Executive Committee': { position: 'President',    priority: EXEC_ORDER['President'] },
+  'Director':            { position: 'Director',     priority: 100 },
+  'Members':             { position: 'Member',       priority: 500 },
+};
+
 export default function TeamForm({ member }: { member?: Member }) {
   const router = useRouter();
   const [form, setForm] = useState<Member>(member ?? {
     name: '', position: '', photo: '', category: 'Executive Committee',
-    avenue: '', priority: 99, instagram: '', linkedin: '', facebook: '',
+    avenue: '', priority: 1, instagram: '', linkedin: '', facebook: '',
   });
   const [saving, setSaving] = useState(false);
 
@@ -61,21 +59,20 @@ export default function TeamForm({ member }: { member?: Member }) {
   }
 
   function handleCategoryChange(category: string) {
-    const defaults: Record<string, string> = {
-      'Advisory Panel': 'Guiding Lion',
-      'Executive Committee': 'President',
-      'Director': 'Director',
-    };
-    const pos = defaults[category] ?? '';
-    const autoOrder = EXEC_ORDER[pos] ?? ADVISORY_ORDER[pos] ?? 99;
-    setForm(f => ({ ...f, category, position: pos, priority: autoOrder, avenue: '' }));
+    const def = CATEGORY_DEFAULTS[category] ?? { position: '', priority: 99 };
+    setForm(f => ({ ...f, category, position: def.position, priority: def.priority, avenue: '' }));
   }
+
+  const showAvenue = form.category === 'Director' || form.category === 'Members';
 
   async function handleSave(e: React.FormEvent) {
     e.preventDefault();
     setSaving(true);
     const supabase = createClient();
-    const data = { ...form, avenue: form.category === 'Director' ? form.avenue : null };
+    const data = {
+      ...form,
+      avenue: showAvenue ? (form.avenue || null) : null,
+    };
     if (form.id) {
       await supabase.from('team_members').update(data).eq('id', form.id);
     } else {
@@ -105,6 +102,7 @@ export default function TeamForm({ member }: { member?: Member }) {
           <option>Advisory Panel</option>
           <option>Executive Committee</option>
           <option>Director</option>
+          <option>Members</option>
         </select>
       </div>
 
@@ -119,14 +117,18 @@ export default function TeamForm({ member }: { member?: Member }) {
         </select>
       </div>
 
-      {form.category === 'Director' && (
+      {showAvenue && (
         <div>
-          <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-2">Avenue / Department</label>
-          <select value={form.avenue} onChange={e => set('avenue', e.target.value)}
-            className="w-full bg-black border border-white/10 rounded-xl px-5 py-4 text-white text-sm focus:outline-none focus:border-red-700 transition-colors">
-            <option value="">- Select avenue -</option>
-            {AVENUES.map(a => <option key={a}>{a}</option>)}
-          </select>
+          <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-2">
+            Avenue / Department <span className="text-gray-700 font-normal normal-case tracking-normal ml-2">- optional</span>
+          </label>
+          <input
+            type="text"
+            placeholder="e.g. Information Technology"
+            value={form.avenue}
+            onChange={e => set('avenue', e.target.value)}
+            className="w-full bg-black border border-white/10 rounded-xl px-5 py-4 text-white text-sm focus:outline-none focus:border-red-700 transition-colors"
+          />
         </div>
       )}
 
@@ -166,4 +168,3 @@ export default function TeamForm({ member }: { member?: Member }) {
     </form>
   );
 }
-

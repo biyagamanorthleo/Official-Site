@@ -8,7 +8,8 @@ export enum ProjectStatus {
 export enum TeamCategory {
   ADVISORY = 'Advisory Panel',
   EXECUTIVE = 'Executive Committee',
-  DIRECTOR = 'Director'
+  DIRECTOR = 'Director',
+  MEMBER = 'Members'
 }
 
 export enum AchievementCategory {

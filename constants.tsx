@@ -57,7 +57,8 @@ export const TEAM_PAGE_CONTENT = {
   sections: [
     { title: "Advisory Panel", category: "ADVISORY" },
     { title: "Executive Committee", category: "EXECUTIVE" },
-    { title: "Departmental Directors", category: "DIRECTOR" }
+    { title: "Departmental Directors", category: "DIRECTOR" },
+    { title: "Members", category: "MEMBER" }
   ]
 };
 

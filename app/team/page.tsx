@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import { getTeamMembers } from '@/lib/queries';
 import { TEAM_PAGE_CONTENT } from '@/constants';
-import { Instagram, Linkedin, Facebook, Shield, Users, Building } from 'lucide-react';
+import { Instagram, Linkedin, Facebook, Shield, Users, Building, Star } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Leadership Team',
@@ -14,6 +14,7 @@ const SectionIcon: Record<string, React.ComponentType<{ size?: number; className
   ADVISORY: Building,
   EXECUTIVE: Shield,
   DIRECTOR: Users,
+  MEMBER: Star,
 };
 
 type Member = {
@@ -76,7 +77,7 @@ export default async function TeamPage() {
           const Icon = SectionIcon[section.category] || Users;
           const members = allMembers.filter(m => m.category.toUpperCase().includes(section.category));
 
-          if (section.category === 'DIRECTOR') {
+          if (section.category === 'DIRECTOR' || section.category === 'MEMBER') {
             const byAvenue = members.reduce<Record<string, Member[]>>((acc, m) => {
               const key = m.avenue || 'General';
               if (!acc[key]) acc[key] = [];
