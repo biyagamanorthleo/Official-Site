@@ -10,6 +10,17 @@ export async function getProjects() {
   return data ?? [];
 }
 
+export async function getFeaturedProjects() {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from('projects')
+    .select('*')
+    .eq('featured', true)
+    .order('sort_order', { ascending: true });
+  if (error) throw error;
+  return data ?? [];
+}
+
 export async function getTeamMembers() {
   const supabase = await createClient();
   const { data, error } = await supabase

@@ -15,17 +15,18 @@ type Project = {
   date: string;
   impact: string;
   sort_order: number;
+  featured: boolean;
 };
 
 export default function ProjectForm({ project }: { project?: Project }) {
   const router = useRouter();
   const [form, setForm] = useState<Project>(project ?? {
     title: '', description: '', long_description: '', status: 'Completed',
-    image: '', date: '', impact: '', sort_order: 0,
+    image: '', date: '', impact: '', sort_order: 0, featured: false,
   });
   const [saving, setSaving] = useState(false);
 
-  function set(field: keyof Project, value: string | number) {
+  function set(field: keyof Project, value: string | number | boolean) {
     setForm(f => ({ ...f, [field]: value }));
   }
 
@@ -92,6 +93,22 @@ export default function ProjectForm({ project }: { project?: Project }) {
         <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-2">Display Order</label>
         <input type="number" value={form.sort_order} onChange={e => set('sort_order', +e.target.value)}
           className="w-full bg-black border border-white/10 rounded-xl px-5 py-4 text-white text-sm focus:outline-none focus:border-red-700 transition-colors" />
+      </div>
+
+      <div className="flex items-center justify-between p-5 bg-black border border-white/10 rounded-xl">
+        <div>
+          <p className="text-white text-sm font-black uppercase tracking-widest">Feature on Homepage</p>
+          <p className="text-gray-600 text-[11px] mt-1">Show this project in the landing page carousel</p>
+        </div>
+        <button
+          type="button"
+          onClick={() => set('featured', !form.featured)}
+          className={`relative w-12 h-6 rounded-full transition-all duration-300 flex-shrink-0 ${form.featured ? '' : 'bg-white/10'}`}
+          style={form.featured ? { background: 'linear-gradient(to right, #980016, #e8001d)' } : {}}
+          aria-label="Toggle homepage feature"
+        >
+          <span className={`absolute top-0.5 w-5 h-5 bg-white rounded-full shadow transition-all duration-300 ${form.featured ? 'left-6' : 'left-0.5'}`} />
+        </button>
       </div>
 
       <div className="flex gap-4 pt-4">

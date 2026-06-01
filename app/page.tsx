@@ -1,18 +1,35 @@
 ﻿'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { CLUB_STATS, PROJECTS, HERO_CONTENT } from '@/constants';
-import { ArrowRight, CheckCircle, Users, Clock, DollarSign, Calendar } from 'lucide-react';
+import { CLUB_STATS, PROJECTS, HERO_CONTENT, GLOBAL_CAUSES, UN_SDGS } from '@/constants';
+import { createClient } from '@/lib/supabase/client';
+import { ArrowRight, CheckCircle, Users, Clock, DollarSign, Calendar, Eye, Activity, Utensils, Heart, Leaf, AlertTriangle, Globe, GraduationCap } from 'lucide-react';
 
 const IconMap: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
   CheckCircle, Users, Clock, DollarSign,
 };
 
+const CauseIconMap: Record<string, React.ComponentType<{ size?: number; style?: React.CSSProperties }>> = {
+  Eye, Activity, Utensils, Heart, Leaf, AlertTriangle, Globe, GraduationCap,
+};
+
 export default function HomePage() {
-  const recentProjects = PROJECTS.slice(0, 4);
+  const [featuredProjects, setFeaturedProjects] = useState<typeof PROJECTS>(PROJECTS);
+
+  useEffect(() => {
+    const supabase = createClient();
+    supabase
+      .from('projects')
+      .select('*')
+      .eq('featured', true)
+      .order('sort_order', { ascending: true })
+      .then(({ data }) => {
+        if (data && data.length > 0) setFeaturedProjects(data);
+      });
+  }, []);
 
   return (
     <div className="bg-black overflow-hidden">
@@ -118,11 +135,125 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Global Causes & SDGs */}
+      <section className="py-40 bg-[#020202] relative overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none z-0">
+          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[900px] h-[500px] rounded-full blur-[200px] opacity-[0.03]"
+            style={{ background: 'radial-gradient(ellipse, #ffffff 0%, transparent 70%)' }} />
+        </div>
+        <div className="container mx-auto px-6 relative z-10">
+
+          {/* Header */}
+          <div className="mb-24">
+            <span className="text-red-500 font-black uppercase tracking-[0.4em] text-[10px] mb-6 block">Lions Clubs International</span>
+            <h2 className="text-4xl md:text-7xl font-heading font-black text-white leading-none uppercase mb-6">
+              GLOBAL<br />CAUSES
+            </h2>
+            <p className="text-gray-500 text-sm max-w-xl leading-relaxed tracking-tight">
+              Every project we undertake is rooted in Lions International&apos;s 8 Global Causes, each directly advancing the United Nations Sustainable Development Goals.
+            </p>
+          </div>
+
+          {/* 8 Cause Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-16">
+            {GLOBAL_CAUSES.map((cause) => {
+              const CauseIcon = CauseIconMap[cause.icon];
+              const accentSdg = UN_SDGS.find(s => s.goal === cause.accentSdg);
+              return (
+                <motion.div
+                  key={cause.id}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: cause.id * 0.06, ease: [0.22, 1, 0.36, 1] }}
+                  className="group relative bg-[#080808] border border-white/5 rounded-2xl p-6 flex flex-col hover:border-white/10 transition-all duration-500"
+                >
+                  {/* Top border glow on hover */}
+                  <div
+                    className="absolute top-0 left-0 right-0 h-px rounded-t-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    style={{ background: `linear-gradient(90deg, transparent, ${accentSdg?.color}60, transparent)` }}
+                  />
+
+                  {/* Cause icon */}
+                  <div className="mb-5 inline-flex">
+                    <div
+                      className="w-10 h-10 rounded-xl flex items-center justify-center border border-white/5"
+                      style={{ background: `${accentSdg?.color}18` }}
+                    >
+                      {CauseIcon && <CauseIcon size={18} style={{ color: accentSdg?.color }} />}
+                    </div>
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="font-heading font-black text-white text-base uppercase tracking-tight mb-3">
+                    {cause.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-gray-600 text-[11px] leading-relaxed tracking-tight flex-1 mb-6">
+                    {cause.description}
+                  </p>
+
+                  {/* SDG icon badges */}
+                  <div className="flex flex-wrap gap-1.5">
+                    {cause.sdgs.map((sdgGoal) => {
+                      const sdg = UN_SDGS.find(s => s.goal === sdgGoal);
+                      return (
+                        <div key={sdgGoal} title={`SDG ${sdgGoal}: ${sdg?.name}`} className="group/sdg relative">
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={`https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-${String(sdgGoal).padStart(2, '0')}.jpg`}
+                            alt={`SDG ${sdgGoal}: ${sdg?.name}`}
+                            className="w-8 h-8 rounded-sm object-cover opacity-75 group-hover/sdg:opacity-100 transition-opacity duration-200"
+                            loading="lazy"
+                            width={32}
+                            height={32}
+                          />
+                        </div>
+                      );
+                    })}
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+
+          {/* All 17 SDGs banner */}
+          <div className="border border-white/5 rounded-2xl p-8 bg-[#060606]">
+            <div className="flex flex-col md:flex-row items-start md:items-center gap-8">
+              <div className="flex-shrink-0">
+                <span className="text-[9px] font-black uppercase tracking-[0.4em] text-gray-600 block mb-2">Committed to</span>
+                <p className="text-white font-heading font-black text-xl uppercase leading-tight">
+                  All 17<br />UN SDGs
+                </p>
+              </div>
+              <div className="hidden md:block h-12 w-px bg-white/5 flex-shrink-0" />
+              <div className="flex flex-wrap gap-2">
+                {UN_SDGS.map((sdg) => (
+                  <div key={sdg.goal} title={`SDG ${sdg.goal}: ${sdg.name}`}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={`https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-${String(sdg.goal).padStart(2, '0')}.jpg`}
+                      alt={`SDG ${sdg.goal}: ${sdg.name}`}
+                      className="w-10 h-10 md:w-12 md:h-12 rounded-sm object-cover opacity-70 hover:opacity-100 transition-opacity duration-200"
+                      loading="lazy"
+                      width={48}
+                      height={48}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
       {/* Projects */}
-      <section className="py-40">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-32">
-            <div className="max-w-2xl">
+      <section className="py-24 overflow-hidden">
+        <div className="container mx-auto px-6 mb-14">
+          <div className="flex flex-col md:flex-row justify-between md:items-end">
+            <div>
               <span className="text-red-500 font-black uppercase tracking-[0.4em] text-[10px] mb-6 block">Documented Success</span>
               <h2 className="text-4xl md:text-7xl font-heading font-black text-white leading-none uppercase">PROJECTS</h2>
             </div>
@@ -130,31 +261,48 @@ export default function HomePage() {
               EXPLORE ALL <ArrowRight className="ml-4 group-hover:translate-x-3 transition-transform" size={18} />
             </Link>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-24">
-            {recentProjects.map((project) => (
-              <div key={project.id} className="group flex flex-col">
-                <div className="relative aspect-[3/4] rounded-2xl overflow-hidden border border-white/5 bg-gray-900">
-                  <Image loading="lazy" fill src={project.image} alt={project.title} className="object-cover grayscale opacity-60 transition-all duration-1000 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110" sizes="(max-width: 768px) 50vw, 25vw" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
-                  <div className="absolute bottom-5 left-5 right-5">
-                    <span className="inline-block px-2 py-0.5 bg-red-950/40 border border-red-900/30 text-red-400 text-[8px] font-black uppercase tracking-widest rounded mb-2">
+        </div>
+
+        {/* Infinite marquee carousel */}
+        <div className="relative">
+          {/* Left fade */}
+          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />
+          {/* Right fade */}
+          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
+
+          <div className="flex gap-4 animate-marquee w-max px-4">
+            {[...featuredProjects, ...featuredProjects].map((project, i) => (
+              <div key={i} className="w-64 flex-shrink-0 group">
+                <div className="relative aspect-square rounded-xl overflow-hidden border border-white/5 bg-gray-900">
+                  <Image
+                    loading="lazy"
+                    fill
+                    src={project.image}
+                    alt={project.title}
+                    className="object-cover grayscale opacity-60 transition-all duration-700 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105"
+                    sizes="256px"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+                  <div className="absolute bottom-3 left-3 right-3">
+                    <span className="inline-block px-1.5 py-0.5 bg-red-950/40 border border-red-900/30 text-red-400 text-[7px] font-black uppercase tracking-widest rounded mb-1.5">
                       {project.status}
                     </span>
-                    <h3 className="text-sm font-heading font-black text-white leading-tight uppercase tracking-tight">{project.title}</h3>
-                    <div className="flex items-center text-gray-500 text-[9px] uppercase tracking-widest mt-2">
-                      <Calendar size={10} className="mr-1.5" /> {project.date}
+                    <h3 className="text-[11px] font-heading font-black text-white leading-tight uppercase tracking-tight line-clamp-2">{project.title}</h3>
+                    <div className="flex items-center text-gray-500 text-[8px] uppercase tracking-widest mt-1">
+                      <Calendar size={8} className="mr-1" /> {project.date}
                     </div>
                   </div>
                 </div>
               </div>
             ))}
           </div>
-          <div className="flex justify-center">
-            <Link href="/projects" className="inline-flex items-center space-x-4 px-12 py-5 rounded-full border border-red-950/50 bg-red-950/5 hover:bg-red-800 transition-all group shadow-2xl">
-              <span className="text-[12px] font-black uppercase tracking-[0.2em] text-white">Explore All Projects</span>
-              <ArrowRight size={18} className="text-red-400 group-hover:text-white group-hover:translate-x-2 transition-all" />
-            </Link>
-          </div>
+        </div>
+
+        <div className="container mx-auto px-6 mt-12 flex justify-center">
+          <Link href="/projects" className="inline-flex items-center space-x-4 px-12 py-5 rounded-full border border-red-950/50 bg-red-950/5 hover:bg-red-800 transition-all group shadow-2xl">
+            <span className="text-[12px] font-black uppercase tracking-[0.2em] text-white">Explore All Projects</span>
+            <ArrowRight size={18} className="text-red-400 group-hover:text-white group-hover:translate-x-2 transition-all" />
+          </Link>
         </div>
       </section>
 

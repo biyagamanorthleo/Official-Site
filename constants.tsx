@@ -1,5 +1,5 @@
 
-import { ProjectStatus, Project, TeamMember, President, ClubStat, TeamCategory, Achievement, AchievementCategory, ResourceItem } from './types';
+import { ProjectStatus, Project, TeamMember, President, ClubStat, TeamCategory, Achievement, AchievementCategory, ResourceItem, SdgGoal, GlobalCause } from './types';
 
 // Club Branding & Basic Info
 export const CLUB_NAME = "Leo Club of Biyagama North";
@@ -171,6 +171,36 @@ export const PROJECTS: Project[] = [
     image: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&q=80&w=800',
     date: 'Dec 2023',
     impact: '300 blankets distributed'
+  },
+  {
+    id: '5',
+    title: 'Blood Donation Drive',
+    description: 'Community blood donation campaign in partnership with local hospitals.',
+    longDescription: 'Organized a large-scale blood donation event at three community centers, collecting over 150 units of blood for the national blood bank.',
+    status: ProjectStatus.COMPLETED,
+    image: 'https://images.unsplash.com/photo-1559757175-0eb30cd8c063?auto=format&fit=crop&q=80&w=800',
+    date: 'Oct 2023',
+    impact: '150 units collected'
+  },
+  {
+    id: '6',
+    title: 'Clean Water Initiative',
+    description: 'Providing water purification systems to underserved rural communities.',
+    longDescription: 'Installed water filtration units in five rural schools, ensuring access to clean drinking water for over 800 students and staff.',
+    status: ProjectStatus.COMPLETED,
+    image: 'https://images.unsplash.com/photo-1569163139394-de4e5f43e5ca?auto=format&fit=crop&q=80&w=800',
+    date: 'Aug 2023',
+    impact: '800+ students benefited'
+  },
+  {
+    id: '7',
+    title: 'Digital Literacy Program',
+    description: 'Teaching essential computer skills to youth and senior citizens.',
+    longDescription: 'A 6-week workshop series covering basic computing, internet safety, and digital tools, reaching over 120 participants across two community centers.',
+    status: ProjectStatus.UPCOMING,
+    image: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=800',
+    date: 'Sep 2024',
+    impact: '120 participants'
   }
 ];
 
@@ -337,6 +367,95 @@ export const TEAM: TeamMember[] = [
     priority: 1,
     socials: { instagram: '#' }
   }
+];
+
+// UN Sustainable Development Goals
+export const UN_SDGS: SdgGoal[] = [
+  { goal: 1,  name: "No Poverty",                                    color: "#E5233D" },
+  { goal: 2,  name: "Zero Hunger",                                   color: "#DDA73A" },
+  { goal: 3,  name: "Good Health and Well-Being",                    color: "#4CA146" },
+  { goal: 4,  name: "Quality Education",                             color: "#C5192D" },
+  { goal: 5,  name: "Gender Equality",                               color: "#EF402C" },
+  { goal: 6,  name: "Clean Water and Sanitation",                    color: "#27BFE6" },
+  { goal: 7,  name: "Affordable and Clean Energy",                   color: "#FBC412" },
+  { goal: 8,  name: "Decent Work and Economic Growth",               color: "#A31C44" },
+  { goal: 9,  name: "Industry, Innovation and Infrastructure",       color: "#F26A2D" },
+  { goal: 10, name: "Reduced Inequalities",                          color: "#E01483" },
+  { goal: 11, name: "Sustainable Cities and Communities",            color: "#F89D2A" },
+  { goal: 12, name: "Responsible Consumption and Production",        color: "#BF8D2C" },
+  { goal: 13, name: "Climate Action",                                color: "#407F46" },
+  { goal: 14, name: "Life Below Water",                              color: "#1F97D4" },
+  { goal: 15, name: "Life on Land",                                  color: "#59BA48" },
+  { goal: 16, name: "Peace, Justice and Strong Institutions",        color: "#126A9F" },
+  { goal: 17, name: "Partnerships for the Goals",                    color: "#13496B" },
+];
+
+// Lions Clubs International - 8 Global Causes with UN SDG alignment
+export const GLOBAL_CAUSES: GlobalCause[] = [
+  {
+    id: 1,
+    title: "Vision",
+    description: "Preventing avoidable blindness and improving quality of life for the blind and visually impaired through free screenings, surgeries, and eyeglass distribution.",
+    icon: "Eye",
+    sdgs: [3, 10],
+    accentSdg: 3,
+  },
+  {
+    id: 2,
+    title: "Diabetes",
+    description: "Reducing the global prevalence of diabetes through education, early detection, and improving quality of life for those living with the condition.",
+    icon: "Activity",
+    sdgs: [2, 3],
+    accentSdg: 3,
+  },
+  {
+    id: 3,
+    title: "Hunger",
+    description: "Ensuring every community member has access to nutritious food through food drives, distribution programs, and sustainable nutrition initiatives.",
+    icon: "Utensils",
+    sdgs: [1, 2, 3],
+    accentSdg: 2,
+  },
+  {
+    id: 4,
+    title: "Childhood Cancer",
+    description: "Supporting children and families facing cancer through awareness campaigns, fundraising, care packages, and community advocacy.",
+    icon: "Heart",
+    sdgs: [1, 3],
+    accentSdg: 3,
+  },
+  {
+    id: 5,
+    title: "Environment",
+    description: "Protecting and restoring the planet through reforestation, coastal clean-ups, waste reduction, and environmental education programs.",
+    icon: "Leaf",
+    sdgs: [6, 13, 14, 15],
+    accentSdg: 15,
+  },
+  {
+    id: 6,
+    title: "Disaster Relief",
+    description: "Delivering rapid humanitarian response with emergency supplies, medical aid, and community rebuilding when disaster strikes.",
+    icon: "AlertTriangle",
+    sdgs: [1, 11, 13],
+    accentSdg: 11,
+  },
+  {
+    id: 7,
+    title: "Humanitarian",
+    description: "Addressing systemic inequities and delivering targeted support to underserved populations through global humanitarian initiatives.",
+    icon: "Globe",
+    sdgs: [1, 3, 10, 16],
+    accentSdg: 10,
+  },
+  {
+    id: 8,
+    title: "Youth",
+    description: "Empowering the next generation through leadership development, educational support, and meaningful service opportunities via the Leo program.",
+    icon: "GraduationCap",
+    sdgs: [4, 5, 8, 10, 17],
+    accentSdg: 4,
+  },
 ];
 
 // Past Presidents Hall of Honor

@@ -75,3 +75,18 @@ export interface ResourceItem {
   icon: string;
   downloadUrl: string;
 }
+
+export interface SdgGoal {
+  goal: number;
+  name: string;
+  color: string;
+}
+
+export interface GlobalCause {
+  id: number;
+  title: string;
+  description: string;
+  icon: string;
+  sdgs: number[];
+  accentSdg: number;
+}

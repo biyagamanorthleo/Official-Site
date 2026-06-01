@@ -1,7 +1,7 @@
 import { createClient } from '@/lib/supabase/server';
 import Link from 'next/link';
 import { Plus } from 'lucide-react';
-import ReorderList from '../_components/ReorderList';
+import ProjectsAdminList from './ProjectsAdminList';
 
 export default async function AdminProjects() {
   const supabase = await createClient();
@@ -10,10 +10,9 @@ export default async function AdminProjects() {
   const items = (projects ?? []).map(p => ({
     id: p.id,
     title: p.title,
-    subtitle: p.status,
+    status: p.status,
     thumbnail: p.image,
-    editHref: `/admin/projects/${p.id}`,
-    table: 'projects',
+    featured: p.featured ?? false,
   }));
 
   return (
@@ -30,7 +29,7 @@ export default async function AdminProjects() {
         </Link>
       </div>
 
-      <ReorderList initialItems={items} orderField="sort_order" />
+      <ProjectsAdminList initialItems={items} />
     </div>
   );
 }
