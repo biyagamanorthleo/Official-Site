@@ -25,7 +25,7 @@ export default function ProjectsClient({ projects }: { projects: Project[] }) {
 
   return (
     <>
-      <div className="flex justify-center mb-32">
+      <div className="flex justify-center mb-10 md:mb-32">
         <div className="inline-flex items-center bg-white/[0.03] border border-white/8 rounded-full p-1 gap-0.5">
           {tabs.map((tab) => (
             <button
@@ -83,17 +83,17 @@ export default function ProjectsClient({ projects }: { projects: Project[] }) {
               initial={{ scale: 0.9, opacity: 0, y: 50 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 50 }}
-              className="relative w-full max-w-5xl bg-[#050505] rounded-[4rem] overflow-hidden shadow-[0_0_120px_rgba(239,68,68,0.15)] flex flex-col md:flex-row h-[85vh] border border-white/10"
+              className="relative w-full max-w-5xl bg-[#050505] rounded-[2rem] md:rounded-[4rem] overflow-hidden shadow-[0_0_120px_rgba(239,68,68,0.15)] flex flex-col md:flex-row h-[90vh] md:h-[85vh] border border-white/10"
             >
               <button onClick={() => setSelectedProject(null)}
                 className="absolute top-8 right-8 z-20 w-14 h-14 bg-white/5 backdrop-blur-md border border-white/10 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-all hover:rotate-90">
                 <X size={24} />
               </button>
-              <div className="md:w-1/2 relative h-80 md:h-full overflow-hidden border-r border-white/5">
+              <div className="md:w-1/2 relative h-44 md:h-full overflow-hidden border-r border-white/5">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={selectedProject.image} alt={selectedProject.title} className="absolute inset-0 w-full h-full object-cover" />
               </div>
-              <div className="md:w-1/2 p-12 md:p-16 overflow-y-auto">
+              <div className="md:w-1/2 p-7 md:p-16 overflow-y-auto">
                 <div className="px-4 py-1.5 bg-red-600/10 border border-red-500/20 text-red-500 text-[10px] font-black uppercase tracking-widest rounded-lg inline-block mb-10">
                   {selectedProject.status}
                 </div>

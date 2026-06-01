@@ -61,12 +61,12 @@ export default async function TeamPage() {
   const allMembers = await getTeamMembers();
 
   return (
-    <div className="min-h-screen bg-black pt-40 pb-40 relative overflow-hidden">
+    <div className="min-h-screen bg-black pt-28 md:pt-40 pb-16 md:pb-40 relative overflow-hidden">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-red-950/10 rounded-full blur-[180px] -z-10 animate-pulse" />
 
       <div className="container mx-auto px-6">
-        <header className="mb-20 text-center">
-          <span className="text-red-500/80 font-black uppercase tracking-[0.6em] text-[11px] block mb-10">{TEAM_PAGE_CONTENT.header}</span>
+        <header className="mb-10 md:mb-20 text-center">
+          <span className="text-red-500/80 font-black uppercase tracking-[0.6em] text-[11px] block mb-6 md:mb-10">{TEAM_PAGE_CONTENT.header}</span>
           <h1 className="text-4xl md:text-6xl font-heading font-black text-white tracking-tighter uppercase leading-[0.85]">
             {TEAM_PAGE_CONTENT.titlePrefix} <br className="hidden md:block" />
             <span className="text-transparent bg-clip-text bg-gradient-to-b from-red-600 via-red-800 to-red-950">{TEAM_PAGE_CONTENT.titleSuffix}</span>
@@ -86,19 +86,19 @@ export default async function TeamPage() {
             }, {});
 
             return (
-              <section key={section.title} className="mb-24">
-                <div className="flex flex-col items-center mb-10">
-                  <div className="p-5 bg-red-900/10 border border-red-500/20 rounded-[1.5rem] text-red-500 mb-10"><Icon size={32} /></div>
-                  <h2 className="text-2xl md:text-4xl font-heading font-black uppercase tracking-tight text-white mb-6">{section.title}</h2>
+              <section key={section.title} className="mb-16 md:mb-24">
+                <div className="flex flex-col items-center mb-8 md:mb-10">
+                  <div className="p-4 md:p-5 bg-red-900/10 border border-red-500/20 rounded-[1.5rem] text-red-500 mb-6 md:mb-10"><Icon size={28} /></div>
+                  <h2 className="text-xl md:text-4xl font-heading font-black uppercase tracking-tight text-white mb-4 md:mb-6">{section.title}</h2>
                   <div className="h-1 w-20 bg-red-600 rounded-full" />
                 </div>
-                <div className="space-y-16">
+                <div className="space-y-10 md:space-y-16">
                   {Object.entries(byAvenue).map(([avenue, avenueMembers]) => (
                     <div key={avenue}>
-                      <div className="flex items-center space-x-6 mb-6 border-l-4 border-red-900 pl-6">
+                      <div className="flex items-center space-x-6 mb-4 md:mb-6 border-l-4 border-red-900 pl-6">
                         <span className="text-red-500 font-black text-xs uppercase tracking-[0.5em]">{avenue}</span>
                       </div>
-                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
+                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-6">
                         {avenueMembers.sort((a, b) => a.priority - b.priority).map(m => <MemberCard key={m.id} member={m} />)}
                       </div>
                     </div>
@@ -109,13 +109,13 @@ export default async function TeamPage() {
           }
 
           return (
-            <section key={section.title} className="mb-24">
-              <div className="flex flex-col items-center mb-10">
-                <div className="p-5 bg-red-900/10 border border-red-500/20 rounded-[1.5rem] text-red-500 mb-10"><Icon size={32} /></div>
-                <h2 className="text-2xl md:text-4xl font-heading font-black uppercase tracking-tight text-white mb-6">{section.title}</h2>
+            <section key={section.title} className="mb-16 md:mb-24">
+              <div className="flex flex-col items-center mb-8 md:mb-10">
+                <div className="p-4 md:p-5 bg-red-900/10 border border-red-500/20 rounded-[1.5rem] text-red-500 mb-6 md:mb-10"><Icon size={28} /></div>
+                <h2 className="text-xl md:text-4xl font-heading font-black uppercase tracking-tight text-white mb-4 md:mb-6">{section.title}</h2>
                 <div className="h-1 w-20 bg-red-600 rounded-full" />
               </div>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-6">
                 {members.sort((a, b) => a.priority - b.priority).map(m => (
                   <MemberCard key={m.id} member={m} />
                 ))}

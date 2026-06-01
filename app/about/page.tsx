@@ -19,11 +19,11 @@ export default async function AboutPage() {
   const presidents = await getPresidents();
 
   return (
-    <div className="bg-black pt-40 pb-32 relative overflow-hidden">
+    <div className="bg-black pt-28 md:pt-40 pb-16 md:pb-32 relative overflow-hidden">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-red-950/10 rounded-full blur-[180px] -z-10 animate-pulse" />
 
       <div className="container mx-auto px-6">
-        <section className="max-w-6xl mx-auto text-center mb-24">
+        <section className="max-w-6xl mx-auto text-center mb-12 md:mb-24">
           <span className="text-red-500/80 font-black uppercase tracking-[0.6em] text-[10px] block mb-8">{ABOUT_CONTENT.header}</span>
           <h1 className="text-4xl md:text-6xl font-heading font-black text-white mb-10 tracking-tighter leading-[0.85] uppercase">
             THE <br />
@@ -55,16 +55,16 @@ export default async function AboutPage() {
           </div>
         </div>
 
-        <section className="py-32 bg-[#030303] rounded-[3.5rem] border border-white/5 relative">
+        <section className="py-12 md:py-32 bg-[#030303] rounded-[2rem] md:rounded-[3.5rem] border border-white/5 relative">
           <div className="container mx-auto px-8">
-            <header className="text-center mb-32">
+            <header className="text-center mb-12 md:mb-32">
               <span className="text-red-500 font-black uppercase tracking-[0.4em] text-[10px] mb-6 block">Command History</span>
               <h2 className="text-4xl md:text-7xl font-heading font-black text-white tracking-tighter uppercase">HALL OF HONOR</h2>
               <div className="w-16 h-1 bg-red-600 mx-auto mt-8 rounded-full opacity-50" />
             </header>
             <div className="relative">
               <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px bg-red-600 opacity-20 hidden md:block" />
-              <div className="space-y-32 md:space-y-48">
+              <div className="space-y-16 md:space-y-48">
                 {presidents.map((pres, idx) => (
                   <div key={pres.id} className={`flex flex-col md:flex-row items-center justify-center relative ${idx % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
                     <div className="absolute left-1/2 -translate-x-1/2 w-3 h-3 bg-red-600 rounded-full border-2 border-black shadow-[0_0_15px_rgba(239,68,68,0.8)] hidden md:block z-10" />
@@ -95,7 +95,7 @@ export default async function AboutPage() {
           </div>
         </section>
 
-        <section className="py-40 text-center">
+        <section className="py-16 md:py-40 text-center">
           <div className="inline-block p-8 bg-red-600/10 border border-red-500/20 rounded-[2.5rem] text-red-500 mb-10">
             <Globe size={48} className="animate-pulse" />
           </div>

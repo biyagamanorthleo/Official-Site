@@ -51,7 +51,7 @@ export default function HomePage() {
         </div>
         <div className="container mx-auto px-6 relative z-10 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0.2, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           >
@@ -80,9 +80,9 @@ export default function HomePage() {
       </section>
 
       {/* Stats */}
-      <section className="py-24 border-y border-white/5 bg-[#030303]">
+      <section className="py-14 md:py-24 border-y border-white/5 bg-[#030303]">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
             {CLUB_STATS.map((stat, idx) => {
               const Icon = IconMap[stat.icon];
               return (
@@ -101,7 +101,7 @@ export default function HomePage() {
       </section>
 
       {/* President Spotlight */}
-      <section className="relative min-h-[80vh] flex items-center overflow-hidden bg-black">
+      <section className="relative min-h-[60vh] md:min-h-[80vh] flex items-center overflow-hidden bg-black">
         <div className="absolute inset-0 flex flex-col items-start justify-center pl-6 md:pl-12 select-none pointer-events-none z-0">
           <span
             className="font-heading font-black leading-none tracking-tighter"
@@ -144,7 +144,7 @@ export default function HomePage() {
       </section>
 
       {/* Global Causes & SDGs */}
-      <section className="py-40 bg-[#020202] relative overflow-hidden">
+      <section className="py-16 md:py-40 bg-[#020202] relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none z-0">
           <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[900px] h-[500px] rounded-full blur-[200px] opacity-[0.03]"
             style={{ background: 'radial-gradient(ellipse, #ffffff 0%, transparent 70%)' }} />
@@ -152,9 +152,9 @@ export default function HomePage() {
         <div className="container mx-auto px-6 relative z-10">
 
           {/* Header */}
-          <div className="mb-24">
+          <div className="mb-12 md:mb-24">
             <span className="text-red-500 font-black uppercase tracking-[0.4em] text-[10px] mb-6 block">Lions Clubs International</span>
-            <h2 className="text-4xl md:text-7xl font-heading font-black text-white leading-none uppercase mb-6">
+            <h2 className="text-3xl md:text-7xl font-heading font-black text-white leading-none uppercase mb-6">
               GLOBAL<br />CAUSES
             </h2>
             <p className="text-gray-500 text-sm max-w-xl leading-relaxed tracking-tight">
@@ -227,7 +227,7 @@ export default function HomePage() {
           </div>
 
           {/* All 17 SDGs banner */}
-          <div className="border border-white/5 rounded-2xl p-8 bg-[#060606]">
+          <div className="border border-white/5 rounded-2xl p-5 md:p-8 bg-[#060606]">
             <div className="flex flex-col md:flex-row items-start md:items-center gap-8">
               <div className="flex-shrink-0">
                 <span className="text-[9px] font-black uppercase tracking-[0.4em] text-gray-600 block mb-2">Committed to</span>
@@ -258,12 +258,12 @@ export default function HomePage() {
       </section>
 
       {/* Projects */}
-      <section className="py-24 overflow-hidden">
-        <div className="container mx-auto px-6 mb-14">
+      <section className="py-14 md:py-24 overflow-hidden">
+        <div className="container mx-auto px-6 mb-8 md:mb-14">
           <div className="flex flex-col md:flex-row justify-between md:items-end">
             <div>
-              <span className="text-red-500 font-black uppercase tracking-[0.4em] text-[10px] mb-6 block">Documented Success</span>
-              <h2 className="text-4xl md:text-7xl font-heading font-black text-white leading-none uppercase">PROJECTS</h2>
+              <span className="text-red-500 font-black uppercase tracking-[0.4em] text-[10px] mb-4 md:mb-6 block">Documented Success</span>
+              <h2 className="text-3xl md:text-7xl font-heading font-black text-white leading-none uppercase">PROJECTS</h2>
             </div>
             <Link href="/projects" className="group hidden md:flex items-center text-[11px] font-black uppercase tracking-[0.3em] border-b-2 border-red-900 pb-3 hover:border-white transition-all mt-10 md:mt-0">
               EXPLORE ALL <ArrowRight className="ml-4 group-hover:translate-x-3 transition-transform" size={18} />
@@ -280,7 +280,7 @@ export default function HomePage() {
 
           <div className="flex gap-4 animate-marquee w-max px-4">
             {[...featuredProjects, ...featuredProjects].map((project, i) => (
-              <div key={i} className="w-80 flex-shrink-0 group">
+              <div key={i} className="w-56 md:w-80 flex-shrink-0 group">
                 <div className="relative aspect-square rounded-xl overflow-hidden border border-white/5 bg-gray-900">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
@@ -315,13 +315,13 @@ export default function HomePage() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-32 bg-[#020202] relative overflow-hidden">
+      <section className="py-16 md:py-32 bg-[#020202] relative overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[1px] bg-gradient-to-r from-transparent via-white/5 to-transparent" />
         <div className="container mx-auto px-6">
 
-          <div className="mb-20">
+          <div className="mb-10 md:mb-20">
             <span className="text-red-500 font-black uppercase tracking-[0.4em] text-[10px] mb-6 block">Community Voices</span>
-            <h2 className="text-4xl md:text-7xl font-heading font-black text-white leading-none uppercase">
+            <h2 className="text-3xl md:text-7xl font-heading font-black text-white leading-none uppercase">
               WHAT THEY<br />SAY
             </h2>
           </div>
@@ -334,7 +334,7 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.08, ease: [0.22, 1, 0.36, 1] }}
-                className="group relative bg-[#080808] border border-white/5 rounded-2xl p-8 flex flex-col justify-between hover:border-white/10 transition-all duration-500 overflow-hidden"
+                className="group relative bg-[#080808] border border-white/5 rounded-2xl p-5 md:p-8 flex flex-col justify-between hover:border-white/10 transition-all duration-500 overflow-hidden"
               >
                 {/* Decorative quote mark */}
                 <span
@@ -385,16 +385,16 @@ export default function HomePage() {
       </section>
 
       {/* Gallery CTA */}
-      <section className="py-40 bg-[#020202] relative overflow-hidden">
+      <section className="py-16 md:py-40 bg-[#020202] relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-red-950/10 rounded-full blur-[150px] -z-10 animate-pulse" />
         <div className="container mx-auto px-6 text-center">
           <span className="text-red-600 font-black uppercase tracking-[0.6em] text-[10px] mb-12 block">Visual History</span>
-          <h2 className="text-4xl md:text-8xl font-heading font-black text-white mb-20 tracking-tighter uppercase leading-[0.85]">
+          <h2 className="text-3xl md:text-8xl font-heading font-black text-white mb-10 md:mb-20 tracking-tighter uppercase leading-[0.85]">
             Relive the <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-b from-red-600 via-red-800 to-red-950">Impactful moments</span>
           </h2>
           <Link href="/gallery" className="group inline-flex flex-col items-center">
-            <div className="relative w-32 h-32 md:w-48 md:h-48 border border-red-950/50 rounded-full flex items-center justify-center mb-8 group-hover:scale-110 group-hover:border-red-600 transition-all duration-700">
+            <div className="relative w-24 h-24 md:w-48 md:h-48 border border-red-950/50 rounded-full flex items-center justify-center mb-6 md:mb-8 group-hover:scale-110 group-hover:border-red-600 transition-all duration-700">
               <ArrowRight size={48} className="text-red-900 group-hover:text-red-600 group-hover:rotate-[-45deg] transition-all duration-700" />
               <div className="absolute inset-0 rounded-full border-2 border-red-600/0 border-t-red-600 group-hover:rotate-180 transition-all duration-[1.5s]" />
             </div>

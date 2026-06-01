@@ -15,12 +15,12 @@ export default async function AchievementsPage() {
   const achievements = await getAchievements();
 
   return (
-    <div className="bg-black min-h-screen pt-40 pb-40 relative overflow-hidden">
+    <div className="bg-black min-h-screen pt-28 md:pt-40 pb-16 md:pb-40 relative overflow-hidden">
       <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-red-950/10 rounded-full blur-[250px] -z-10" />
       <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-red-900/5 rounded-full blur-[200px] -z-10 animate-pulse" />
 
       <div className="container mx-auto px-6">
-        <header className="max-w-6xl mx-auto text-center mb-48">
+        <header className="max-w-6xl mx-auto text-center mb-16 md:mb-48">
           <span className="text-red-500 font-black uppercase tracking-[0.6em] text-[10px] block mb-8">{ACHIEVEMENTS_PAGE_CONTENT.header}</span>
           <h1 className="text-4xl md:text-6xl font-heading font-black text-white mb-16 tracking-tighter leading-[0.85] uppercase">
             {ACHIEVEMENTS_PAGE_CONTENT.titlePrefix} <br />
@@ -33,7 +33,7 @@ export default async function AchievementsPage() {
         </header>
 
         <section>
-          <div className="flex flex-col items-center mb-24">
+          <div className="flex flex-col items-center mb-10 md:mb-24">
             <span className="text-red-500 font-black uppercase tracking-[0.4em] text-[10px] mb-6 block">{ACHIEVEMENTS_PAGE_CONTENT.awardsHeader}</span>
             <h2 className="text-3xl md:text-5xl font-heading font-black text-white uppercase tracking-tighter flex items-center">
               <Award className="mr-6 text-red-600" size={36} /> {ACHIEVEMENTS_PAGE_CONTENT.awardsTitle}
@@ -44,7 +44,7 @@ export default async function AchievementsPage() {
               <div key={achievement.id} className="group relative bg-[#050505] border border-white/5 rounded-[3rem] overflow-hidden hover:border-red-600/30 transition-all duration-500 shadow-2xl">
                 <div className="flex flex-col md:flex-row h-full">
                   {achievement.image && (
-                    <div className="md:w-1/3 relative overflow-hidden h-64">
+                    <div className="md:w-1/3 relative overflow-hidden h-48 md:h-64">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img src={achievement.image} alt={achievement.title} loading="lazy" className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
                       <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent" />

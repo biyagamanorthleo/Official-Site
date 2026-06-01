@@ -15,12 +15,12 @@ export default async function GalleryPage() {
   const photos = await getGalleryPhotos();
 
   return (
-    <div className="bg-black pt-40 pb-32 min-h-screen relative overflow-hidden">
+    <div className="bg-black pt-28 md:pt-40 pb-16 md:pb-32 min-h-screen relative overflow-hidden">
       <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-red-950/10 rounded-full blur-[150px] -z-10 animate-pulse" />
       <div className="absolute bottom-1/4 left-0 w-[500px] h-[500px] bg-red-900/5 rounded-full blur-[150px] -z-10" />
 
       <div className="container mx-auto px-6">
-        <header className="max-w-6xl mx-auto text-center mb-32">
+        <header className="max-w-6xl mx-auto text-center mb-12 md:mb-32">
           <span className="text-red-500 font-black uppercase tracking-[0.6em] text-[10px] block mb-8">{GALLERY_PAGE_CONTENT.header}</span>
           <h1 className="text-4xl md:text-6xl font-heading font-black text-white mb-10 tracking-tighter leading-[0.85] uppercase">
             {GALLERY_PAGE_CONTENT.titlePrefix} <br />

@@ -3,10 +3,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-// Loading screen stays up until the browser fires window.load AND at least
-// MIN_MS has elapsed — so fonts, hero image, and all non-lazy assets are
-// ready before we let the user see the page.
-const MIN_MS = 1500;
+// Minimum time the screen stays visible (longer covers slow mobile connections)
+const MIN_MS = 2500;
 
 const LoadingScreen: React.FC = () => {
   const [count, setCount]   = useState(0);
@@ -16,35 +14,45 @@ const LoadingScreen: React.FC = () => {
   const finishedRef         = useRef(false);
 
   useEffect(() => {
-    // Crawl the counter up to 88 % while we wait for the real load event.
+    // Crawl counter to 88 % while waiting for the real load event.
     intervalRef.current = setInterval(() => {
       setCount(prev => {
-        if (prev >= 88) {
-          clearInterval(intervalRef.current!);
-          return 88;
-        }
+        if (prev >= 88) { clearInterval(intervalRef.current!); return 88; }
         return Math.min(prev + Math.floor(Math.random() * 9) + 3, 88);
       });
     }, 110);
 
+    function hide() {
+      setTimeout(() => setShow(false), 650);
+    }
+
     function finish() {
       if (finishedRef.current) return;
       finishedRef.current = true;
-
       clearInterval(intervalRef.current!);
 
       const elapsed   = Date.now() - startRef.current;
       const remaining = Math.max(0, MIN_MS - elapsed);
 
-      // Wait out the minimum display time, then snap to 100 and fade out.
       setTimeout(() => {
         setCount(100);
-        setTimeout(() => setShow(false), 650);
+
+        // Wait until the browser's main thread is idle — meaning React has
+        // hydrated and painted — before removing the loading screen.
+        // requestIdleCallback is not in Safari < 18, so we fall back to a
+        // 600 ms delay which covers hydration on most mobile devices.
+        if (typeof requestIdleCallback !== 'undefined') {
+          requestIdleCallback(hide, { timeout: 2000 });
+        } else {
+          setTimeout(hide, 600);
+        }
       }, remaining);
     }
 
     if (document.readyState === 'complete') {
-      finish();
+      // readyState is already complete (common on client-side navigation).
+      // Still defer finish() by one tick so React hydration can begin first.
+      setTimeout(finish, 50);
     } else {
       window.addEventListener('load', finish, { once: true });
     }
@@ -83,7 +91,6 @@ const LoadingScreen: React.FC = () => {
                 Initializing Sequence
               </span>
 
-              {/* Progress bar tied to actual count */}
               <div className="w-48 h-[1px] bg-white/10 relative overflow-hidden">
                 <motion.div
                   className="absolute inset-y-0 left-0 bg-red-600"
