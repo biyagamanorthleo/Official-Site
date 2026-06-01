@@ -106,8 +106,11 @@
       transparent 100%
     );
     background-size: 200% 100%;
-    animation: img-shimmer 1.8s ease-in-out infinite;
+    animation: img-shimmer 1.8s ease-in-out 2;
     pointer-events: none;
+  }
+  .img-loaded::before {
+    display: none;
   }
 
   .btn-shimmer {
