@@ -21,15 +21,15 @@ const Footer: React.FC = () => {
               Forging leaders, gaining experience, and creating opportunity across Sri Lanka and the Maldives.
             </p>
             <div className="flex gap-3">
-              <a href={SOCIAL_LINKS.facebook} aria-label="Facebook"
+              <a href={SOCIAL_LINKS.facebook} aria-label="Facebook" target="_blank" rel="noopener noreferrer"
                 className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-red-900/40 hover:border-red-900/40 transition-all">
                 <Facebook size={16} />
               </a>
-              <a href={SOCIAL_LINKS.instagram} aria-label="Instagram"
+              <a href={SOCIAL_LINKS.instagram} aria-label="Instagram" target="_blank" rel="noopener noreferrer"
                 className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-red-900/40 hover:border-red-900/40 transition-all">
                 <Instagram size={16} />
               </a>
-              <a href={SOCIAL_LINKS.linkedin} aria-label="LinkedIn"
+              <a href={SOCIAL_LINKS.linkedin} aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"
                 className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-red-900/40 hover:border-red-900/40 transition-all">
                 <Linkedin size={16} />
               </a>

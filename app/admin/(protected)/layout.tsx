@@ -31,7 +31,7 @@ export default async function AdminLayout({
         <div className="p-8 border-b border-white/5">
           <span className="text-xl font-heading font-black text-white tracking-widest">LCBN</span>
           <p className="text-red-800 text-[9px] font-black uppercase tracking-[0.3em] mt-1">Admin Panel</p>
-          <Link href="/" target="_blank"
+          <Link href="/" target="_blank" rel="noopener noreferrer"
             className="mt-4 flex items-center gap-2 px-3 py-2 rounded-xl text-gray-500 hover:text-white text-[10px] font-black uppercase tracking-widest border border-white/5 hover:border-white/15 transition-all">
             <ExternalLink size={12} /> View Site
           </Link>

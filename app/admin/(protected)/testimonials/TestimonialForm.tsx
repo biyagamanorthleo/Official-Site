@@ -30,11 +30,12 @@ export default function TestimonialForm({ testimonial }: { testimonial?: Testimo
   async function handleSave(e: React.FormEvent) {
     e.preventDefault();
     setSaving(true);
+    const payload = { ...form, rating: Math.min(5, Math.max(1, form.rating)) };
     const supabase = createClient();
-    if (form.id) {
-      await supabase.from('testimonials').update(form).eq('id', form.id);
+    if (payload.id) {
+      await supabase.from('testimonials').update(payload).eq('id', payload.id);
     } else {
-      await supabase.from('testimonials').insert(form);
+      await supabase.from('testimonials').insert(payload);
     }
     router.push('/admin/testimonials');
     router.refresh();

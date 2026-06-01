@@ -21,6 +21,20 @@ export default function ImageUpload({
   async function handleFile(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     if (!file) return;
+
+    const MAX_SIZE = 5 * 1024 * 1024; // 5 MB
+    if (file.size > MAX_SIZE) {
+      alert('File is too large. Maximum size is 5 MB.');
+      e.target.value = '';
+      return;
+    }
+    const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/gif', 'image/avif'];
+    if (!ALLOWED_TYPES.includes(file.type)) {
+      alert('Invalid file type. Please upload a JPEG, PNG, WEBP, or GIF image.');
+      e.target.value = '';
+      return;
+    }
+
     setUploading(true);
 
     const supabase = createClient();
@@ -43,6 +57,16 @@ export default function ImageUpload({
   }
 
   function handleUrlSubmit() {
+    try {
+      const parsed = new URL(urlInput);
+      if (!['https:', 'http:'].includes(parsed.protocol)) {
+        alert('Please enter a valid https:// URL.');
+        return;
+      }
+    } catch {
+      alert('Please enter a valid URL.');
+      return;
+    }
     onChange(urlInput);
   }
 

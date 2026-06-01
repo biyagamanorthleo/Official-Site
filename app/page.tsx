@@ -125,7 +125,7 @@ export default function HomePage() {
         <div className="relative z-10 w-full flex flex-col md:flex-row items-center justify-end px-6 md:px-20 py-24 gap-10">
           <div className="flex flex-col items-center md:items-start">
             <div className="relative group mb-8 inline-block">
-              <Image src="/president.png" alt="Leo Lion Anjana Dineth MAF" width={448} height={600} className="w-72 md:w-[28rem] object-contain drop-shadow-2xl" quality={85} />
+              <Image src="/president.png" alt="Leo Lion Anjana Dineth MAF" width={448} height={600} priority quality={85} className="w-80 md:w-[34rem] object-contain drop-shadow-2xl" />
               <div className="absolute bottom-4 right-0 px-4 py-2 rounded-xl font-black text-[9px] tracking-[0.3em] uppercase text-white"
                 style={{ background: 'linear-gradient(135deg, #980016, #3d0009)' }}>
                 2026/27
@@ -283,7 +283,6 @@ export default function HomePage() {
               <div key={i} className="w-64 flex-shrink-0 group">
                 <div className="relative aspect-square rounded-xl overflow-hidden border border-white/5 bg-gray-900">
                   <Image
-                    loading="lazy"
                     fill
                     src={project.image}
                     alt={project.title}
