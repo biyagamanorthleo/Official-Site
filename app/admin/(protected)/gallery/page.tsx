@@ -1,12 +1,13 @@
-﻿import { createClient } from '@/lib/supabase/server';
-import Link from 'next/link';
-import { Plus, Pencil } from 'lucide-react';
-import DeleteButton from '../_components/DeleteButton';
+import { createClient } from '@/lib/supabase/server';
 import GalleryForm from './GalleryForm';
+import GalleryReorder from './GalleryReorder';
 
 export default async function AdminGallery() {
   const supabase = await createClient();
-  const { data: photos } = await supabase.from('gallery_photos').select('*').order('sort_order');
+  const { data: photos } = await supabase
+    .from('gallery_photos')
+    .select('*')
+    .order('sort_order');
 
   return (
     <div>
@@ -23,19 +24,10 @@ export default async function AdminGallery() {
         <GalleryForm />
       </div>
 
-      {/* List */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {photos?.map((p) => (
-          <div key={p.id} className="group relative aspect-[4/5] rounded-2xl overflow-hidden border border-white/5">
-            <img src={p.url} alt={p.caption ?? ''} className="w-full h-full object-cover grayscale opacity-60" />
-            <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-all flex items-center justify-center gap-3">
-              <DeleteButton id={p.id} table="gallery_photos" />
-            </div>
-            {p.caption && <p className="absolute bottom-2 left-2 right-2 text-[8px] text-white font-bold truncate">{p.caption}</p>}
-          </div>
-        ))}
+      {/* Reorder & delete */}
+      <div className="bg-[#050505] border border-white/5 rounded-2xl p-8">
+        <GalleryReorder initialPhotos={photos ?? []} />
       </div>
     </div>
   );
 }
-

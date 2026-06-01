@@ -1,7 +1,7 @@
 ﻿import type { Metadata } from 'next';
-import Image from 'next/image';
 import { getGalleryPhotos } from '@/lib/queries';
 import { GALLERY_PAGE_CONTENT } from '@/constants';
+import GalleryGrid from '@/components/GalleryGrid';
 
 export const metadata: Metadata = {
   title: 'Photo Gallery',
@@ -32,18 +32,7 @@ export default async function GalleryPage() {
           <div className="w-24 h-1 bg-red-900/50 mx-auto rounded-full" />
         </header>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
-          {photos.map((photo) => (
-            <div key={photo.id} className="group relative aspect-square overflow-hidden rounded-[1.5rem] bg-zinc-900 border border-white/5">
-              <Image loading="lazy" fill src={photo.url} alt={photo.caption ?? 'Gallery photo'} className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700" sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="absolute bottom-10 left-10 right-10 translate-y-10 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                <span className="text-red-500 font-black uppercase tracking-[0.4em] text-[10px]">Service Archive</span>
-                <p className="text-white text-xs font-bold uppercase tracking-widest mt-2">{photo.caption ?? 'Biyagama North Legacy'}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+        <GalleryGrid photos={photos} />
       </div>
     </div>
   );
