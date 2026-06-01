@@ -35,12 +35,14 @@ export default function ProjectForm({ project }: { project?: Project }) {
     setSaving(true);
     const supabase = createClient();
     if (form.id) {
-      await supabase.from('projects').update(form).eq('id', form.id);
+      const { id, ...data } = form;
+      const { error } = await supabase.from('projects').update(data).eq('id', id);
+      if (error) { alert(error.message); setSaving(false); return; }
     } else {
-      await supabase.from('projects').insert(form);
+      const { error } = await supabase.from('projects').insert(form);
+      if (error) { alert(error.message); setSaving(false); return; }
     }
-    router.refresh();
-    router.push('/admin/projects');
+    window.location.href = '/admin/projects';
   }
 
   return (

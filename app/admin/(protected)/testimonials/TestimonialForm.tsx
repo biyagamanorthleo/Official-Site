@@ -33,12 +33,14 @@ export default function TestimonialForm({ testimonial }: { testimonial?: Testimo
     const payload = { ...form, rating: Math.min(5, Math.max(1, form.rating)) };
     const supabase = createClient();
     if (payload.id) {
-      await supabase.from('testimonials').update(payload).eq('id', payload.id);
+      const { id, ...data } = payload;
+      const { error } = await supabase.from('testimonials').update(data).eq('id', id);
+      if (error) { alert(error.message); setSaving(false); return; }
     } else {
-      await supabase.from('testimonials').insert(payload);
+      const { error } = await supabase.from('testimonials').insert(payload);
+      if (error) { alert(error.message); setSaving(false); return; }
     }
-    router.refresh();
-    router.push('/admin/testimonials');
+    window.location.href = '/admin/testimonials';
   }
 
   const displayRating = hovered || form.rating;

@@ -77,7 +77,7 @@ export default function ProjectsClient({ projects }: { projects: Project[] }) {
               initial={{ scale: 0.9, opacity: 0, y: 50 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 50 }}
-              className="relative w-full max-w-5xl bg-[#050505] rounded-[4rem] overflow-hidden shadow-[0_0_120px_rgba(239,68,68,0.15)] flex flex-col md:flex-row max-h-[85vh] border border-white/10"
+              className="relative w-full max-w-5xl bg-[#050505] rounded-[4rem] overflow-hidden shadow-[0_0_120px_rgba(239,68,68,0.15)] flex flex-col md:flex-row h-[85vh] border border-white/10"
             >
               <button onClick={() => setSelectedProject(null)}
                 className="absolute top-8 right-8 z-20 w-14 h-14 bg-white/5 backdrop-blur-md border border-white/10 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-all hover:rotate-90">

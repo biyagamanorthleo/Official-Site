@@ -17,9 +17,15 @@ export default function PresidentForm({ president }: { president?: President }) 
   async function handleSave(e: React.FormEvent) {
     e.preventDefault(); setSaving(true);
     const supabase = createClient();
-    if (form.id) { await supabase.from('presidents').update(form).eq('id', form.id); }
-    else { await supabase.from('presidents').insert(form); }
-    router.refresh(); router.push('/admin/presidents');
+    if (form.id) {
+      const { id, ...data } = form;
+      const { error } = await supabase.from('presidents').update(data).eq('id', id);
+      if (error) { alert(error.message); setSaving(false); return; }
+    } else {
+      const { error } = await supabase.from('presidents').insert(form);
+      if (error) { alert(error.message); setSaving(false); return; }
+    }
+    window.location.href = '/admin/presidents';
   }
 
   return (

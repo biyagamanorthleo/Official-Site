@@ -74,12 +74,14 @@ export default function TeamForm({ member }: { member?: Member }) {
       avenue: showAvenue ? (form.avenue || null) : null,
     };
     if (form.id) {
-      await supabase.from('team_members').update(data).eq('id', form.id);
+      const { id, ...updateData } = data;
+      const { error } = await supabase.from('team_members').update(updateData).eq('id', form.id);
+      if (error) { alert(error.message); setSaving(false); return; }
     } else {
-      await supabase.from('team_members').insert(data);
+      const { error } = await supabase.from('team_members').insert(data);
+      if (error) { alert(error.message); setSaving(false); return; }
     }
-    router.refresh();
-    router.push('/admin/team');
+    window.location.href = '/admin/team';
   }
 
   return (
