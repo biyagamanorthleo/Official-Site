@@ -31,8 +31,8 @@ export default function HomePage() {
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           >
             <h1 className="font-heading font-black mb-4 leading-[0.9] tracking-tighter uppercase">
-              <span className="block text-4xl md:text-6xl">{HERO_CONTENT.titlePrefix}</span>
-              <span className="block text-6xl md:text-9xl animate-shimmer-text">
+              <span className="block text-3xl sm:text-4xl md:text-6xl">{HERO_CONTENT.titlePrefix}</span>
+              <span className="block text-[clamp(2.2rem,11vw,8rem)] animate-shimmer-text">
                 {HERO_CONTENT.titleMain}
               </span>
             </h1>
@@ -134,7 +134,7 @@ export default function HomePage() {
             {recentProjects.map((project) => (
               <div key={project.id} className="group flex flex-col">
                 <div className="relative aspect-[3/4] rounded-2xl overflow-hidden border border-white/5 bg-gray-900">
-                  <img loading="lazy" src={project.image} alt={project.title} className="w-full h-full object-cover grayscale opacity-60 transition-all duration-1000 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110" />
+                  <Image loading="lazy" fill src={project.image} alt={project.title} className="object-cover grayscale opacity-60 transition-all duration-1000 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110" sizes="(max-width: 768px) 50vw, 25vw" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
                   <div className="absolute bottom-5 left-5 right-5">
                     <span className="inline-block px-2 py-0.5 bg-red-950/40 border border-red-900/30 text-red-400 text-[8px] font-black uppercase tracking-widest rounded mb-2">

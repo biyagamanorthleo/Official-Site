@@ -127,8 +127,11 @@
   @media (max-width: 768px) {
     .animate-shimmer-text {
       animation: none;
-      background: linear-gradient(150deg, #e8001d 0%, #b30019 100%);
-      background-size: auto;
+      background: none;
+      -webkit-background-clip: unset;
+      background-clip: unset;
+      -webkit-text-fill-color: #e8001d;
+      color: #e8001d;
     }
   }
 }

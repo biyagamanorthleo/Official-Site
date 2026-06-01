@@ -7,11 +7,11 @@ import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const navLinks = [
-  { name: 'Projects', path: '/projects' },
-  { name: 'Honors', path: '/achievements' },
-  { name: 'Gallery', path: '/gallery' },
-  { name: 'Team', path: '/team' },
   { name: 'Legacy', path: '/about' },
+  { name: 'Gallery', path: '/gallery' },
+  { name: 'Projects', path: '/projects' },
+  { name: 'Team', path: '/team' },
+  { name: 'Honors', path: '/achievements' },
   { name: 'Terminal', path: '/starter-pack' },
 ];
 
@@ -32,7 +32,9 @@ const Navbar: React.FC = () => {
         initial={{ opacity: 0, y: -16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className={`w-full max-w-6xl rounded-full transition-all duration-500 ${
+        className={`w-full max-w-6xl transition-all duration-300 ${
+          isOpen ? 'rounded-2xl' : 'rounded-full'
+        } ${
           scrolled
             ? 'bg-zinc-900/90 backdrop-blur-2xl border border-white/10 shadow-[0_8px_40px_rgba(0,0,0,0.8)]'
             : 'bg-zinc-900/60 backdrop-blur-xl border border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.5)]'

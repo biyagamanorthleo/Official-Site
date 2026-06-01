@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Calendar, X, TrendingUp } from 'lucide-react';
 
@@ -45,7 +46,7 @@ export default function ProjectsClient({ projects }: { projects: Project[] }) {
         {filtered.map((project) => (
           <div key={project.id} className="group cursor-pointer" onClick={() => setSelectedProject(project)}>
             <div className="relative aspect-[3/4] rounded-2xl overflow-hidden border border-white/10 bg-[#0a0a0a] group-hover:border-red-500/50 transition-all duration-700">
-              <img src={project.image} alt={project.title} className="w-full h-full object-cover grayscale opacity-40 transition-all duration-1000 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110" />
+              <Image fill src={project.image} alt={project.title} className="object-cover grayscale opacity-40 transition-all duration-1000 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110" sizes="(max-width: 768px) 50vw, 25vw" />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80" />
               <div className="absolute top-4 left-4">
                 <span className="inline-block px-2 py-0.5 bg-red-600/20 border border-red-500/30 text-red-400 text-[8px] font-black uppercase tracking-widest rounded">
@@ -82,8 +83,8 @@ export default function ProjectsClient({ projects }: { projects: Project[] }) {
                 className="absolute top-8 right-8 z-20 w-14 h-14 bg-white/5 backdrop-blur-md border border-white/10 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-all hover:rotate-90">
                 <X size={24} />
               </button>
-              <div className="md:w-1/2 h-80 md:h-auto overflow-hidden border-r border-white/5">
-                <img src={selectedProject.image} className="w-full h-full object-cover" alt={selectedProject.title} />
+              <div className="md:w-1/2 relative h-80 md:h-full overflow-hidden border-r border-white/5">
+                <Image fill src={selectedProject.image} className="object-cover" alt={selectedProject.title} sizes="50vw" />
               </div>
               <div className="md:w-1/2 p-12 md:p-16 overflow-y-auto">
                 <div className="px-4 py-1.5 bg-red-600/10 border border-red-500/20 text-red-500 text-[10px] font-black uppercase tracking-widest rounded-lg inline-block mb-10">

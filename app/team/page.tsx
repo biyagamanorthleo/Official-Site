@@ -1,4 +1,5 @@
 ﻿import type { Metadata } from 'next';
+import Image from 'next/image';
 import { getTeamMembers } from '@/lib/queries';
 import { TEAM_PAGE_CONTENT } from '@/constants';
 import { Instagram, Linkedin, Facebook, Shield, Users, Building } from 'lucide-react';
@@ -32,7 +33,7 @@ function MemberCard({ member, size = 'md' }: { member: Member; size?: 'lg' | 'md
   return (
     <div className={`group ${size === 'lg' ? 'md:col-span-2' : ''}`}>
       <div className={`relative ${size === 'lg' ? 'aspect-[3/2]' : 'aspect-[3/4]'} rounded-2xl overflow-hidden mb-4 border border-white/5 bg-[#0a0a0a] group-hover:border-red-500/30 transition-all duration-700`}>
-        <img loading="lazy" src={member.photo} alt={member.name} className="w-full h-full object-cover grayscale opacity-50 transition-all duration-700 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105" />
+        <Image loading="lazy" fill src={member.photo} alt={member.name} className="object-cover grayscale opacity-50 transition-all duration-700 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105" sizes="(max-width: 640px) 50vw, 25vw" />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end justify-center pb-5">
           <div className="flex space-x-2">
             {member.instagram && <a href={member.instagram} className="w-8 h-8 bg-white/10 backdrop-blur-xl rounded-full flex items-center justify-center text-white hover:bg-red-600 transition-all border border-white/10"><Instagram size={14} /></a>}

@@ -1,4 +1,5 @@
 ﻿import type { Metadata } from 'next';
+import Image from 'next/image';
 import { getPresidents } from '@/lib/queries';
 import { ABOUT_CONTENT } from '@/constants';
 import { Target, Shield, Award, Globe } from 'lucide-react';
@@ -70,7 +71,9 @@ export default async function AboutPage() {
                     <div className="absolute left-1/2 -translate-x-1/2 w-3 h-3 bg-red-600 rounded-full border-2 border-black shadow-[0_0_15px_rgba(239,68,68,0.8)] hidden md:block z-10" />
                     <div className="md:w-1/2 flex justify-center">
                       <div className="relative group p-3 bg-black border border-white/10 rounded-[2.5rem] transition-all duration-700 hover:border-red-500/40">
-                        <img loading="lazy" src={pres.photo} className="w-56 h-56 md:w-72 md:h-72 object-cover rounded-[2rem] grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-1000" alt={pres.name} />
+                        <div className="relative w-56 h-56 md:w-72 md:h-72">
+                          <Image loading="lazy" fill src={pres.photo} alt={pres.name} className="object-cover rounded-[2rem] grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-1000" sizes="(max-width: 768px) 224px, 288px" />
+                        </div>
                         <div className="absolute -bottom-6 -right-6 bg-red-600 text-white px-6 py-2.5 rounded-xl font-black text-[9px] tracking-[0.3em] uppercase">{pres.year}</div>
                       </div>
                     </div>

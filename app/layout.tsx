@@ -3,7 +3,7 @@ import { Inter, Outfit } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import LoadingScreen from '@/components/LoadingScreen';
+import LoadingScreenWrapper from '@/components/LoadingScreenWrapper';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -79,7 +79,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         style={{ fontFamily: 'var(--font-inter), sans-serif' }}
       >
         <div className="flex flex-col min-h-screen">
-          <LoadingScreen />
+          <LoadingScreenWrapper />
           <Navbar />
           <main className="flex-grow">{children}</main>
           <Footer />
