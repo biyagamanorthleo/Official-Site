@@ -282,12 +282,12 @@ export default function HomePage() {
             {[...featuredProjects, ...featuredProjects].map((project, i) => (
               <div key={i} className="w-64 flex-shrink-0 group">
                 <div className="relative aspect-square rounded-xl overflow-hidden border border-white/5 bg-gray-900">
-                  <Image
-                    fill
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
                     src={project.image}
                     alt={project.title}
-                    className="object-cover grayscale opacity-60 transition-all duration-700 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105"
-                    sizes="256px"
+                    loading="lazy"
+                    className="absolute inset-0 w-full h-full object-cover grayscale opacity-60 transition-all duration-700 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
                   <div className="absolute bottom-3 left-3 right-3">

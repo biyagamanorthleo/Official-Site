@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-import Image from 'next/image';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Calendar, X, TrendingUp } from 'lucide-react';
 
@@ -26,40 +25,47 @@ export default function ProjectsClient({ projects }: { projects: Project[] }) {
 
   return (
     <>
-      <div className="flex flex-wrap justify-center gap-4 mb-32">
-        {tabs.map((tab) => (
-          <button
-            key={tab}
-            onClick={() => setActiveTab(tab)}
-            className={`px-8 py-3 rounded-full text-[10px] font-black tracking-[0.3em] uppercase transition-all duration-500 border ${
-              activeTab === tab
-                ? 'bg-red-600 border-red-500 text-white shadow-[0_0_30px_rgba(239,68,68,0.3)]'
-                : 'bg-white/5 border-white/10 text-gray-500 hover:text-white hover:border-white/30'
-            }`}
-          >
-            {tab}
-          </button>
-        ))}
+      <div className="flex justify-center mb-32">
+        <div className="inline-flex items-center bg-white/[0.03] border border-white/8 rounded-full p-1 gap-0.5">
+          {tabs.map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className={`px-6 py-2.5 rounded-full text-[9px] font-black tracking-[0.25em] uppercase transition-all duration-300 ${
+                activeTab === tab
+                  ? 'bg-red-600 text-white shadow-[0_0_20px_rgba(220,38,38,0.4)]'
+                  : 'text-gray-600 hover:text-gray-300'
+              }`}
+            >
+              {tab}
+            </button>
+          ))}
+        </div>
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
         {filtered.map((project) => (
           <div key={project.id} className="group cursor-pointer" onClick={() => setSelectedProject(project)}>
-            <div className="relative aspect-[3/4] rounded-2xl overflow-hidden border border-white/10 bg-[#0a0a0a] group-hover:border-red-500/50 transition-all duration-700">
-              <Image fill src={project.image} alt={project.title} className="object-cover grayscale opacity-40 transition-all duration-1000 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110" sizes="(max-width: 768px) 50vw, 25vw" />
+            <div className="img-skeleton relative aspect-[4/5] rounded-2xl overflow-hidden border border-white/10 bg-[#0a0a0a] group-hover:border-red-500/50 transition-all duration-700">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={project.image} alt={project.title} loading="lazy" className="absolute inset-0 w-full h-full object-cover grayscale opacity-40 transition-all duration-1000 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110" />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80" />
-              <div className="absolute top-4 left-4">
-                <span className="inline-block px-2 py-0.5 bg-red-600/20 border border-red-500/30 text-red-400 text-[8px] font-black uppercase tracking-widest rounded">
-                  {project.status}
-                </span>
-              </div>
               <div className="absolute bottom-5 left-5 right-5">
                 <div className="flex items-center text-red-500 text-[9px] font-black uppercase tracking-[0.3em] mb-2">
                   <Calendar size={10} className="mr-2" /> {project.date}
                 </div>
-                <h3 className="text-sm font-heading font-black text-white leading-tight uppercase tracking-tight group-hover:text-red-400 transition-colors">
+                <h3 className="text-sm font-heading font-black text-white leading-tight uppercase tracking-tight group-hover:text-red-400 transition-colors mb-2">
                   {project.title}
                 </h3>
+                <span className={`inline-block px-2 py-0.5 border text-[7px] font-black uppercase tracking-widest rounded ${
+                  project.status === 'Completed'
+                    ? 'bg-white/5 border-white/15 text-white/60'
+                    : project.status === 'Coming Soon'
+                    ? 'bg-red-950/30 border-red-900/20 text-red-800'
+                    : 'bg-red-600/20 border-red-500/30 text-red-400'
+                }`}>
+                  {project.status}
+                </span>
               </div>
             </div>
           </div>

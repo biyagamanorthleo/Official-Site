@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import Image from 'next/image';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 type Photo = {
@@ -47,13 +46,12 @@ export default function GalleryGrid({ photos }: { photos: Photo[] }) {
             onClick={() => setLightboxIndex(i)}
             className="group relative aspect-square overflow-hidden rounded-[1.5rem] bg-zinc-900 border border-white/5 focus:outline-none"
           >
-            <Image
-              fill
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src={photo.url}
               alt={photo.caption ?? 'Gallery photo'}
-              className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
-              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-              priority={i < 4}
+              loading={i < 4 ? 'eager' : 'lazy'}
+              className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             <div className="absolute bottom-10 left-10 right-10 translate-y-10 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
@@ -96,13 +94,11 @@ export default function GalleryGrid({ photos }: { photos: Photo[] }) {
             onClick={e => e.stopPropagation()}
           >
             <div className="relative w-full" style={{ height: 'min(75vh, 640px)' }}>
-              <Image
-                fill
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
                 src={photos[lightboxIndex].url}
                 alt={photos[lightboxIndex].caption ?? 'Gallery photo'}
-                className="object-contain"
-                sizes="(max-width: 768px) 100vw, 80vw"
-                priority
+                className="w-full h-full object-contain"
               />
             </div>
             {photos[lightboxIndex].caption && (

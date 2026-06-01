@@ -1,5 +1,4 @@
 ﻿import type { Metadata } from 'next';
-import Image from 'next/image';
 import { getAchievements } from '@/lib/queries';
 import { ACHIEVEMENTS_PAGE_CONTENT } from '@/constants';
 import { Trophy, Calendar, Award, ShieldCheck } from 'lucide-react';
@@ -46,7 +45,8 @@ export default async function AchievementsPage() {
                 <div className="flex flex-col md:flex-row h-full">
                   {achievement.image && (
                     <div className="md:w-1/3 relative overflow-hidden h-64">
-                      <Image loading="lazy" fill src={achievement.image} alt={achievement.title} className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700" sizes="33vw" />
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={achievement.image} alt={achievement.title} loading="lazy" className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
                       <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent" />
                     </div>
                   )}
