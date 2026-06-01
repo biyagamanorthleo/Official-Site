@@ -19,7 +19,7 @@ export default function PresidentForm({ president }: { president?: President }) 
     const supabase = createClient();
     if (form.id) { await supabase.from('presidents').update(form).eq('id', form.id); }
     else { await supabase.from('presidents').insert(form); }
-    router.push('/admin/presidents'); router.refresh();
+    router.refresh(); router.push('/admin/presidents');
   }
 
   return (

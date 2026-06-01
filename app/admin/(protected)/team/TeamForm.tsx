@@ -78,8 +78,8 @@ export default function TeamForm({ member }: { member?: Member }) {
     } else {
       await supabase.from('team_members').insert(data);
     }
-    router.push('/admin/team');
     router.refresh();
+    router.push('/admin/team');
   }
 
   return (

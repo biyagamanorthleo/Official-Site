@@ -39,8 +39,8 @@ export default function ProjectForm({ project }: { project?: Project }) {
     } else {
       await supabase.from('projects').insert(form);
     }
-    router.push('/admin/projects');
     router.refresh();
+    router.push('/admin/projects');
   }
 
   return (

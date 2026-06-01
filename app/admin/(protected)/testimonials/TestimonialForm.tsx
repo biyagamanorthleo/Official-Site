@@ -37,8 +37,8 @@ export default function TestimonialForm({ testimonial }: { testimonial?: Testimo
     } else {
       await supabase.from('testimonials').insert(payload);
     }
-    router.push('/admin/testimonials');
     router.refresh();
+    router.push('/admin/testimonials');
   }
 
   const displayRating = hovered || form.rating;

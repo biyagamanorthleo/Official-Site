@@ -19,7 +19,7 @@ export default function AchievementForm({ achievement }: { achievement?: Achieve
     const supabase = createClient();
     if (form.id) { await supabase.from('achievements').update(form).eq('id', form.id); }
     else { await supabase.from('achievements').insert(form); }
-    router.push('/admin/achievements'); router.refresh();
+    router.refresh(); router.push('/admin/achievements');
   }
 
   return (
