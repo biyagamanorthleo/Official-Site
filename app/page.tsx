@@ -4,9 +4,9 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { CLUB_STATS, PROJECTS, HERO_CONTENT, GLOBAL_CAUSES, UN_SDGS } from '@/constants';
+import { CLUB_STATS, PROJECTS, HERO_CONTENT, GLOBAL_CAUSES, UN_SDGS, TESTIMONIALS } from '@/constants';
 import { createClient } from '@/lib/supabase/client';
-import { ArrowRight, CheckCircle, Users, Clock, DollarSign, Calendar, Eye, Activity, Utensils, Heart, Leaf, AlertTriangle, Globe, GraduationCap } from 'lucide-react';
+import { ArrowRight, CheckCircle, Users, Clock, DollarSign, Calendar, Eye, Activity, Utensils, Heart, Leaf, AlertTriangle, Globe, GraduationCap, Star } from 'lucide-react';
 
 const IconMap: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
   CheckCircle, Users, Clock, DollarSign,
@@ -18,6 +18,7 @@ const CauseIconMap: Record<string, React.ComponentType<{ size?: number; style?: 
 
 export default function HomePage() {
   const [featuredProjects, setFeaturedProjects] = useState<typeof PROJECTS>(PROJECTS);
+  const [testimonials, setTestimonials] = useState<typeof TESTIMONIALS>(TESTIMONIALS);
 
   useEffect(() => {
     const supabase = createClient();
@@ -28,6 +29,13 @@ export default function HomePage() {
       .order('sort_order', { ascending: true })
       .then(({ data }) => {
         if (data && data.length > 0) setFeaturedProjects(data);
+      });
+    supabase
+      .from('testimonials')
+      .select('*')
+      .order('sort_order', { ascending: true })
+      .then(({ data }) => {
+        if (data && data.length > 0) setTestimonials(data);
       });
   }, []);
 
@@ -303,6 +311,76 @@ export default function HomePage() {
             <span className="text-[12px] font-black uppercase tracking-[0.2em] text-white">Explore All Projects</span>
             <ArrowRight size={18} className="text-red-400 group-hover:text-white group-hover:translate-x-2 transition-all" />
           </Link>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="py-32 bg-[#020202] relative overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[1px] bg-gradient-to-r from-transparent via-white/5 to-transparent" />
+        <div className="container mx-auto px-6">
+
+          <div className="mb-20">
+            <span className="text-red-500 font-black uppercase tracking-[0.4em] text-[10px] mb-6 block">Community Voices</span>
+            <h2 className="text-4xl md:text-7xl font-heading font-black text-white leading-none uppercase">
+              WHAT THEY<br />SAY
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {testimonials.map((t, idx) => (
+              <motion.div
+                key={t.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                className="group relative bg-[#080808] border border-white/5 rounded-2xl p-8 flex flex-col justify-between hover:border-white/10 transition-all duration-500 overflow-hidden"
+              >
+                {/* Decorative quote mark */}
+                <span
+                  className="absolute top-4 right-6 text-[7rem] leading-none font-heading font-black select-none pointer-events-none"
+                  style={{ color: 'rgba(232,0,29,0.06)' }}
+                  aria-hidden
+                >
+                  &ldquo;
+                </span>
+
+                <div className="relative z-10">
+                  {/* Stars */}
+                  <div className="flex items-center gap-1 mb-5">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Star
+                        key={i}
+                        size={14}
+                        className={i < t.rating ? 'text-red-500' : 'text-white/10'}
+                        fill={i < t.rating ? 'currentColor' : 'none'}
+                      />
+                    ))}
+                  </div>
+
+                  {/* Quote */}
+                  <p className="text-gray-300 text-sm leading-relaxed tracking-tight mb-8">
+                    &ldquo;{t.quote}&rdquo;
+                  </p>
+                </div>
+
+                {/* Person */}
+                <div className="flex items-center gap-4">
+                  <div
+                    className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 text-[11px] font-black text-white"
+                    style={{ background: 'linear-gradient(135deg, #980016, #3d0009)' }}
+                  >
+                    {t.initials}
+                  </div>
+                  <div>
+                    <p className="text-white font-black text-[13px] uppercase tracking-tight">{t.name}</p>
+                    <p className="text-red-800 text-[9px] font-black uppercase tracking-[0.2em] mt-0.5">{t.role}</p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
         </div>
       </section>
 

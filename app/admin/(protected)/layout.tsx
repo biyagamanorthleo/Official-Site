@@ -1,7 +1,7 @@
 import { createClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
-import { LayoutDashboard, FolderOpen, Trophy, Image, Users, Star, LogOut, ExternalLink } from 'lucide-react';
+import { LayoutDashboard, FolderOpen, Trophy, Image, Users, Star, LogOut, ExternalLink, MessageSquare } from 'lucide-react';
 
 const navItems = [
   { href: '/admin', label: 'Dashboard', icon: LayoutDashboard },
@@ -10,6 +10,7 @@ const navItems = [
   { href: '/admin/achievements', label: 'Achievements', icon: Trophy },
   { href: '/admin/gallery', label: 'Gallery', icon: Image },
   { href: '/admin/presidents', label: 'Hall of Honor', icon: Star },
+  { href: '/admin/testimonials', label: 'Testimonials', icon: MessageSquare },
 ];
 
 export default async function AdminLayout({

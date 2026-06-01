@@ -90,3 +90,12 @@ export interface GlobalCause {
   sdgs: number[];
   accentSdg: number;
 }
+
+export interface Testimonial {
+  id: number | string;
+  quote: string;
+  name: string;
+  role: string;
+  initials: string;
+  rating: number;
+}

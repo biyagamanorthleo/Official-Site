@@ -1,5 +1,5 @@
 
-import { ProjectStatus, Project, TeamMember, President, ClubStat, TeamCategory, Achievement, AchievementCategory, ResourceItem, SdgGoal, GlobalCause } from './types';
+import { ProjectStatus, Project, TeamMember, President, ClubStat, TeamCategory, Achievement, AchievementCategory, ResourceItem, SdgGoal, GlobalCause, Testimonial } from './types';
 
 // Club Branding & Basic Info
 export const CLUB_NAME = "Leo Club of Biyagama North";
@@ -367,6 +367,42 @@ export const TEAM: TeamMember[] = [
     priority: 1,
     socials: { instagram: '#' }
   }
+];
+
+// Testimonials
+export const TESTIMONIALS: Testimonial[] = [
+  {
+    id: 1,
+    quote: "Being part of this club changed my perspective on what young people can actually accomplish. The projects are real, the impact is measurable, and the friendships are lifelong.",
+    name: "Thisara Bandara",
+    role: "Leo Member, 2022–2024",
+    initials: "TB",
+    rating: 5,
+  },
+  {
+    id: 2,
+    quote: "The Vision For All project gave my mother her sight back. I never expected a group of young volunteers to show up with this level of professionalism and genuine care.",
+    name: "Samanthi Perera",
+    role: "Community Beneficiary",
+    initials: "SP",
+    rating: 5,
+  },
+  {
+    id: 3,
+    quote: "I've worked with many youth organizations, but Leo Club of Biyagama North stands apart. Their discipline, execution, and heart for the community is something you rarely see.",
+    name: "Lion Dr. Nuwan Rodrigo",
+    role: "Lions Club Advisor",
+    initials: "NR",
+    rating: 5,
+  },
+  {
+    id: 4,
+    quote: "Joining as a first-year university student, I had no idea what leadership really meant. Two years with BN Leos and I left with skills, confidence, and a mission.",
+    name: "Dilini Jayawardena",
+    role: "Leo Member, 2023–Present",
+    initials: "DJ",
+    rating: 4,
+  },
 ];
 
 // UN Sustainable Development Goals

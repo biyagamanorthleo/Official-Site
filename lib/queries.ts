@@ -61,6 +61,16 @@ export async function getPresidents() {
   return data ?? [];
 }
 
+export async function getTestimonials() {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from('testimonials')
+    .select('*')
+    .order('sort_order', { ascending: true });
+  if (error) throw error;
+  return data ?? [];
+}
+
 export async function getClubStats() {
   const supabase = await createClient();
   const { data, error } = await supabase
