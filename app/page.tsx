@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
 import { CLUB_STATS, PROJECTS, HERO_CONTENT, GLOBAL_CAUSES, UN_SDGS, TESTIMONIALS } from '@/constants';
 import { createClient } from '@/lib/supabase/client';
 import { ArrowRight, CheckCircle, Users, Clock, DollarSign, Calendar, Eye, Activity, Utensils, Heart, Leaf, AlertTriangle, Globe, GraduationCap, Star } from 'lucide-react';
@@ -50,11 +49,7 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black" />
         </div>
         <div className="container mx-auto px-6 relative z-10 text-center">
-          <motion.div
-            initial={{ opacity: 0.2, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          >
+          <div className="animate-hero-in">
             <h1 className="font-heading font-black mb-4 leading-[0.9] tracking-tighter uppercase">
               <span className="block text-3xl sm:text-4xl md:text-6xl">{HERO_CONTENT.titlePrefix}</span>
               <span className="block text-[clamp(2.2rem,11vw,8rem)] animate-shimmer-text">
@@ -75,7 +70,7 @@ export default function HomePage() {
                 {HERO_CONTENT.secondaryBtnText}
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
