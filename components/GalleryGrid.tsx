@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import Image from 'next/image';
+import RetryImage from '@/components/RetryImage';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 type Photo = {
@@ -46,12 +48,13 @@ export default function GalleryGrid({ photos }: { photos: Photo[] }) {
             onClick={() => setLightboxIndex(i)}
             className="group relative aspect-square overflow-hidden rounded-[1.5rem] bg-zinc-900 border border-white/5 focus:outline-none"
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <RetryImage
               src={photo.url}
               alt={photo.caption ?? 'Gallery photo'}
+              fill
               loading={i < 4 ? 'eager' : 'lazy'}
-              className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+              className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             <div className="absolute bottom-10 left-10 right-10 translate-y-10 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
@@ -67,10 +70,9 @@ export default function GalleryGrid({ photos }: { photos: Photo[] }) {
       {/* Lightbox */}
       {lightboxIndex !== null && (
         <div
-          className="fixed inset-0 z-[200] bg-black/95 backdrop-blur-xl flex items-center justify-center"
+          className="fixed inset-0 z-[200] bg-black/95 flex items-center justify-center"
           onClick={close}
         >
-          {/* Close */}
           <button
             onClick={close}
             className="absolute top-5 right-5 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors z-10"
@@ -78,7 +80,6 @@ export default function GalleryGrid({ photos }: { photos: Photo[] }) {
             <X size={20} />
           </button>
 
-          {/* Prev */}
           {photos.length > 1 && (
             <button
               onClick={e => { e.stopPropagation(); prev(); }}
@@ -88,17 +89,17 @@ export default function GalleryGrid({ photos }: { photos: Photo[] }) {
             </button>
           )}
 
-          {/* Image container */}
           <div
             className="relative w-full max-w-4xl px-14 md:px-20 flex flex-col items-center"
             onClick={e => e.stopPropagation()}
           >
             <div className="relative w-full" style={{ height: 'min(75vh, 640px)' }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <RetryImage
                 src={photos[lightboxIndex].url}
                 alt={photos[lightboxIndex].caption ?? 'Gallery photo'}
-                className="w-full h-full object-contain"
+                fill
+                sizes="(max-width: 768px) 100vw, 896px"
+                className="object-contain"
               />
             </div>
             {photos[lightboxIndex].caption && (
@@ -111,7 +112,6 @@ export default function GalleryGrid({ photos }: { photos: Photo[] }) {
             </p>
           </div>
 
-          {/* Next */}
           {photos.length > 1 && (
             <button
               onClick={e => { e.stopPropagation(); next(); }}

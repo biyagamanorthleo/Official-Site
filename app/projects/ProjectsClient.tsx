@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import RetryImage from '@/components/RetryImage';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Calendar, X, TrendingUp } from 'lucide-react';
 
@@ -47,8 +48,14 @@ export default function ProjectsClient({ projects }: { projects: Project[] }) {
         {filtered.map((project) => (
           <div key={project.id} className="group cursor-pointer" onClick={() => setSelectedProject(project)}>
             <div className="img-skeleton relative aspect-[4/5] rounded-2xl overflow-hidden border border-white/10 bg-[#0a0a0a] group-hover:border-red-500/50 transition-all duration-700">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={project.image} alt={project.title} loading="lazy" onLoad={e => (e.currentTarget.parentElement as HTMLElement)?.classList.add('img-loaded')} className="absolute inset-0 w-full h-full object-cover grayscale opacity-40 transition-all duration-1000 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110" />
+              <RetryImage
+                src={project.image}
+                alt={project.title}
+                fill
+                loading="lazy"
+                sizes="(max-width: 768px) 50vw, 25vw"
+                className="object-cover grayscale opacity-40 transition-all duration-1000 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110"
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80" />
               <div className="absolute bottom-5 left-5 right-5">
                 <div className="flex items-center text-red-500 text-[9px] font-black uppercase tracking-[0.3em] mb-2">
@@ -90,8 +97,13 @@ export default function ProjectsClient({ projects }: { projects: Project[] }) {
                 <X size={24} />
               </button>
               <div className="md:w-1/2 relative h-44 md:h-full overflow-hidden border-r border-white/5">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={selectedProject.image} alt={selectedProject.title} className="absolute inset-0 w-full h-full object-cover" />
+                <RetryImage
+                  src={selectedProject.image}
+                  alt={selectedProject.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover"
+                />
               </div>
               <div className="md:w-1/2 p-7 md:p-16 overflow-y-auto">
                 <div className="px-4 py-1.5 bg-red-600/10 border border-red-500/20 text-red-500 text-[10px] font-black uppercase tracking-widest rounded-lg inline-block mb-10">

@@ -3,65 +3,121 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-// Minimum time the screen stays visible (longer covers slow mobile connections)
-const MIN_MS = 2500;
+const PHASES = [
+  { label: 'Establishing Connection', min: 0 },
+  { label: 'Parsing Document',        min: 12 },
+  { label: 'Loading Styles',          min: 30 },
+  { label: 'Loading Resources',       min: 45 },
+  { label: 'Hydrating Components',    min: 85 },
+  { label: 'Ready',                   min: 98 },
+] as const;
+
+function getPhase(pct: number) {
+  for (let i = PHASES.length - 1; i >= 0; i--) {
+    if (pct >= PHASES[i].min) return PHASES[i].label;
+  }
+  return PHASES[0].label;
+}
 
 const LoadingScreen: React.FC = () => {
-  const [count, setCount]   = useState(0);
-  const [show, setShow]     = useState(true);
-  const startRef            = useRef(Date.now());
-  const intervalRef         = useRef<ReturnType<typeof setInterval> | null>(null);
-  const finishedRef         = useRef(false);
+  const [displayed, setDisplayed]     = useState(0);
+  const [show, setShow]               = useState(true);
+  const [resources, setResources]     = useState<{ loaded: number; total: number } | null>(null);
+
+  const targetRef    = useRef(0);
+  const displayedRef = useRef(0);
+  const frameRef     = useRef<number | undefined>(undefined);
+
+  function setTarget(val: number) {
+    if (val <= targetRef.current) return;
+    targetRef.current = val;
+    scheduleAnimate();
+  }
+
+  function scheduleAnimate() {
+    if (frameRef.current) cancelAnimationFrame(frameRef.current);
+    frameRef.current = requestAnimationFrame(function step() {
+      const curr = displayedRef.current;
+      const tgt  = targetRef.current;
+      const next = Math.min(curr + Math.max(0.5, (tgt - curr) * 0.1), tgt);
+      displayedRef.current = next;
+      setDisplayed(Math.floor(next));
+      if (next < tgt) frameRef.current = requestAnimationFrame(step);
+    });
+  }
 
   useEffect(() => {
-    // Crawl counter to 88 % while waiting for the real load event.
-    intervalRef.current = setInterval(() => {
-      setCount(prev => {
-        if (prev >= 88) { clearInterval(intervalRef.current!); return 88; }
-        return Math.min(prev + Math.floor(Math.random() * 9) + 3, 88);
-      });
-    }, 110);
+    setTarget(5);
 
-    function hide() {
-      setTimeout(() => setShow(false), 650);
+    let loaded = 0;
+    let total  = 0;
+
+    function updateResources() {
+      if (total === 0) return;
+      const pct = 45 + (loaded / total) * 40;
+      setTarget(Math.min(pct, 84));
+      setResources({ loaded, total });
     }
 
-    function finish() {
-      if (finishedRef.current) return;
-      finishedRef.current = true;
-      clearInterval(intervalRef.current!);
+    if ('performance' in window) {
+      const existing = performance.getEntriesByType('resource') as PerformanceResourceTiming[];
+      total  += existing.length;
+      loaded += existing.filter(e => e.responseEnd > 0).length;
+      updateResources();
+    }
 
-      const elapsed   = Date.now() - startRef.current;
-      const remaining = Math.max(0, MIN_MS - elapsed);
-
-      setTimeout(() => {
-        setCount(100);
-
-        // Wait until the browser's main thread is idle — meaning React has
-        // hydrated and painted — before removing the loading screen.
-        // requestIdleCallback is not in Safari < 18, so we fall back to a
-        // 600 ms delay which covers hydration on most mobile devices.
-        if (typeof requestIdleCallback !== 'undefined') {
-          requestIdleCallback(hide, { timeout: 2000 });
-        } else {
-          setTimeout(hide, 600);
+    let observer: PerformanceObserver | null = null;
+    if ('PerformanceObserver' in window) {
+      observer = new PerformanceObserver(list => {
+        for (const e of list.getEntries() as PerformanceResourceTiming[]) {
+          total++;
+          if (e.responseEnd > 0) loaded++;
         }
-      }, remaining);
+        updateResources();
+      });
+      try { observer.observe({ type: 'resource', buffered: false }); } catch { /* unsupported */ }
     }
 
-    if (document.readyState === 'complete') {
-      // readyState is already complete (common on client-side navigation).
-      // Still defer finish() by one tick so React hydration can begin first.
-      setTimeout(finish, 50);
+    function onDOMReady() { setTarget(30); }
+
+    function onLoad() {
+      observer?.disconnect();
+      setTarget(88);
+
+      const finish = () => {
+        targetRef.current    = 100;
+        displayedRef.current = 100;
+        setDisplayed(100);
+        setTimeout(() => setShow(false), 650);
+      };
+
+      if (typeof requestIdleCallback !== 'undefined') {
+        requestIdleCallback(finish, { timeout: 1500 });
+      } else {
+        setTimeout(finish, 500);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', onDOMReady, { once: true });
+      window.addEventListener('load', onLoad, { once: true });
+    } else if (document.readyState === 'interactive') {
+      setTarget(30);
+      window.addEventListener('load', onLoad, { once: true });
     } else {
-      window.addEventListener('load', finish, { once: true });
+      setTimeout(() => { setTarget(88); setTimeout(onLoad, 30); }, 0);
     }
 
     return () => {
-      clearInterval(intervalRef.current!);
-      window.removeEventListener('load', finish);
+      observer?.disconnect();
+      document.removeEventListener('DOMContentLoaded', onDOMReady);
+      window.removeEventListener('load', onLoad);
+      if (frameRef.current) cancelAnimationFrame(frameRef.current);
     };
   }, []);
+
+  const phase    = getPhase(displayed);
+  const showRes  = resources && displayed >= 45 && displayed < 88;
 
   return (
     <AnimatePresence>
@@ -73,7 +129,7 @@ const LoadingScreen: React.FC = () => {
           className="fixed inset-0 z-[9999] bg-black flex flex-col items-center justify-center"
         >
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-red-950/20 rounded-full blur-[150px] animate-pulse" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-red-950/20 rounded-full blur-[150px]" />
           </div>
 
           <div className="relative">
@@ -83,24 +139,34 @@ const LoadingScreen: React.FC = () => {
               transition={{ duration: 0.4 }}
               className="text-[12rem] md:text-[20rem] font-heading font-black text-white/5 tracking-tighter leading-none select-none"
             >
-              {count}
+              {displayed}
             </motion.div>
 
             <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <span className="text-red-600 font-black uppercase tracking-[0.8em] text-[10px] mb-4">
-                Initializing Sequence
-              </span>
+              <motion.span
+                key={phase}
+                initial={{ opacity: 0, y: 4 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.25 }}
+                className="text-red-600 font-black uppercase tracking-[0.8em] text-[10px] mb-4 text-center px-4"
+              >
+                {phase}
+              </motion.span>
 
               <div className="w-48 h-[1px] bg-white/10 relative overflow-hidden">
                 <motion.div
                   className="absolute inset-y-0 left-0 bg-red-600"
-                  animate={{ width: `${count}%` }}
-                  transition={{ duration: 0.15, ease: 'linear' }}
+                  animate={{ width: `${displayed}%` }}
+                  transition={{ duration: 0.12, ease: 'linear' }}
                 />
               </div>
 
               <span className="mt-8 text-white/40 font-mono text-[10px] uppercase tracking-widest">
-                {count < 100 ? 'Loading Assets...' : 'Ready'}
+                {showRes
+                  ? `${resources.loaded} / ${resources.total} resources`
+                  : displayed >= 100
+                  ? 'Ready'
+                  : `${displayed}%`}
               </span>
             </div>
           </div>

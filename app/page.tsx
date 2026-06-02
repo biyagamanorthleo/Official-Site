@@ -125,7 +125,7 @@ export default function HomePage() {
         <div className="relative z-10 w-full flex flex-col md:flex-row items-center justify-end px-6 md:px-20 py-24 gap-10">
           <div className="flex flex-col items-center md:items-start">
             <div className="relative group mb-8 inline-block">
-              <Image src="/president.png" alt="Leo Lion Anjana Dineth MAF" width={448} height={600} priority quality={85} className="w-80 md:w-[34rem] object-contain drop-shadow-2xl" />
+              <Image src="/president.webp" alt="Leo Lion Anjana Dineth MAF" width={448} height={600} priority quality={85} className="w-80 md:w-[34rem] object-contain drop-shadow-2xl" />
               <div className="absolute bottom-4 right-0 px-4 py-2 rounded-xl font-black text-[9px] tracking-[0.3em] uppercase text-white"
                 style={{ background: 'linear-gradient(135deg, #980016, #3d0009)' }}>
                 2026/27
@@ -168,13 +168,9 @@ export default function HomePage() {
               const CauseIcon = CauseIconMap[cause.icon];
               const accentSdg = UN_SDGS.find(s => s.goal === cause.accentSdg);
               return (
-                <motion.div
+                <div
                   key={cause.id}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: cause.id * 0.06, ease: [0.22, 1, 0.36, 1] }}
-                  className="group relative bg-[#080808] border border-white/5 rounded-2xl p-6 flex flex-col hover:border-white/10 transition-all duration-500"
+                  className="group relative bg-[#080808] border border-white/5 rounded-2xl p-6 flex flex-col hover:border-white/10 hover:-translate-y-1 transition-all duration-500"
                 >
                   {/* Top border glow on hover */}
                   <div
@@ -208,9 +204,8 @@ export default function HomePage() {
                       const sdg = UN_SDGS.find(s => s.goal === sdgGoal);
                       return (
                         <div key={sdgGoal} title={`SDG ${sdgGoal}: ${sdg?.name}`} className="group/sdg relative">
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img
-                            src={`https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-${String(sdgGoal).padStart(2, '0')}.jpg`}
+                          <Image
+                            src={`/sdgs/sdg-${String(sdgGoal).padStart(2, '0')}.jpg`}
                             alt={`SDG ${sdgGoal}: ${sdg?.name}`}
                             className="w-8 h-8 rounded-sm object-cover opacity-75 group-hover/sdg:opacity-100 transition-opacity duration-200"
                             loading="lazy"
@@ -221,7 +216,7 @@ export default function HomePage() {
                       );
                     })}
                   </div>
-                </motion.div>
+                </div>
               );
             })}
           </div>
@@ -239,9 +234,8 @@ export default function HomePage() {
               <div className="flex flex-wrap gap-2">
                 {UN_SDGS.map((sdg) => (
                   <div key={sdg.goal} title={`SDG ${sdg.goal}: ${sdg.name}`}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={`https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-${String(sdg.goal).padStart(2, '0')}.jpg`}
+                    <Image
+                      src={`/sdgs/sdg-${String(sdg.goal).padStart(2, '0')}.jpg`}
                       alt={`SDG ${sdg.goal}: ${sdg.name}`}
                       className="w-10 h-10 md:w-12 md:h-12 rounded-sm object-cover opacity-70 hover:opacity-100 transition-opacity duration-200"
                       loading="lazy"
@@ -282,13 +276,13 @@ export default function HomePage() {
             {[...featuredProjects, ...featuredProjects].map((project, i) => (
               <div key={i} className="w-56 md:w-80 flex-shrink-0 group">
                 <div className="relative aspect-square rounded-xl overflow-hidden border border-white/5 bg-gray-900">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                  <Image
                     src={project.image}
                     alt={project.title}
+                    fill
                     loading="lazy"
-                    onLoad={e => (e.currentTarget.parentElement as HTMLElement)?.classList.add('img-loaded')}
-                    className="absolute inset-0 w-full h-full object-cover grayscale opacity-60 transition-all duration-700 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105"
+                    sizes="(max-width: 768px) 224px, 320px"
+                    className="object-cover grayscale opacity-60 transition-all duration-700 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
                   <div className="absolute bottom-3 left-3 right-3">
@@ -328,13 +322,9 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {testimonials.map((t, idx) => (
-              <motion.div
+              <div
                 key={t.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.08, ease: [0.22, 1, 0.36, 1] }}
-                className="group relative bg-[#080808] border border-white/5 rounded-2xl p-5 md:p-8 flex flex-col justify-between hover:border-white/10 transition-all duration-500 overflow-hidden"
+                className="group relative bg-[#080808] border border-white/5 rounded-2xl p-5 md:p-8 flex flex-col justify-between hover:border-white/10 hover:-translate-y-1 transition-all duration-500 overflow-hidden"
               >
                 {/* Decorative quote mark */}
                 <span
@@ -377,7 +367,7 @@ export default function HomePage() {
                     <p className="text-red-800 text-[9px] font-black uppercase tracking-[0.2em] mt-0.5">{t.role}</p>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
 

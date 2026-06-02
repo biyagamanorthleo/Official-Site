@@ -39,12 +39,12 @@ const nextConfig: NextConfig = {
   },
   images: {
     formats: ['image/avif', 'image/webp'],
+    qualities: [80, 85],
     minimumCacheTTL: 86400,
     remotePatterns: [
       { protocol: 'https', hostname: 'images.unsplash.com' },
       { protocol: 'https', hostname: 'i.pravatar.cc' },
       { protocol: 'https', hostname: 'jhfpbnujvrdxggclkzgz.supabase.co' },
-      { protocol: 'https', hostname: 'sdgs.un.org' },
     ],
   },
 };
