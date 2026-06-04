@@ -17,12 +17,12 @@ export default function AboutOrgs() {
           {/* Text */}
           <div>
             <div className="flex items-center gap-5 mb-10">
-              <div className="w-20 h-20 flex items-center justify-center flex-shrink-0">
+              <div className="w-28 h-28 flex items-center justify-center flex-shrink-0">
                 <Image
                   src={LIONS_LOGO}
                   alt="Lions Clubs International"
-                  width={64}
-                  height={64}
+                  width={96}
+                  height={96}
                   className="object-contain"
                 />
               </div>
@@ -98,12 +98,12 @@ export default function AboutOrgs() {
           {/* Text right on desktop */}
           <div className="order-1 lg:order-2">
             <div className="flex items-center gap-5 mb-10">
-              <div className="w-20 h-20 flex items-center justify-center flex-shrink-0">
+              <div className="w-28 h-28 flex items-center justify-center flex-shrink-0">
                 <Image
                   src={LEO_LOGO}
                   alt="Leo Club Programme"
-                  width={64}
-                  height={64}
+                  width={96}
+                  height={96}
                   className="object-contain"
                 />
               </div>

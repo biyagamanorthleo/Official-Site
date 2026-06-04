@@ -94,8 +94,8 @@ export default function StarterPackPage() {
             <h2 className="text-3xl md:text-6xl font-heading font-black text-white leading-none uppercase mb-6">
               GLOBAL<br />CAUSES
             </h2>
-            <p className="text-gray-500 text-sm max-w-xl leading-relaxed tracking-tight">
-              Every project we run at Leo Club of Biyagama North is rooted in one of Lions International&apos;s 8 Global Causes — this is how our local service connects to a worldwide mission and advances the UN Sustainable Development Goals.
+            <p className="text-white text-sm max-w-xl leading-relaxed tracking-tight">
+              Every project we run at Leo Club of Biyagama North is rooted in one of Lions International&apos;s 8 Global Causes. This is how our local service connects to a worldwide mission and advances the UN Sustainable Development Goals.
             </p>
           </div>
 
@@ -120,10 +120,10 @@ export default function StarterPackPage() {
                       {CauseIcon && <CauseIcon size={18} style={{ color: accentSdg?.color }} />}
                     </div>
                   </div>
-                  <h3 className="font-heading font-black text-white text-base uppercase tracking-tight mb-3">
+                  <h3 className="font-heading font-black text-white text-xl uppercase tracking-tight mb-3">
                     {cause.title}
                   </h3>
-                  <p className="text-gray-600 text-[11px] leading-relaxed tracking-tight flex-1 mb-6">
+                  <p className="text-gray-300 text-sm leading-relaxed tracking-tight flex-1 mb-6">
                     {cause.description}
                   </p>
                   <div className="flex flex-wrap gap-1.5">
