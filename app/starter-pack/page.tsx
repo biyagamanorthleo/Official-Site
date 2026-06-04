@@ -1,8 +1,13 @@
 'use client';
 
 import React from 'react';
-import { RESOURCES, CONTACT_DETAILS, STARTER_PACK_PAGE_CONTENT } from '@/constants';
-import { BookOpen, Users, Briefcase, ExternalLink, Download, Shield, Zap } from 'lucide-react';
+import Image from 'next/image';
+import { RESOURCES, CONTACT_DETAILS, STARTER_PACK_PAGE_CONTENT, GLOBAL_CAUSES, UN_SDGS } from '@/constants';
+import { BookOpen, Users, Briefcase, ExternalLink, Download, Shield, Zap, Eye, Activity, Utensils, Heart, Leaf, AlertTriangle, Globe, GraduationCap } from 'lucide-react';
+
+const CauseIconMap: Record<string, React.ComponentType<{ size?: number; style?: React.CSSProperties }>> = {
+  Eye, Activity, Utensils, Heart, Leaf, AlertTriangle, Globe, GraduationCap,
+};
 
 const IconMap: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
   BookOpen, Users, Briefcase, Shield, Zap,
@@ -81,6 +86,95 @@ export default function StarterPackPage() {
             </div>
           </div>
         </div>
+
+        {/* Global Causes — what we build every project around */}
+        <section className="mt-32">
+          <div className="mb-16">
+            <span className="text-red-500 font-black uppercase tracking-[0.4em] text-[10px] mb-6 block">Lions Clubs International</span>
+            <h2 className="text-3xl md:text-6xl font-heading font-black text-white leading-none uppercase mb-6">
+              GLOBAL<br />CAUSES
+            </h2>
+            <p className="text-gray-500 text-sm max-w-xl leading-relaxed tracking-tight">
+              Every project we run at Leo Club of Biyagama North is rooted in one of Lions International&apos;s 8 Global Causes — this is how our local service connects to a worldwide mission and advances the UN Sustainable Development Goals.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-16">
+            {GLOBAL_CAUSES.map((cause) => {
+              const CauseIcon = CauseIconMap[cause.icon];
+              const accentSdg = UN_SDGS.find(s => s.goal === cause.accentSdg);
+              return (
+                <div
+                  key={cause.id}
+                  className="group relative bg-[#080808] border border-white/5 rounded-2xl p-6 flex flex-col hover:border-white/10 hover:-translate-y-1 transition-all duration-500"
+                >
+                  <div
+                    className="absolute top-0 left-0 right-0 h-px rounded-t-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    style={{ background: `linear-gradient(90deg, transparent, ${accentSdg?.color}60, transparent)` }}
+                  />
+                  <div className="mb-5 inline-flex">
+                    <div
+                      className="w-10 h-10 rounded-xl flex items-center justify-center border border-white/5"
+                      style={{ background: `${accentSdg?.color}18` }}
+                    >
+                      {CauseIcon && <CauseIcon size={18} style={{ color: accentSdg?.color }} />}
+                    </div>
+                  </div>
+                  <h3 className="font-heading font-black text-white text-base uppercase tracking-tight mb-3">
+                    {cause.title}
+                  </h3>
+                  <p className="text-gray-600 text-[11px] leading-relaxed tracking-tight flex-1 mb-6">
+                    {cause.description}
+                  </p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {cause.sdgs.map((sdgGoal) => {
+                      const sdg = UN_SDGS.find(s => s.goal === sdgGoal);
+                      return (
+                        <div key={sdgGoal} title={`SDG ${sdgGoal}: ${sdg?.name}`} className="group/sdg relative">
+                          <Image
+                            src={`/sdgs/sdg-${String(sdgGoal).padStart(2, '0')}.jpg`}
+                            alt={`SDG ${sdgGoal}: ${sdg?.name}`}
+                            className="w-8 h-8 rounded-sm object-cover opacity-75 group-hover/sdg:opacity-100 transition-opacity duration-200"
+                            loading="lazy"
+                            width={32}
+                            height={32}
+                          />
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="border border-white/5 rounded-2xl p-5 md:p-8 bg-[#060606]">
+            <div className="flex flex-col md:flex-row items-start md:items-center gap-8">
+              <div className="flex-shrink-0">
+                <span className="text-[9px] font-black uppercase tracking-[0.4em] text-gray-600 block mb-2">Committed to</span>
+                <p className="text-white font-heading font-black text-xl uppercase leading-tight">
+                  All 17<br />UN SDGs
+                </p>
+              </div>
+              <div className="hidden md:block h-12 w-px bg-white/5 flex-shrink-0" />
+              <div className="flex flex-wrap gap-2">
+                {UN_SDGS.map((sdg) => (
+                  <div key={sdg.goal} title={`SDG ${sdg.goal}: ${sdg.name}`}>
+                    <Image
+                      src={`/sdgs/sdg-${String(sdg.goal).padStart(2, '0')}.jpg`}
+                      alt={`SDG ${sdg.goal}: ${sdg.name}`}
+                      className="w-10 h-10 md:w-12 md:h-12 rounded-sm object-cover opacity-70 hover:opacity-100 transition-opacity duration-200"
+                      loading="lazy"
+                      width={48}
+                      height={48}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
       </div>
     </div>
   );

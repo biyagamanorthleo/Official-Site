@@ -51,6 +51,18 @@ export async function getGalleryPhotos() {
   return data ?? [];
 }
 
+export async function getFeaturedGalleryPhotos() {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from('gallery_photos')
+    .select('id, url, caption')
+    .eq('featured_in_carousel', true)
+    .order('sort_order', { ascending: true })
+    .limit(7);
+  if (error) throw error;
+  return data ?? [];
+}
+
 export async function getPresidents() {
   const supabase = await createClient();
   const { data, error } = await supabase

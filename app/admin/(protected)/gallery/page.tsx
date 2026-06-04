@@ -6,7 +6,7 @@ export default async function AdminGallery() {
   const supabase = await createClient();
   const { data: photos } = await supabase
     .from('gallery_photos')
-    .select('*')
+    .select('id, url, caption, sort_order, featured_in_carousel')
     .order('sort_order');
 
   return (

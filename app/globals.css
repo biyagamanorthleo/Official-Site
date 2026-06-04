@@ -108,6 +108,13 @@
     animation-play-state: paused;
   }
 
+  .animate-marquee-gallery {
+    animation: marquee 50s linear infinite;
+  }
+  .animate-marquee-gallery:hover {
+    animation-play-state: paused;
+  }
+
   .img-skeleton {
     position: relative;
     overflow: hidden;

@@ -3,21 +3,20 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { CLUB_STATS, PROJECTS, HERO_CONTENT, GLOBAL_CAUSES, UN_SDGS, TESTIMONIALS } from '@/constants';
+import { CLUB_STATS, PROJECTS, HERO_CONTENT, TESTIMONIALS } from '@/constants';
 import { createClient } from '@/lib/supabase/client';
-import { ArrowRight, CheckCircle, Users, Clock, DollarSign, Calendar, Eye, Activity, Utensils, Heart, Leaf, AlertTriangle, Globe, GraduationCap, Star } from 'lucide-react';
+import { ArrowRight, CheckCircle, Users, Clock, DollarSign, Calendar, Star } from 'lucide-react';
+import GalleryCarousel from '@/components/GalleryCarousel';
+import AboutOrgs from '@/components/AboutOrgs';
 
 const IconMap: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
   CheckCircle, Users, Clock, DollarSign,
 };
 
-const CauseIconMap: Record<string, React.ComponentType<{ size?: number; style?: React.CSSProperties }>> = {
-  Eye, Activity, Utensils, Heart, Leaf, AlertTriangle, Globe, GraduationCap,
-};
-
 export default function HomePage() {
   const [featuredProjects, setFeaturedProjects] = useState<typeof PROJECTS>(PROJECTS);
   const [testimonials, setTestimonials] = useState<typeof TESTIMONIALS>(TESTIMONIALS);
+  const [carouselPhotos, setCarouselPhotos] = useState<{ id: string; url: string; caption: string | null }[]>([]);
 
   useEffect(() => {
     const supabase = createClient();
@@ -35,6 +34,15 @@ export default function HomePage() {
       .order('sort_order', { ascending: true })
       .then(({ data }) => {
         if (data && data.length > 0) setTestimonials(data);
+      });
+    supabase
+      .from('gallery_photos')
+      .select('id, url, caption')
+      .eq('featured_in_carousel', true)
+      .order('sort_order', { ascending: true })
+      .limit(7)
+      .then(({ data }) => {
+        if (data && data.length > 0) setCarouselPhotos(data);
       });
   }, []);
 
@@ -95,6 +103,9 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* About Lions & Leo */}
+      <AboutOrgs />
+
       {/* President Spotlight */}
       <section className="relative min-h-[60vh] md:min-h-[80vh] flex items-center overflow-hidden bg-black">
         <div className="absolute inset-0 flex flex-col items-start justify-center pl-6 md:pl-12 select-none pointer-events-none z-0">
@@ -138,113 +149,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Global Causes & SDGs */}
-      <section className="py-16 md:py-40 bg-[#020202] relative overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none z-0">
-          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[900px] h-[500px] rounded-full blur-[200px] opacity-[0.03]"
-            style={{ background: 'radial-gradient(ellipse, #ffffff 0%, transparent 70%)' }} />
-        </div>
-        <div className="container mx-auto px-6 relative z-10">
-
-          {/* Header */}
-          <div className="mb-12 md:mb-24">
-            <span className="text-red-500 font-black uppercase tracking-[0.4em] text-[10px] mb-6 block">Lions Clubs International</span>
-            <h2 className="text-3xl md:text-7xl font-heading font-black text-white leading-none uppercase mb-6">
-              GLOBAL<br />CAUSES
-            </h2>
-            <p className="text-gray-500 text-sm max-w-xl leading-relaxed tracking-tight">
-              Every project we undertake is rooted in Lions International&apos;s 8 Global Causes, each directly advancing the United Nations Sustainable Development Goals.
-            </p>
-          </div>
-
-          {/* 8 Cause Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-16">
-            {GLOBAL_CAUSES.map((cause) => {
-              const CauseIcon = CauseIconMap[cause.icon];
-              const accentSdg = UN_SDGS.find(s => s.goal === cause.accentSdg);
-              return (
-                <div
-                  key={cause.id}
-                  className="group relative bg-[#080808] border border-white/5 rounded-2xl p-6 flex flex-col hover:border-white/10 hover:-translate-y-1 transition-all duration-500"
-                >
-                  {/* Top border glow on hover */}
-                  <div
-                    className="absolute top-0 left-0 right-0 h-px rounded-t-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                    style={{ background: `linear-gradient(90deg, transparent, ${accentSdg?.color}60, transparent)` }}
-                  />
-
-                  {/* Cause icon */}
-                  <div className="mb-5 inline-flex">
-                    <div
-                      className="w-10 h-10 rounded-xl flex items-center justify-center border border-white/5"
-                      style={{ background: `${accentSdg?.color}18` }}
-                    >
-                      {CauseIcon && <CauseIcon size={18} style={{ color: accentSdg?.color }} />}
-                    </div>
-                  </div>
-
-                  {/* Title */}
-                  <h3 className="font-heading font-black text-white text-base uppercase tracking-tight mb-3">
-                    {cause.title}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="text-gray-600 text-[11px] leading-relaxed tracking-tight flex-1 mb-6">
-                    {cause.description}
-                  </p>
-
-                  {/* SDG icon badges */}
-                  <div className="flex flex-wrap gap-1.5">
-                    {cause.sdgs.map((sdgGoal) => {
-                      const sdg = UN_SDGS.find(s => s.goal === sdgGoal);
-                      return (
-                        <div key={sdgGoal} title={`SDG ${sdgGoal}: ${sdg?.name}`} className="group/sdg relative">
-                          <Image
-                            src={`/sdgs/sdg-${String(sdgGoal).padStart(2, '0')}.jpg`}
-                            alt={`SDG ${sdgGoal}: ${sdg?.name}`}
-                            className="w-8 h-8 rounded-sm object-cover opacity-75 group-hover/sdg:opacity-100 transition-opacity duration-200"
-                            loading="lazy"
-                            width={32}
-                            height={32}
-                          />
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* All 17 SDGs banner */}
-          <div className="border border-white/5 rounded-2xl p-5 md:p-8 bg-[#060606]">
-            <div className="flex flex-col md:flex-row items-start md:items-center gap-8">
-              <div className="flex-shrink-0">
-                <span className="text-[9px] font-black uppercase tracking-[0.4em] text-gray-600 block mb-2">Committed to</span>
-                <p className="text-white font-heading font-black text-xl uppercase leading-tight">
-                  All 17<br />UN SDGs
-                </p>
-              </div>
-              <div className="hidden md:block h-12 w-px bg-white/5 flex-shrink-0" />
-              <div className="flex flex-wrap gap-2">
-                {UN_SDGS.map((sdg) => (
-                  <div key={sdg.goal} title={`SDG ${sdg.goal}: ${sdg.name}`}>
-                    <Image
-                      src={`/sdgs/sdg-${String(sdg.goal).padStart(2, '0')}.jpg`}
-                      alt={`SDG ${sdg.goal}: ${sdg.name}`}
-                      className="w-10 h-10 md:w-12 md:h-12 rounded-sm object-cover opacity-70 hover:opacity-100 transition-opacity duration-200"
-                      loading="lazy"
-                      width={48}
-                      height={48}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </section>
+      {/* Gallery Carousel */}
+      {carouselPhotos.length > 0 && <GalleryCarousel photos={carouselPhotos} />}
 
       {/* Projects */}
       <section className="py-14 md:py-24 overflow-hidden">
@@ -269,7 +175,7 @@ export default function HomePage() {
 
           <div className="flex gap-4 animate-marquee w-max px-4">
             {[...featuredProjects, ...featuredProjects].map((project, i) => (
-              <div key={i} className="w-56 md:w-80 flex-shrink-0 group">
+              <div key={i} className="w-72 md:w-96 flex-shrink-0 group">
                 <div className="relative aspect-square rounded-xl overflow-hidden border border-white/5 bg-gray-900">
                   <Image
                     src={project.image}
@@ -369,24 +275,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Gallery CTA */}
-      <section className="py-16 md:py-40 bg-[#020202] relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-red-950/10 rounded-full blur-[150px] -z-10 animate-pulse" />
-        <div className="container mx-auto px-6 text-center">
-          <span className="text-red-600 font-black uppercase tracking-[0.6em] text-[10px] mb-12 block">Visual History</span>
-          <h2 className="text-3xl md:text-8xl font-heading font-black text-white mb-10 md:mb-20 tracking-tighter uppercase leading-[0.85]">
-            Relive the <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-b from-red-600 via-red-800 to-red-950">Impactful moments</span>
-          </h2>
-          <Link href="/gallery" className="group inline-flex flex-col items-center">
-            <div className="relative w-24 h-24 md:w-48 md:h-48 border border-red-950/50 rounded-full flex items-center justify-center mb-6 md:mb-8 group-hover:scale-110 group-hover:border-red-600 transition-all duration-700">
-              <ArrowRight size={48} className="text-red-900 group-hover:text-red-600 group-hover:rotate-[-45deg] transition-all duration-700" />
-              <div className="absolute inset-0 rounded-full border-2 border-red-600/0 border-t-red-600 group-hover:rotate-180 transition-all duration-[1.5s]" />
-            </div>
-            <span className="text-white font-black uppercase tracking-[0.4em] text-xs">Enter Gallery</span>
-          </Link>
-        </div>
-      </section>
     </div>
   );
 }
