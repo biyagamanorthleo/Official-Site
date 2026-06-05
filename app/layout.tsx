@@ -37,6 +37,7 @@ export const metadata: Metadata = {
     'Biyagama North',
     'Biyagama',
     'Biyagama Metro',
+    'Leo Club of Biyagama Alliance',
     'Biyagama Alliance',
     'Biyagama Allaianze',
     'Gampaha Leo',

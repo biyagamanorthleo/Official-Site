@@ -16,6 +16,8 @@ export const metadata: Metadata = {
     'Leos Biyagama',
     'Gampaha Leo Club',
     'LCBA history',
+    'Leo Club of Biyagama Alliance',
+    'Biyagama Alliance',
   ],
 };
 
