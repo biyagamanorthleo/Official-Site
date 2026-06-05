@@ -5,8 +5,18 @@ import { Target, Shield, Award, Globe } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Our Legacy',
-  description: 'The legacy and history of Leo Club of Biyagama North - BN Leos. Hall of honor, past presidents, and the mission of our Leo Club in Biyagama, Sri Lanka.',
-  keywords: ['Leo Club Biyagama North history', 'BN Leos legacy', 'Biyagama North Leo Club presidents', 'Leo District 306 D4 history'],
+  description: 'The legacy and history of Leo Club of Biyagama North (LCBN) - BN Leos. Hall of honor, past presidents, and the mission of our Leo Club in Biyagama, Sri Lanka.',
+  keywords: [
+    'Leo Club Biyagama North history',
+    'LCBN legacy',
+    'BN Leos legacy',
+    'Biyagama North Leo Club presidents',
+    'Leo District 306 D4 history',
+    'Sri Lanka Leo history',
+    'Leos Biyagama',
+    'Gampaha Leo Club',
+    'LCBA history',
+  ],
 };
 
 const IconMap: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {

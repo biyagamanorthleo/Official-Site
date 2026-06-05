@@ -5,8 +5,18 @@ import GalleryGrid from '@/components/GalleryGrid';
 
 export const metadata: Metadata = {
   title: 'Photo Gallery',
-  description: 'Photo gallery of Leo Club of Biyagama North - BN Leos. Visual archive of community service events and projects across Biyagama, Sri Lanka.',
-  keywords: ['BN Leos gallery', 'Leo Club Biyagama North photos', 'Leo Club Sri Lanka events', 'Biyagama community service photos'],
+  description: 'Photo gallery of Leo Club of Biyagama North (LCBN) - BN Leos. Visual archive of community service events and projects across Biyagama, Sri Lanka.',
+  keywords: [
+    'BN Leos gallery',
+    'LCBN gallery',
+    'Leo Club Biyagama North photos',
+    'Leo Club Sri Lanka events',
+    'Biyagama community service photos',
+    'Sri Lanka Leo events',
+    'Leos events gallery',
+    'Biyagama North Leo photos',
+    'Leo District 306 D4 events',
+  ],
 };
 
 export const revalidate = 3600;

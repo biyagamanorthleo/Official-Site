@@ -6,8 +6,18 @@ import { Trophy, Calendar, Award, ShieldCheck } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Awards & Achievements',
-  description: 'Awards and honors of Leo Club of Biyagama North - BN Leos. District and regional recognition for outstanding community service in Sri Lanka.',
-  keywords: ['BN Leos awards', 'Leo Club Biyagama North achievements', 'Leo District 306 D4 awards', 'outstanding Leo Club Sri Lanka'],
+  description: 'Awards and honors of Leo Club of Biyagama North (LCBN) - BN Leos. District and regional recognition for outstanding community service in Sri Lanka.',
+  keywords: [
+    'BN Leos awards',
+    'LCBN achievements',
+    'Leo Club Biyagama North achievements',
+    'Leo District 306 D4 awards',
+    'outstanding Leo Club Sri Lanka',
+    'Sri Lanka Leo awards',
+    'Leos recognition',
+    'Biyagama Leo honors',
+    'Gampaha Leo achievement',
+  ],
 };
 
 export const revalidate = 3600;

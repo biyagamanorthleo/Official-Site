@@ -5,8 +5,19 @@ import ProjectsClient from './ProjectsClient';
 
 export const metadata: Metadata = {
   title: 'Projects & Impact',
-  description: 'Service projects by Leo Club of Biyagama North - BN Leos. Community service initiatives across Biyagama, Sri Lanka under Leo District 306 D4.',
-  keywords: ['BN Leos projects', 'Leo Club Biyagama North service', 'community service Biyagama', 'Leo District 306 D4 projects'],
+  description: 'Service projects by Leo Club of Biyagama North (LCBN) - BN Leos. Community service initiatives across Biyagama, Sri Lanka under Leo District 306 D4.',
+  keywords: [
+    'BN Leos projects',
+    'LCBN projects',
+    'Leo Club Biyagama North service',
+    'community service Biyagama',
+    'Leo District 306 D4 projects',
+    'Leos community service Sri Lanka',
+    'Biyagama North Leo projects',
+    'Gampaha Leo service',
+    'Lions Leo service Sri Lanka',
+    'Biyagama Metro Leo',
+  ],
 };
 
 export const revalidate = 3600; // re-fetch from Supabase at most once per hour

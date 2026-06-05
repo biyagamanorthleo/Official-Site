@@ -5,8 +5,18 @@ import { Instagram, Linkedin, Facebook, Shield, Users, Building, Star } from 'lu
 
 export const metadata: Metadata = {
   title: 'Leadership Team',
-  description: 'Meet the leadership team of Leo Club of Biyagama North - BN Leos. Executive committee, directors, and advisory panel of our Leo Club in Biyagama, Sri Lanka.',
-  keywords: ['BN Leos team', 'Leo Club Biyagama North members', 'Leo Club Biyagama leadership', 'Biyagama North Leo executives'],
+  description: 'Meet the leadership team of Leo Club of Biyagama North (LCBN) - BN Leos. Executive committee, directors, and advisory panel of our Leo Club in Biyagama, Sri Lanka.',
+  keywords: [
+    'BN Leos team',
+    'LCBN team',
+    'Leo Club Biyagama North members',
+    'Leo Club Biyagama leadership',
+    'Biyagama North Leo executives',
+    'Sri Lanka Leo leaders',
+    'Leos executive committee',
+    'Leo District 306 D4 members',
+    'Gampaha Leo leaders',
+  ],
 };
 
 const SectionIcon: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
