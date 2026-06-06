@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
-import { getBlogPostBySlug, getBlogPosts } from '@/lib/queries';
+import { getBlogPostBySlug } from '@/lib/queries';
+import { createClient } from '@supabase/supabase-js';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Calendar, User, ArrowLeft } from 'lucide-react';
@@ -7,8 +8,15 @@ import { Calendar, User, ArrowLeft } from 'lucide-react';
 export const revalidate = 3600;
 
 export async function generateStaticParams() {
-  const posts = await getBlogPosts();
-  return posts.map((p) => ({ slug: p.slug }));
+  const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  );
+  const { data } = await supabase
+    .from('blog_posts')
+    .select('slug')
+    .eq('status', 'published');
+  return (data ?? []).map((p: { slug: string }) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {

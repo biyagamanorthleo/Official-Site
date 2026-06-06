@@ -1,11 +1,19 @@
 import { MetadataRoute } from 'next';
-import { getBlogPosts } from '@/lib/queries';
+import { createClient } from '@supabase/supabase-js';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = 'https://lcbn.org';
   const now = new Date();
 
-  const blogPosts = await getBlogPosts().catch(() => []);
+  const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  );
+  const { data } = await supabase
+    .from('blog_posts')
+    .select('slug, published_at')
+    .eq('status', 'published');
+  const blogPosts = data ?? [];
 
   return [
     { url: base,                      lastModified: now, changeFrequency: 'weekly',  priority: 1.0 },
