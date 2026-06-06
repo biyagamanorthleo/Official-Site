@@ -76,6 +76,48 @@ create table if not exists club_stats (
   sort_order int default 0
 );
 
+-- Members (club members with portal access)
+create table if not exists members (
+  id uuid primary key references auth.users(id) on delete cascade,
+  name text not null,
+  email text not null unique,
+  position text,
+  phone text,
+  created_at timestamptz default now()
+);
+
+alter table members enable row level security;
+create policy "Auth read members"  on members for select using (auth.role() = 'authenticated');
+create policy "Auth write members" on members for all    using (auth.role() = 'authenticated');
+
+-- Blog Admin Allowlist
+create table if not exists blog_admins (
+  id uuid primary key default gen_random_uuid(),
+  email text unique not null,
+  created_at timestamptz default now()
+);
+
+alter table blog_admins enable row level security;
+create policy "Auth read blog admins" on blog_admins for select using (auth.role() = 'authenticated');
+create policy "Auth write blog admins" on blog_admins for all using (auth.role() = 'authenticated');
+
+-- Blog Posts
+create table if not exists blog_posts (
+  id uuid primary key default gen_random_uuid(),
+  slug text unique not null,
+  title text not null,
+  excerpt text,
+  content text,
+  author text not null,
+  submitted_by uuid references auth.users(id) on delete set null,
+  cover_image text,
+  published_at date not null default current_date,
+  status text not null default 'draft' check (status in ('draft', 'pending', 'published', 'rejected')),
+  rejection_note text,
+  sort_order int default 0,
+  created_at timestamptz default now()
+);
+
 -- ============================================================
 -- Row Level Security — public read, auth write
 -- ============================================================
@@ -86,6 +128,7 @@ alter table achievements enable row level security;
 alter table gallery_photos enable row level security;
 alter table presidents enable row level security;
 alter table club_stats enable row level security;
+alter table blog_posts enable row level security;
 
 -- Public can read everything
 create policy "Public read projects" on projects for select using (true);
@@ -102,6 +145,12 @@ create policy "Auth write achievements" on achievements for all using (auth.role
 create policy "Auth write gallery" on gallery_photos for all using (auth.role() = 'authenticated');
 create policy "Auth write presidents" on presidents for all using (auth.role() = 'authenticated');
 create policy "Auth write stats" on club_stats for all using (auth.role() = 'authenticated');
+
+create policy "Public read blog posts" on blog_posts for select using (status = 'published');
+create policy "Auth read all blog posts" on blog_posts for select using (auth.role() = 'authenticated');
+create policy "Auth insert blog posts" on blog_posts for insert with check (auth.role() = 'authenticated');
+create policy "Auth update own blog posts" on blog_posts for update using (auth.uid() = submitted_by OR auth.role() = 'authenticated');
+create policy "Auth delete blog posts" on blog_posts for delete using (auth.role() = 'authenticated');
 
 -- ============================================================
 -- Seed Data (matches current constants.tsx)

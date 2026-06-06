@@ -11,6 +11,7 @@ const navLinks = [
   { name: 'Projects',  path: '/projects' },
   { name: 'Team',      path: '/team' },
   { name: 'Honors',    path: '/achievements' },
+  { name: 'Blog',      path: '/blog' },
   { name: 'Terminal',  path: '/starter-pack' },
 ];
 

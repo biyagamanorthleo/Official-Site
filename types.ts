@@ -91,6 +91,24 @@ export interface GlobalCause {
   accentSdg: number;
 }
 
+export type BlogPostStatus = 'draft' | 'pending' | 'published' | 'rejected';
+
+export interface BlogPost {
+  id: string;
+  slug: string;
+  title: string;
+  excerpt?: string;
+  content?: string;
+  author: string;
+  submitted_by?: string;
+  cover_image?: string;
+  published_at: string;
+  status: BlogPostStatus;
+  rejection_note?: string;
+  sort_order: number;
+  created_at: string;
+}
+
 export interface Testimonial {
   id: number | string;
   quote: string;

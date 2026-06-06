@@ -1,16 +1,18 @@
 import { createClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
-import { LayoutDashboard, FolderOpen, Trophy, Image, Users, Star, LogOut, ExternalLink, MessageSquare } from 'lucide-react';
+import { LayoutDashboard, FolderOpen, Trophy, Image, Users, Star, LogOut, ExternalLink, MessageSquare, BookOpen, UserCheck } from 'lucide-react';
 
 const navItems = [
-  { href: '/admin', label: 'Dashboard', icon: LayoutDashboard },
-  { href: '/admin/projects', label: 'Projects', icon: FolderOpen },
-  { href: '/admin/team', label: 'Team', icon: Users },
-  { href: '/admin/achievements', label: 'Achievements', icon: Trophy },
-  { href: '/admin/gallery', label: 'Gallery', icon: Image },
-  { href: '/admin/presidents', label: 'Hall of Honor', icon: Star },
-  { href: '/admin/testimonials', label: 'Testimonials', icon: MessageSquare },
+  { href: '/admin',              label: 'Dashboard',      icon: LayoutDashboard },
+  { href: '/admin/projects',     label: 'Projects',       icon: FolderOpen },
+  { href: '/admin/team',         label: 'Team',           icon: Users },
+  { href: '/admin/achievements', label: 'Achievements',   icon: Trophy },
+  { href: '/admin/gallery',      label: 'Gallery',        icon: Image },
+  { href: '/admin/presidents',   label: 'Hall of Honor',  icon: Star },
+  { href: '/admin/testimonials', label: 'Testimonials',   icon: MessageSquare },
+  { href: '/admin/blog',         label: 'Blog Approvals', icon: BookOpen },
+  { href: '/admin/members',      label: 'Members',        icon: UserCheck },
 ];
 
 export default async function AdminLayout({
@@ -22,6 +24,11 @@ export default async function AdminLayout({
   const { data: { user } } = await supabase.auth.getUser();
 
   if (!user) {
+    redirect('/admin/login');
+  }
+
+  const allowedEmail = process.env.ADMIN_EMAIL;
+  if (allowedEmail && user.email !== allowedEmail) {
     redirect('/admin/login');
   }
 
