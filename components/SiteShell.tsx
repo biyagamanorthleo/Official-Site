@@ -4,6 +4,7 @@ import { usePathname } from 'next/navigation';
 import LoadingScreenWrapper from './LoadingScreenWrapper';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import BackgroundMusic from './BackgroundMusic';
 
 export default function SiteShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -18,6 +19,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
       <Navbar />
       <main className="flex-grow">{children}</main>
       <Footer />
+      <BackgroundMusic />
     </div>
   );
 }
