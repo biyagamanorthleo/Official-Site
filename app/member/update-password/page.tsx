@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, Suspense } from 'react';
+import { useEffect, useState, useRef, Suspense } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { KeyRound } from 'lucide-react';
@@ -14,18 +14,51 @@ function UpdatePasswordForm() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [done, setDone] = useState(false);
+  const resolvedRef = useRef(false);
 
   useEffect(() => {
+    const supabase = createClient();
     const code = searchParams.get('code');
-    if (!code) {
-      setError('Invalid or missing reset link. Please request a new one.');
+
+    function markReady() {
+      resolvedRef.current = true;
+      setReady(true);
+    }
+
+    function markError(msg: string) {
+      resolvedRef.current = true;
+      setError(msg);
+    }
+
+    if (code) {
+      // PKCE flow — code in query param
+      supabase.auth.exchangeCodeForSession(code).then(({ error }) => {
+        if (error) markError('This link has expired or already been used. Please request a new one.');
+        else markReady();
+      });
       return;
     }
-    const supabase = createClient();
-    supabase.auth.exchangeCodeForSession(code).then(({ error }) => {
-      if (error) setError('This link has expired or already been used. Request a new one.');
-      else setReady(true);
+
+    // Hash / implicit flow — token arrives as #access_token=xxx&type=recovery
+    // Supabase client processes the hash automatically and fires PASSWORD_RECOVERY
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event) => {
+      if (event === 'PASSWORD_RECOVERY') markReady();
     });
+
+    // Fallback: if the session was already established before listener attached
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session && !resolvedRef.current) markReady();
+    });
+
+    // After 5s with no result → invalid link
+    const timer = setTimeout(() => {
+      if (!resolvedRef.current) markError('Invalid or missing reset link. Please request a new one.');
+    }, 5000);
+
+    return () => {
+      subscription.unsubscribe();
+      clearTimeout(timer);
+    };
   }, [searchParams]);
 
   async function handleSubmit(e: React.FormEvent) {
@@ -58,9 +91,9 @@ function UpdatePasswordForm() {
   if (error && !ready) {
     return (
       <div className="text-center py-4 space-y-4">
-        <p className="text-red-500 text-xs font-bold">{error}</p>
+        <p className="text-red-500 text-xs font-bold leading-relaxed">{error}</p>
         <a href="/member/forgot-password"
-          className="text-gray-500 text-[10px] font-black uppercase tracking-widest hover:text-white transition-colors">
+          className="block text-gray-500 text-[10px] font-black uppercase tracking-widest hover:text-white transition-colors mt-2">
           Request new link →
         </a>
       </div>
@@ -68,7 +101,12 @@ function UpdatePasswordForm() {
   }
 
   if (!ready) {
-    return <p className="text-gray-600 text-xs font-black uppercase tracking-widest text-center py-4">Verifying link...</p>;
+    return (
+      <div className="text-center py-8">
+        <div className="w-5 h-5 border-2 border-red-800 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+        <p className="text-gray-600 text-[10px] font-black uppercase tracking-widest">Verifying link...</p>
+      </div>
+    );
   }
 
   return (
@@ -105,7 +143,11 @@ export default function UpdatePasswordPage() {
           <p className="text-gray-600 text-[10px] font-black uppercase tracking-[0.4em] mt-2">BN Leos Member Portal</p>
         </div>
         <div className="bg-[#050505] border border-white/10 rounded-[2rem] p-10">
-          <Suspense fallback={<p className="text-gray-600 text-xs text-center">Loading...</p>}>
+          <Suspense fallback={
+            <div className="text-center py-8">
+              <div className="w-5 h-5 border-2 border-red-800 border-t-transparent rounded-full animate-spin mx-auto" />
+            </div>
+          }>
             <UpdatePasswordForm />
           </Suspense>
         </div>
