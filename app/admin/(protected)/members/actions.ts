@@ -46,7 +46,7 @@ export async function createMember(data: {
   }
 
   await admin.auth.resetPasswordForEmail(data.email, {
-    redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL ?? 'https://lcbn.org'}/member/update-password`,
+    redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.lcbn.org'}/member/update-password`,
   });
 
   revalidatePath('/admin/members');
@@ -55,9 +55,10 @@ export async function createMember(data: {
 export async function resendSetupEmail(email: string) {
   await assertAdmin();
   const admin = createAdminClient();
-  await admin.auth.resetPasswordForEmail(email, {
-    redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL ?? 'https://lcbn.org'}/member/update-password`,
+  const { error } = await admin.auth.resetPasswordForEmail(email, {
+    redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.lcbn.org'}/member/update-password`,
   });
+  if (error) throw new Error(error.message);
 }
 
 export async function deleteMember(id: string) {
