@@ -1,6 +1,6 @@
 import { createClient } from '@/lib/supabase/server';
 import Link from 'next/link';
-import { UserPlus, Mail, Phone, Briefcase } from 'lucide-react';
+import { UserPlus, Mail, Phone, Briefcase, Hash } from 'lucide-react';
 import { ResendButton, DeleteMemberButton } from './MemberActions';
 
 function formatDate(d: string) {
@@ -47,7 +47,14 @@ export default async function MembersPage() {
               </div>
 
               <div className="flex-1 min-w-0">
-                <p className="text-white text-sm font-black uppercase tracking-tight">{member.name}</p>
+                <div className="flex items-center gap-3 mb-1">
+                  <p className="text-white text-sm font-black uppercase tracking-tight">{member.name}</p>
+                  {member.mylci_number && (
+                    <span className="flex items-center gap-1 px-2 py-0.5 rounded-md bg-red-950/20 border border-red-900/20 text-red-700 text-[9px] font-black uppercase tracking-widest">
+                      <Hash size={8} />{member.mylci_number}
+                    </span>
+                  )}
+                </div>
                 <div className="flex items-center gap-4 mt-1 flex-wrap">
                   <span className="flex items-center gap-1 text-gray-600 text-[10px] font-bold uppercase tracking-wider">
                     <Mail size={10} /> {member.email}

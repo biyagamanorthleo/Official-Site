@@ -17,6 +17,7 @@ export async function createMember(data: {
   email: string;
   position: string;
   phone: string;
+  mylci_number: string;
 }) {
   await assertAdmin();
 
@@ -38,6 +39,7 @@ export async function createMember(data: {
     email: data.email,
     position: data.position || null,
     phone: data.phone || null,
+    mylci_number: data.mylci_number || null,
   });
 
   if (dbError) {
