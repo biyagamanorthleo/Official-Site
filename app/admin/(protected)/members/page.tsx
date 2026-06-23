@@ -72,7 +72,7 @@ export default async function MembersPage() {
                 </div>
               </div>
 
-              <span className="text-gray-700 text-[10px] font-bold uppercase tracking-wider flex-shrink-0">
+              <span className="hidden sm:block text-gray-700 text-[10px] font-bold uppercase tracking-wider flex-shrink-0">
                 {formatDate(member.created_at)}
               </span>
 

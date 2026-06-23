@@ -3,7 +3,7 @@ import Image from 'next/image';
 const LIONS_LOGO = 'https://upload.wikimedia.org/wikipedia/en/thumb/5/5b/Lions_Clubs_International_logo.svg/250px-Lions_Clubs_International_logo.svg.png';
 const LEO_LOGO   = 'https://upload.wikimedia.org/wikipedia/en/thumb/3/39/Leo_clubs_logo.svg/250px-Leo_clubs_logo.svg.png';
 
-const LIONS_IMAGE = 'https://live.staticflickr.com/65535/49318302872_35d30f8b55_b.jpg';
+const LIONS_IMAGE = '/lions-history.webp';
 const LEO_IMAGE   = 'https://live.staticflickr.com/65535/49318090251_648f6034f2_b.jpg';
 
 export default function AboutOrgs() {
@@ -60,7 +60,7 @@ export default function AboutOrgs() {
           <div className="relative aspect-[4/3] rounded-3xl overflow-hidden border border-white/5">
             <Image
               src={LIONS_IMAGE}
-              alt="Lions Club members serving the community"
+              alt="Lions Clubs International chartering its 20,000th club"
               fill
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 50vw"
