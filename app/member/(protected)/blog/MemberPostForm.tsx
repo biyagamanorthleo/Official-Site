@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import ImageUpload from '@/app/admin/(protected)/_components/ImageUpload';
+import MarkdownEditor from '@/app/admin/(protected)/_components/MarkdownEditor';
 
 function toSlug(title: string) {
   return title
@@ -111,13 +112,12 @@ export default function MemberPostForm({ userId }: { userId: string }) {
 
       <div>
         <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-2">Content</label>
-        <p className="text-gray-700 text-[10px] mb-3">Separate paragraphs with a blank line.</p>
-        <textarea
+        <p className="text-gray-700 text-[10px] mb-3">Use the toolbar to format. Separate paragraphs with a blank line.</p>
+        <MarkdownEditor
           value={form.content}
-          onChange={e => set('content', e.target.value)}
+          onChange={v => set('content', v)}
           rows={14}
           placeholder="Write your post here..."
-          className="w-full bg-black border border-white/10 rounded-xl px-5 py-4 text-white text-sm focus:outline-none focus:border-red-700 transition-colors resize-none font-mono"
         />
       </div>
 

@@ -4,6 +4,7 @@ import { createClient } from '@supabase/supabase-js';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Calendar, User, ArrowLeft } from 'lucide-react';
+import RichText from '@/components/RichText';
 
 export const revalidate = 3600;
 
@@ -46,11 +47,6 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const { slug } = await params;
   const post = await getBlogPostBySlug(slug).catch(() => null);
   if (!post) notFound();
-
-  const paragraphs = (post.content ?? '')
-    .split(/\n\n+/)
-    .map((p: string) => p.trim())
-    .filter(Boolean);
 
   return (
     <div className="bg-black min-h-screen pt-28 md:pt-36 pb-16 md:pb-32 relative overflow-hidden">
@@ -96,13 +92,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           </p>
         )}
 
-        <div className="prose prose-invert max-w-none">
-          {paragraphs.map((para: string, i: number) => (
-            <p key={i} className="text-gray-300 text-base leading-relaxed mb-6">
-              {para}
-            </p>
-          ))}
-        </div>
+        <RichText text={post.content ?? ''} />
 
         <div className="mt-16 pt-10 border-t border-white/5">
           <Link

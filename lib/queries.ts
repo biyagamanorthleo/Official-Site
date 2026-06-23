@@ -1,4 +1,5 @@
 import { createClient } from '@/lib/supabase/server';
+import { createPublicClient } from '@/lib/supabase/public';
 
 export async function getProjects() {
   const supabase = await createClient();
@@ -84,7 +85,8 @@ export async function getTestimonials() {
 }
 
 export async function getBlogPosts() {
-  const supabase = await createClient();
+  // Cookieless client so the public blog can be statically generated / revalidated.
+  const supabase = createPublicClient();
   const { data, error } = await supabase
     .from('blog_posts')
     .select('*')
@@ -95,13 +97,14 @@ export async function getBlogPosts() {
 }
 
 export async function getBlogPostBySlug(slug: string) {
-  const supabase = await createClient();
+  // Cookieless client so individual posts can be statically generated / revalidated.
+  const supabase = createPublicClient();
   const { data, error } = await supabase
     .from('blog_posts')
     .select('*')
     .eq('slug', slug)
     .eq('status', 'published')
-    .single();
+    .maybeSingle();
   if (error) throw error;
   return data;
 }

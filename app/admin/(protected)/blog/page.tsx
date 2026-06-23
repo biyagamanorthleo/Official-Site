@@ -81,9 +81,9 @@ export default async function BlogApprovalsPage() {
                   )}
                 </div>
                 <div className="flex items-center justify-between mt-5 pt-4 border-t border-white/5">
-                  <Link href={`/blog/admin/posts/${post.id}`} target="_blank"
+                  <Link href={`/admin/blog/${post.id}`}
                     className="text-gray-600 text-[10px] font-black uppercase tracking-widest hover:text-white transition-colors">
-                    Preview in editor →
+                    Open in editor →
                   </Link>
                   <ApprovalActions id={post.id} />
                 </div>
@@ -104,12 +104,16 @@ export default async function BlogApprovalsPage() {
                   {post.status}
                 </span>
                 <span className="text-white text-sm font-bold flex-1 truncate">{post.title}</span>
-                <span className="text-gray-600 text-[10px] font-bold uppercase tracking-widest">{post.author}</span>
+                <span className="text-gray-600 text-[10px] font-bold uppercase tracking-widest hidden sm:block">{post.author}</span>
                 {post.rejection_note && (
-                  <span className="text-red-800 text-[10px] truncate max-w-[180px]" title={post.rejection_note}>
+                  <span className="text-red-800 text-[10px] truncate max-w-[180px] hidden md:block" title={post.rejection_note}>
                     Note: {post.rejection_note}
                   </span>
                 )}
+                <Link href={`/admin/blog/${post.id}`}
+                  className="text-gray-500 text-[10px] font-black uppercase tracking-widest hover:text-white border border-white/5 hover:border-white/15 rounded-lg px-3 py-1.5 transition-all flex-shrink-0">
+                  Edit
+                </Link>
               </div>
             ))}
           </div>
