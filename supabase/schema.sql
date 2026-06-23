@@ -39,7 +39,7 @@ create table if not exists achievements (
   title text not null,
   description text,
   year text,
-  category text check (category in ('District Award', 'Regional Recognition', 'Club Milestone')),
+  category text check (category in ('District Award', 'Multiple District Award', 'Regional Recognition', 'Club Milestone')),
   image text,
   sort_order int default 0,
   created_at timestamptz default now()

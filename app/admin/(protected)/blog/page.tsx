@@ -1,6 +1,6 @@
 import { createClient } from '@/lib/supabase/server';
 import Link from 'next/link';
-import { Calendar, User } from 'lucide-react';
+import { Calendar, User, PenLine } from 'lucide-react';
 import ApprovalActions from './ApprovalActions';
 
 function formatDate(d: string) {
@@ -32,9 +32,16 @@ export default async function BlogApprovalsPage() {
 
   return (
     <div className="max-w-5xl">
-      <div className="mb-10">
-        <h1 className="text-3xl font-heading font-black text-white uppercase tracking-tighter">Blog Approvals</h1>
-        <p className="text-gray-600 text-xs font-bold uppercase tracking-widest mt-1">Review member-submitted posts</p>
+      <div className="flex items-start justify-between gap-4 mb-10">
+        <div>
+          <h1 className="text-3xl font-heading font-black text-white uppercase tracking-tighter">Blog</h1>
+          <p className="text-gray-600 text-xs font-bold uppercase tracking-widest mt-1">Review member posts &amp; publish club posts</p>
+        </div>
+        <Link href="/admin/blog/new"
+          className="flex items-center gap-2 px-6 py-3 rounded-xl text-white text-[10px] font-black uppercase tracking-widest flex-shrink-0"
+          style={{ background: 'linear-gradient(to bottom, #980016, #3d0009)' }}>
+          <PenLine size={13} /> Write New Post
+        </Link>
       </div>
 
       {/* Pending queue */}

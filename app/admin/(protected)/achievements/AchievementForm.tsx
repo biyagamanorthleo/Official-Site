@@ -51,7 +51,7 @@ export default function AchievementForm({ achievement }: { achievement?: Achieve
         <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-2">Category</label>
         <select value={form.category} onChange={e => set('category', e.target.value)}
           className="w-full bg-black border border-white/10 rounded-xl px-5 py-4 text-white text-sm focus:outline-none focus:border-red-700 transition-colors">
-          <option>District Award</option><option>Regional Recognition</option><option>Club Milestone</option>
+          <option>District Award</option><option>Multiple District Award</option><option>Regional Recognition</option><option>Club Milestone</option>
         </select>
       </div>
 

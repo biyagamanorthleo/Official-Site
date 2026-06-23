@@ -27,7 +27,15 @@ function toSlug(title: string) {
     .trim();
 }
 
-export default function BlogPostForm({ post }: { post?: BlogPost }) {
+type Props = {
+  post?: BlogPost;
+  /** Initial values for a new post (e.g. author/status when posting on behalf of the club). */
+  defaults?: Partial<BlogPost>;
+  /** Where to go after a successful save. */
+  redirectTo?: string;
+};
+
+export default function BlogPostForm({ post, defaults, redirectTo = '/blog/admin/posts' }: Props) {
   const router = useRouter();
   const today = new Date().toISOString().split('T')[0];
 
@@ -35,6 +43,7 @@ export default function BlogPostForm({ post }: { post?: BlogPost }) {
     title: '', slug: '', author: '', cover_image: '',
     published_at: today, excerpt: '', content: '',
     status: 'draft', sort_order: 0,
+    ...defaults,
   });
   const [saving, setSaving] = useState(false);
   const [slugEdited, setSlugEdited] = useState(!!post?.slug);
@@ -62,7 +71,7 @@ export default function BlogPostForm({ post }: { post?: BlogPost }) {
       const { error } = await supabase.from('blog_posts').insert(form);
       if (error) { alert(error.message); setSaving(false); return; }
     }
-    window.location.href = '/blog/admin/posts';
+    window.location.href = redirectTo;
   }
 
   return (
