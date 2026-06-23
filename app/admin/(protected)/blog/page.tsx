@@ -2,6 +2,7 @@ import { createClient } from '@/lib/supabase/server';
 import Link from 'next/link';
 import { Calendar, User, PenLine } from 'lucide-react';
 import ApprovalActions from './ApprovalActions';
+import DeletePostButton from '@/app/blog/admin/(protected)/posts/DeletePostButton';
 
 function formatDate(d: string) {
   return new Date(d).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
@@ -85,7 +86,10 @@ export default async function BlogApprovalsPage() {
                     className="text-gray-600 text-[10px] font-black uppercase tracking-widest hover:text-white transition-colors">
                     Open in editor →
                   </Link>
-                  <ApprovalActions id={post.id} />
+                  <div className="flex items-center gap-2">
+                    <ApprovalActions id={post.id} />
+                    <DeletePostButton id={post.id} />
+                  </div>
                 </div>
               </div>
             ))}
@@ -114,6 +118,7 @@ export default async function BlogApprovalsPage() {
                   className="text-gray-500 text-[10px] font-black uppercase tracking-widest hover:text-white border border-white/5 hover:border-white/15 rounded-lg px-3 py-1.5 transition-all flex-shrink-0">
                   Edit
                 </Link>
+                <DeletePostButton id={post.id} />
               </div>
             ))}
           </div>
