@@ -50,16 +50,22 @@ export default function HomePage() {
     <div className="bg-black overflow-hidden">
 
       {/* Hero */}
-      <section className="relative min-h-screen flex items-center justify-center pt-20">
-        <div className="absolute inset-0 z-0">
-          <Image src="/herobg.webp" alt="Hero Background" fill className="object-cover" priority quality={80} />
-          <div className="absolute inset-0 bg-black/60" />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black" />
+      <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <div className="absolute inset-0 bg-gradient-to-b from-black via-[#080002] to-black" />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div
+              className="w-[700px] h-[700px] rounded-full blur-[150px] opacity-20"
+              style={{ background: 'radial-gradient(circle, rgba(152,0,22,0.85) 0%, transparent 70%)' }}
+            />
+          </div>
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.012)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.012)_1px,transparent_1px)] bg-[size:60px_60px] opacity-40" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black" />
         </div>
         <div className="container mx-auto px-6 relative z-10 text-center">
           <div className="animate-hero-in">
             <h1 className="font-heading font-black mb-4 leading-[0.9] tracking-tighter uppercase">
-              <span className="block text-3xl sm:text-4xl md:text-6xl">{HERO_CONTENT.titlePrefix}</span>
+              <span className="block text-3xl sm:text-4xl md:text-6xl text-white">{HERO_CONTENT.titlePrefix}</span>
               <span className="block text-[clamp(2.2rem,11vw,8rem)] animate-shimmer-text">
                 {HERO_CONTENT.titleMain}
               </span>

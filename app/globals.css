@@ -35,6 +35,7 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
+
 @layer base {
   :root {
     --electric-red: #e8001d;
@@ -100,6 +101,7 @@
   .animate-hero-in {
     animation: hero-in 1s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
+
 
   .animate-marquee {
     animation: marquee 35s linear infinite;
