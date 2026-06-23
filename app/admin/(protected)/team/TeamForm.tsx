@@ -110,13 +110,20 @@ export default function TeamForm({ member }: { member?: Member }) {
 
       <div>
         <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-2">
-          Position <span className="text-gray-700 font-normal normal-case tracking-normal ml-2">- auto-sets display order</span>
+          Position <span className="text-gray-700 font-normal normal-case tracking-normal ml-2">- pick a suggestion or type your own</span>
         </label>
-        <select value={form.position} onChange={e => handlePositionChange(e.target.value)} required
-          className="w-full bg-black border border-white/10 rounded-xl px-5 py-4 text-white text-sm focus:outline-none focus:border-red-700 transition-colors">
-          <option value="">- Select position -</option>
-          {(POSITIONS[form.category] ?? []).map(p => <option key={p}>{p}</option>)}
-        </select>
+        <input
+          type="text"
+          list="position-suggestions"
+          value={form.position}
+          onChange={e => handlePositionChange(e.target.value)}
+          required
+          placeholder="e.g. President, or type a custom position"
+          className="w-full bg-black border border-white/10 rounded-xl px-5 py-4 text-white text-sm focus:outline-none focus:border-red-700 transition-colors" />
+        <datalist id="position-suggestions">
+          {(POSITIONS[form.category] ?? []).map(p => <option key={p} value={p} />)}
+        </datalist>
+        <p className="text-gray-700 text-[9px] mt-1 uppercase tracking-widest">Known titles auto-set the display order below</p>
       </div>
 
       {showAvenue && (
