@@ -57,6 +57,7 @@ export default function GalleryCarousel({ photos }: { photos: Photo[] }) {
               fill
               className="object-cover"
               sizes="100vw"
+              quality={85}
               priority={i === 0}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-black/20" />

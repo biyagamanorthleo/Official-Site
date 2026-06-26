@@ -88,7 +88,7 @@ export default function HomePage() {
                       style={{ animationDelay: `${i * 0.18}s` }}
                     >
                       <div className="absolute inset-0 skew-x-[18deg] scale-[1.15]">
-                        <Image src={i === 1 ? '/img1.jpg' : i === 3 ? '/img2.jpg' : panelPhotos[i]} alt="" fill sizes="(max-width: 768px) 60vw, 40vw" quality={85} className={`object-cover grayscale ${i === 3 ? 'object-[65%_center]' : 'object-center'}`} />
+                        <Image src={i === 1 ? '/img1.jpg' : i === 2 ? '/img3.jpg' : i === 3 ? '/img2.jpg' : panelPhotos[i]} alt="" fill sizes="(max-width: 768px) 60vw, 40vw" quality={85} className={`object-cover grayscale ${i === 3 ? 'object-[65%_center]' : 'object-center'}`} />
                       </div>
                     </div>
                   )}
