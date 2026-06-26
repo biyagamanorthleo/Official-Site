@@ -37,14 +37,14 @@ export default async function BlogPage() {
               Updates
             </span>
           </h1>
-          <p className="text-gray-400 text-base font-medium leading-relaxed uppercase tracking-wider max-w-xl mx-auto">
+          <p className="text-ink-muted text-base font-medium leading-relaxed uppercase tracking-wider max-w-xl mx-auto">
             Stories, news & highlights from Leo Club of Biyagama North
           </p>
         </header>
 
         {posts.length === 0 ? (
           <div className="text-center py-24">
-            <p className="text-gray-600 text-sm font-black uppercase tracking-widest">No posts yet</p>
+            <p className="text-ink-muted text-sm font-black uppercase tracking-widest">No posts yet</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
@@ -71,11 +71,11 @@ export default async function BlogPage() {
 
                 <div className="p-7">
                   <div className="flex items-center gap-4 mb-4">
-                    <span className="flex items-center gap-1.5 text-gray-600 text-[10px] font-black uppercase tracking-widest">
+                    <span className="flex items-center gap-1.5 text-ink-muted text-[10px] font-black uppercase tracking-widest">
                       <User size={11} />
                       {post.author}
                     </span>
-                    <span className="flex items-center gap-1.5 text-gray-600 text-[10px] font-black uppercase tracking-widest">
+                    <span className="flex items-center gap-1.5 text-ink-muted text-[10px] font-black uppercase tracking-widest">
                       <Calendar size={11} />
                       {formatDate(post.published_at)}
                     </span>
@@ -86,7 +86,7 @@ export default async function BlogPage() {
                   </h2>
 
                   {post.excerpt && (
-                    <p className="text-gray-500 text-sm leading-relaxed line-clamp-3">
+                    <p className="text-ink-muted text-sm leading-relaxed line-clamp-3">
                       {post.excerpt}
                     </p>
                   )}

@@ -41,7 +41,7 @@ export default async function AboutPage() {
             THE <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-b from-red-600 via-red-800 to-red-950">{ABOUT_CONTENT.titleSuffix}</span>
           </h1>
-          <p className="text-base md:text-lg text-gray-400 leading-relaxed font-medium mb-20 uppercase tracking-widest max-w-4xl mx-auto">
+          <p className="text-base md:text-lg text-ink-muted leading-relaxed font-medium mb-20 uppercase tracking-widest max-w-4xl mx-auto">
             {ABOUT_CONTENT.intro}
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-left border-y border-white/10 py-20">
@@ -53,7 +53,7 @@ export default async function AboutPage() {
                     <Icon size={28} />
                   </div>
                   <h3 className="text-xl font-heading font-black mb-4 uppercase tracking-tight text-white">{pillar.title}</h3>
-                  <p className="text-xs text-gray-500 leading-relaxed font-medium uppercase tracking-wider">{pillar.desc}</p>
+                  <p className="text-xs text-ink-muted leading-relaxed font-medium uppercase tracking-wider">{pillar.desc}</p>
                 </div>
               );
             })}
@@ -98,7 +98,7 @@ export default async function AboutPage() {
                     <div className={`md:w-1/2 mt-16 md:mt-0 ${idx % 2 === 0 ? 'md:pl-24 text-center md:text-left' : 'md:pr-24 text-center md:text-right'}`}>
                       <h3 className="text-2xl font-heading font-black text-white mb-3 uppercase tracking-tighter leading-none">{pres.name}</h3>
                       <p className="text-red-500 font-black uppercase tracking-[0.4em] text-[10px] mb-6">North President {pres.year}</p>
-                      <p className="text-gray-500 text-xs max-w-sm mx-auto md:mx-0 leading-relaxed font-medium uppercase tracking-widest">{pres.description}</p>
+                      <p className="text-ink-muted text-xs max-w-sm mx-auto md:mx-0 leading-relaxed font-medium uppercase tracking-widest">{pres.description}</p>
                     </div>
                   </div>
                 ))}
@@ -112,7 +112,7 @@ export default async function AboutPage() {
             <Globe size={48} className="animate-pulse" />
           </div>
           <h2 className="text-2xl md:text-4xl font-heading font-black mb-6 uppercase tracking-tighter text-white">{ABOUT_CONTENT.footerTitle}</h2>
-          <p className="text-gray-500 max-w-xl mx-auto leading-relaxed uppercase tracking-[0.2em] font-black text-xs">{ABOUT_CONTENT.footerText}</p>
+          <p className="text-ink-muted max-w-xl mx-auto leading-relaxed uppercase tracking-[0.2em] font-black text-xs">{ABOUT_CONTENT.footerText}</p>
         </section>
       </div>
     </div>

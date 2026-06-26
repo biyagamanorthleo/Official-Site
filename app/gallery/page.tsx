@@ -36,7 +36,7 @@ export default async function GalleryPage() {
             {GALLERY_PAGE_CONTENT.titlePrefix} <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-b from-red-600 to-red-950">{GALLERY_PAGE_CONTENT.titleSuffix}</span>
           </h1>
-          <p className="text-base md:text-lg text-gray-500 leading-relaxed font-medium mb-12 uppercase tracking-widest max-w-4xl mx-auto">
+          <p className="text-base md:text-lg text-ink-muted leading-relaxed font-medium mb-12 uppercase tracking-widest max-w-4xl mx-auto">
             {GALLERY_PAGE_CONTENT.description}
           </p>
           <div className="w-24 h-1 bg-red-900/50 mx-auto rounded-full" />

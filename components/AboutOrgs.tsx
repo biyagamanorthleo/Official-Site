@@ -50,7 +50,7 @@ export default function AboutOrgs() {
               ].map(s => (
                 <div key={s.label}>
                   <div className="text-3xl md:text-4xl font-heading font-black text-white mb-1">{s.value}</div>
-                  <div className="text-[11px] font-black uppercase tracking-[0.3em] text-gray-500">{s.label}</div>
+                  <div className="text-[11px] font-black uppercase tracking-[0.3em] text-ink-muted">{s.label}</div>
                 </div>
               ))}
             </div>
@@ -131,7 +131,7 @@ export default function AboutOrgs() {
               ].map(s => (
                 <div key={s.label}>
                   <div className="text-3xl md:text-4xl font-heading font-black text-white mb-1">{s.value}</div>
-                  <div className="text-[11px] font-black uppercase tracking-[0.3em] text-gray-500">{s.label}</div>
+                  <div className="text-[11px] font-black uppercase tracking-[0.3em] text-ink-muted">{s.label}</div>
                 </div>
               ))}
             </div>

@@ -51,7 +51,7 @@ export default function RichText({ text }: { text: string }) {
         // Bullet list: every line starts with "- "
         if (lines.every(l => /^[-*]\s+/.test(l))) {
           return (
-            <ul key={bi} className="list-disc pl-6 mb-6 space-y-2 text-gray-300 text-base leading-relaxed">
+            <ul key={bi} className="list-disc pl-6 mb-6 space-y-2 text-ink-muted text-base leading-relaxed">
               {lines.map((l, li) => (
                 <li key={li}>{parseInline(l.replace(/^[-*]\s+/, ''), `${bi}-${li}`)}</li>
               ))}
@@ -72,7 +72,7 @@ export default function RichText({ text }: { text: string }) {
 
         // Paragraph: single newlines become line breaks.
         return (
-          <p key={bi} className="text-gray-300 text-base leading-relaxed mb-6">
+          <p key={bi} className="text-ink-muted text-base leading-relaxed mb-6">
             {lines.map((l, li) => (
               <React.Fragment key={li}>
                 {li > 0 && <br />}

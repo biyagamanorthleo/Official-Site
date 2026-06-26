@@ -37,7 +37,7 @@ export default async function AchievementsPage() {
             {ACHIEVEMENTS_PAGE_CONTENT.titlePrefix} <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-b from-red-600 to-red-950">{ACHIEVEMENTS_PAGE_CONTENT.titleSuffix}</span>
           </h1>
-          <p className="text-base md:text-lg text-gray-500 leading-relaxed font-medium mb-12 uppercase tracking-widest max-w-4xl mx-auto">
+          <p className="text-base md:text-lg text-ink-muted leading-relaxed font-medium mb-12 uppercase tracking-widest max-w-4xl mx-auto">
             {ACHIEVEMENTS_PAGE_CONTENT.description}
           </p>
           <div className="w-24 h-1 bg-red-900/50 mx-auto rounded-full" />
@@ -72,7 +72,7 @@ export default async function AchievementsPage() {
                       <Calendar size={14} className="mr-2" /> {achievement.year}
                     </div>
                     <h3 className="text-2xl font-heading font-black text-white uppercase tracking-tighter mb-4 group-hover:text-red-500 transition-colors">{achievement.title}</h3>
-                    <p className="text-gray-500 text-xs leading-relaxed font-medium mb-8 uppercase tracking-widest">{achievement.description}</p>
+                    <p className="text-ink-muted text-xs leading-relaxed font-medium mb-8 uppercase tracking-widest">{achievement.description}</p>
                     <div className="flex items-center space-x-3">
                       <Trophy size={16} className="text-red-900" />
                       <span className="text-red-900 text-[10px] font-black uppercase tracking-[0.3em]">{achievement.category}</span>

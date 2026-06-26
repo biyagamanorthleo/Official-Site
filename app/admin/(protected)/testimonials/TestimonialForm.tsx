@@ -50,7 +50,7 @@ export default function TestimonialForm({ testimonial }: { testimonial?: Testimo
 
       {/* Star rating picker */}
       <div>
-        <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-3">Rating</label>
+        <label className="text-[10px] font-black uppercase tracking-widest text-ink-muted block mb-3">Rating</label>
         <div className="flex items-center gap-2 p-5 bg-black border border-white/10 rounded-xl">
           <div className="flex items-center gap-1.5">
             {Array.from({ length: 5 }).map((_, i) => {
@@ -74,14 +74,14 @@ export default function TestimonialForm({ testimonial }: { testimonial?: Testimo
               );
             })}
           </div>
-          <span className="text-gray-500 text-xs font-black uppercase tracking-widest ml-3">
+          <span className="text-ink-muted text-xs font-black uppercase tracking-widest ml-3">
             {form.rating} / 5
           </span>
         </div>
       </div>
 
       <div>
-        <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-2">Quote</label>
+        <label className="text-[10px] font-black uppercase tracking-widest text-ink-muted block mb-2">Quote</label>
         <textarea
           value={form.quote}
           onChange={e => set('quote', e.target.value)}
@@ -94,7 +94,7 @@ export default function TestimonialForm({ testimonial }: { testimonial?: Testimo
 
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-2">Name</label>
+          <label className="text-[10px] font-black uppercase tracking-widest text-ink-muted block mb-2">Name</label>
           <input
             value={form.name}
             onChange={e => set('name', e.target.value)}
@@ -104,7 +104,7 @@ export default function TestimonialForm({ testimonial }: { testimonial?: Testimo
           />
         </div>
         <div>
-          <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-2">Initials</label>
+          <label className="text-[10px] font-black uppercase tracking-widest text-ink-muted block mb-2">Initials</label>
           <input
             value={form.initials}
             onChange={e => set('initials', e.target.value.toUpperCase().slice(0, 3))}
@@ -117,7 +117,7 @@ export default function TestimonialForm({ testimonial }: { testimonial?: Testimo
       </div>
 
       <div>
-        <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-2">Role / Title</label>
+        <label className="text-[10px] font-black uppercase tracking-widest text-ink-muted block mb-2">Role / Title</label>
         <input
           value={form.role}
           onChange={e => set('role', e.target.value)}
@@ -128,7 +128,7 @@ export default function TestimonialForm({ testimonial }: { testimonial?: Testimo
       </div>
 
       <div>
-        <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-2">Display Order</label>
+        <label className="text-[10px] font-black uppercase tracking-widest text-ink-muted block mb-2">Display Order</label>
         <input
           type="number"
           value={form.sort_order}
@@ -149,7 +149,7 @@ export default function TestimonialForm({ testimonial }: { testimonial?: Testimo
         <button
           type="button"
           onClick={() => router.back()}
-          className="px-8 py-4 rounded-xl text-gray-400 text-xs font-black uppercase tracking-widest bg-white/5 hover:bg-white/10 transition-all"
+          className="px-8 py-4 rounded-xl text-ink-muted text-xs font-black uppercase tracking-widest bg-white/5 hover:bg-white/10 transition-all"
         >
           Cancel
         </button>

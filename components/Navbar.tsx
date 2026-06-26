@@ -55,7 +55,7 @@ const Navbar: React.FC = () => {
                 className={`px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.15em] rounded-full transition-all duration-200 ${
                   pathname === link.path
                     ? 'text-white bg-white/[0.08]'
-                    : 'text-gray-400 hover:text-white hover:bg-white/[0.05]'
+                    : 'text-ink-muted hover:text-white hover:bg-white/[0.05]'
                 }`}
               >
                 {link.name}
@@ -97,7 +97,7 @@ const Navbar: React.FC = () => {
                 href={link.path}
                 onClick={() => setIsOpen(false)}
                 className={`text-[11px] font-black tracking-widest uppercase py-3 border-b border-white/5 transition-colors ${
-                  pathname === link.path ? 'text-red-500' : 'text-gray-400'
+                  pathname === link.path ? 'text-red-500' : 'text-ink-muted'
                 }`}
               >
                 {link.name}

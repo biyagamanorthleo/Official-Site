@@ -17,7 +17,7 @@ export default function DeletePostButton({ id }: { id: string }) {
 
   return (
     <button onClick={handleDelete} disabled={loading}
-      className="px-4 py-2 rounded-xl text-gray-700 text-[10px] font-black uppercase tracking-widest hover:text-red-500 border border-white/5 hover:border-red-900/30 transition-all disabled:opacity-50">
+      className="px-4 py-2 rounded-xl text-ink-muted text-[10px] font-black uppercase tracking-widest hover:text-red-500 border border-white/5 hover:border-red-900/30 transition-all disabled:opacity-50">
       <Trash2 size={12} />
     </button>
   );

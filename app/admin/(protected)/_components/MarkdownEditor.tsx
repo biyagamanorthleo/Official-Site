@@ -92,12 +92,12 @@ export default function MarkdownEditor({ value, onChange, rows = 14, placeholder
             title={label}
             aria-label={label}
             onClick={onClick}
-            className="w-8 h-8 flex items-center justify-center rounded-lg text-gray-500 hover:text-white hover:bg-white/10 transition-all"
+            className="w-8 h-8 flex items-center justify-center rounded-lg text-ink-muted hover:text-white hover:bg-white/10 transition-all"
           >
             <Icon size={15} />
           </button>
         ))}
-        <span className="ml-auto pr-1 text-gray-700 text-[9px] font-bold uppercase tracking-widest hidden sm:block">Markdown</span>
+        <span className="ml-auto pr-1 text-ink-muted text-[9px] font-bold uppercase tracking-widest hidden sm:block">Markdown</span>
       </div>
       <textarea
         ref={ref}

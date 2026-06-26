@@ -103,11 +103,11 @@ export default function GalleryGrid({ photos }: { photos: Photo[] }) {
               />
             </div>
             {photos[lightboxIndex].caption && (
-              <p className="text-gray-400 text-sm font-bold uppercase tracking-widest mt-5 text-center">
+              <p className="text-ink-muted text-sm font-bold uppercase tracking-widest mt-5 text-center">
                 {photos[lightboxIndex].caption}
               </p>
             )}
-            <p className="text-gray-700 text-[11px] tracking-widest mt-2">
+            <p className="text-ink-muted text-[11px] tracking-widest mt-2">
               {lightboxIndex + 1} / {photos.length}
             </p>
           </div>

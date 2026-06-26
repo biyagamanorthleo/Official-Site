@@ -87,18 +87,18 @@ export default function TeamForm({ member }: { member?: Member }) {
   return (
     <form onSubmit={handleSave} className="space-y-6 max-w-2xl">
       <div>
-        <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-2">Name</label>
+        <label className="text-[10px] font-black uppercase tracking-widest text-ink-muted block mb-2">Name</label>
         <input value={form.name} onChange={e => set('name', e.target.value)} required
           className="w-full bg-black border border-white/10 rounded-xl px-5 py-4 text-white text-sm focus:outline-none focus:border-red-700 transition-colors" />
       </div>
 
       <div>
-        <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-3">Photo</label>
+        <label className="text-[10px] font-black uppercase tracking-widest text-ink-muted block mb-3">Photo</label>
         <ImageUpload value={form.photo} onChange={url => set('photo', url)} folder="team" />
       </div>
 
       <div>
-        <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-2">Category</label>
+        <label className="text-[10px] font-black uppercase tracking-widest text-ink-muted block mb-2">Category</label>
         <select value={form.category} onChange={e => handleCategoryChange(e.target.value)}
           className="w-full bg-black border border-white/10 rounded-xl px-5 py-4 text-white text-sm focus:outline-none focus:border-red-700 transition-colors">
           <option>Advisory Panel</option>
@@ -109,8 +109,8 @@ export default function TeamForm({ member }: { member?: Member }) {
       </div>
 
       <div>
-        <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-2">
-          Position <span className="text-gray-700 font-normal normal-case tracking-normal ml-2">- pick a suggestion or type your own</span>
+        <label className="text-[10px] font-black uppercase tracking-widest text-ink-muted block mb-2">
+          Position <span className="text-ink-muted font-normal normal-case tracking-normal ml-2">- pick a suggestion or type your own</span>
         </label>
         <input
           type="text"
@@ -123,13 +123,13 @@ export default function TeamForm({ member }: { member?: Member }) {
         <datalist id="position-suggestions">
           {(POSITIONS[form.category] ?? []).map(p => <option key={p} value={p} />)}
         </datalist>
-        <p className="text-gray-700 text-[9px] mt-1 uppercase tracking-widest">Known titles auto-set the display order below</p>
+        <p className="text-ink-muted text-[9px] mt-1 uppercase tracking-widest">Known titles auto-set the display order below</p>
       </div>
 
       {showAvenue && (
         <div>
-          <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-2">
-            Avenue / Department <span className="text-gray-700 font-normal normal-case tracking-normal ml-2">- optional</span>
+          <label className="text-[10px] font-black uppercase tracking-widest text-ink-muted block mb-2">
+            Avenue / Department <span className="text-ink-muted font-normal normal-case tracking-normal ml-2">- optional</span>
           </label>
           <input
             type="text"
@@ -142,20 +142,20 @@ export default function TeamForm({ member }: { member?: Member }) {
       )}
 
       <div>
-        <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-2">
-          Display Order <span className="text-gray-700 font-normal normal-case tracking-normal ml-2">- auto-filled, adjust if needed</span>
+        <label className="text-[10px] font-black uppercase tracking-widest text-ink-muted block mb-2">
+          Display Order <span className="text-ink-muted font-normal normal-case tracking-normal ml-2">- auto-filled, adjust if needed</span>
         </label>
         <input type="number" min={1} value={form.priority} onChange={e => set('priority', +e.target.value)}
           className="w-full bg-black border border-white/10 rounded-xl px-5 py-4 text-white text-sm focus:outline-none focus:border-red-700 transition-colors" />
-        <p className="text-gray-700 text-[9px] mt-1 uppercase tracking-widest">Lower number = shown first</p>
+        <p className="text-ink-muted text-[9px] mt-1 uppercase tracking-widest">Lower number = shown first</p>
       </div>
 
       <div>
-        <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-3">Social Links</label>
+        <label className="text-[10px] font-black uppercase tracking-widest text-ink-muted block mb-3">Social Links</label>
         <div className="space-y-3">
           {(['instagram', 'linkedin', 'facebook'] as const).map(s => (
             <div key={s} className="flex items-center gap-3">
-              <span className="text-[9px] font-black uppercase tracking-widest text-gray-600 w-20">{s}</span>
+              <span className="text-[9px] font-black uppercase tracking-widest text-ink-muted w-20">{s}</span>
               <input value={form[s]} onChange={e => set(s, e.target.value)} placeholder="https://..."
                 className="flex-1 bg-black border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-red-700 transition-colors" />
             </div>
@@ -170,7 +170,7 @@ export default function TeamForm({ member }: { member?: Member }) {
           {saving ? 'Saving...' : form.id ? 'Update Member' : 'Add Member'}
         </button>
         <button type="button" onClick={() => router.back()}
-          className="px-8 py-4 rounded-xl text-gray-400 text-xs font-black uppercase tracking-widest bg-white/5 hover:bg-white/10 transition-all">
+          className="px-8 py-4 rounded-xl text-ink-muted text-xs font-black uppercase tracking-widest bg-white/5 hover:bg-white/10 transition-all">
           Cancel
         </button>
       </div>

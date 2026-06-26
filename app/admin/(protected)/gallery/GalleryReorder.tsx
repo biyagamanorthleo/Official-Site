@@ -72,7 +72,7 @@ export default function GalleryReorder({ initialPhotos }: { initialPhotos: Photo
   return (
     <div>
       <div className="flex items-center justify-between mb-3">
-        <p className="text-[10px] font-black uppercase tracking-widest text-gray-500">
+        <p className="text-[10px] font-black uppercase tracking-widest text-ink-muted">
           Drag to reorder &mdash; {photos.length} photos
         </p>
         <button
@@ -87,8 +87,8 @@ export default function GalleryReorder({ initialPhotos }: { initialPhotos: Photo
 
       {/* Carousel featured indicator */}
       <div className="flex items-center gap-3 mb-6 px-4 py-3 rounded-xl bg-[#0a0a0a] border border-white/5">
-        <Star size={14} className={featuredCount > 0 ? 'text-yellow-500' : 'text-gray-600'} fill={featuredCount > 0 ? 'currentColor' : 'none'} />
-        <span className="text-[10px] font-black uppercase tracking-widest text-gray-500">
+        <Star size={14} className={featuredCount > 0 ? 'text-yellow-500' : 'text-ink-muted'} fill={featuredCount > 0 ? 'currentColor' : 'none'} />
+        <span className="text-[10px] font-black uppercase tracking-widest text-ink-muted">
           Home carousel:
         </span>
         <span className={`text-[10px] font-black uppercase tracking-widest ${featuredCount >= 7 ? 'text-red-500' : 'text-white'}`}>

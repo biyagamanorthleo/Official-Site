@@ -32,7 +32,7 @@ export default async function AdminDashboard() {
   return (
     <div>
       <h1 className="text-3xl font-heading font-black text-white uppercase tracking-tight mb-2">Dashboard</h1>
-      <p className="text-gray-600 text-xs uppercase tracking-widest font-bold mb-12">Leo Club of Biyagama North - Content Management</p>
+      <p className="text-ink-muted text-xs uppercase tracking-widest font-bold mb-12">Leo Club of Biyagama North - Content Management</p>
 
       {(pending ?? 0) > 0 && (
         <Link href="/admin/blog"
@@ -57,7 +57,7 @@ export default async function AdminDashboard() {
               <Icon size={22} className="text-red-800 group-hover:text-red-500 transition-colors" />
               <span className="text-3xl font-heading font-black text-white">{count ?? 0}</span>
             </div>
-            <p className="text-gray-500 text-xs font-black uppercase tracking-widest">{label}</p>
+            <p className="text-ink-muted text-xs font-black uppercase tracking-widest">{label}</p>
           </Link>
         ))}
 
@@ -67,13 +67,13 @@ export default async function AdminDashboard() {
             <BookOpen size={22} className="text-red-800 group-hover:text-red-500 transition-colors" />
             <span className="text-3xl font-heading font-black text-white">{pending ?? 0}</span>
           </div>
-          <p className="text-gray-500 text-xs font-black uppercase tracking-widest">Pending Posts</p>
+          <p className="text-ink-muted text-xs font-black uppercase tracking-widest">Pending Posts</p>
         </Link>
       </div>
 
       <div className="mt-12 bg-[#050505] border border-white/5 rounded-2xl p-8">
-        <p className="text-[10px] font-black uppercase tracking-widest text-gray-600 mb-3">Quick tip</p>
-        <p className="text-gray-400 text-sm">All changes save directly to Supabase and appear on the live site instantly. Use the sidebar to manage each content section.</p>
+        <p className="text-[10px] font-black uppercase tracking-widest text-ink-muted mb-3">Quick tip</p>
+        <p className="text-ink-muted text-sm">All changes save directly to Supabase and appear on the live site instantly. Use the sidebar to manage each content section.</p>
       </div>
     </div>
   );

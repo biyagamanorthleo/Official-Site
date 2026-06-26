@@ -78,7 +78,7 @@ function UpdatePasswordForm() {
     return (
       <div className="text-center py-4 space-y-4">
         <p className="text-green-500 text-sm font-black uppercase tracking-widest">Password Updated!</p>
-        <p className="text-gray-500 text-xs">You can now log in with your new password.</p>
+        <p className="text-ink-muted text-xs">You can now log in with your new password.</p>
         <button onClick={() => router.push('/member/login')}
           className="mt-4 px-8 py-3 rounded-xl text-white text-xs font-black uppercase tracking-widest"
           style={{ background: 'linear-gradient(to bottom, #980016, #3d0009)' }}>
@@ -93,7 +93,7 @@ function UpdatePasswordForm() {
       <div className="text-center py-4 space-y-4">
         <p className="text-red-500 text-xs font-bold leading-relaxed">{error}</p>
         <a href="/member/forgot-password"
-          className="block text-gray-500 text-[10px] font-black uppercase tracking-widest hover:text-white transition-colors mt-2">
+          className="block text-ink-muted text-[10px] font-black uppercase tracking-widest hover:text-white transition-colors mt-2">
           Request new link →
         </a>
       </div>
@@ -104,7 +104,7 @@ function UpdatePasswordForm() {
     return (
       <div className="text-center py-8">
         <div className="w-5 h-5 border-2 border-red-800 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-        <p className="text-gray-600 text-[10px] font-black uppercase tracking-widest">Verifying link...</p>
+        <p className="text-ink-muted text-[10px] font-black uppercase tracking-widest">Verifying link...</p>
       </div>
     );
   }
@@ -112,12 +112,12 @@ function UpdatePasswordForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
       <div>
-        <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-2">New Password</label>
+        <label className="text-[10px] font-black uppercase tracking-widest text-ink-muted block mb-2">New Password</label>
         <input type="password" value={password} onChange={e => setPassword(e.target.value)} required minLength={6}
           className="w-full bg-black border border-white/10 rounded-xl px-5 py-4 text-white text-sm focus:outline-none focus:border-red-700 transition-colors" />
       </div>
       <div>
-        <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-2">Confirm Password</label>
+        <label className="text-[10px] font-black uppercase tracking-widest text-ink-muted block mb-2">Confirm Password</label>
         <input type="password" value={confirm} onChange={e => setConfirm(e.target.value)} required minLength={6}
           className="w-full bg-black border border-white/10 rounded-xl px-5 py-4 text-white text-sm focus:outline-none focus:border-red-700 transition-colors" />
       </div>
@@ -140,7 +140,7 @@ export default function UpdatePasswordPage() {
             <KeyRound size={24} className="text-red-600" />
           </div>
           <span className="block text-xl font-heading font-black text-white tracking-widest">Set Password</span>
-          <p className="text-gray-600 text-[10px] font-black uppercase tracking-[0.4em] mt-2">BN Leos Member Portal</p>
+          <p className="text-ink-muted text-[10px] font-black uppercase tracking-[0.4em] mt-2">BN Leos Member Portal</p>
         </div>
         <div className="bg-[#050505] border border-white/10 rounded-[2rem] p-10">
           <Suspense fallback={

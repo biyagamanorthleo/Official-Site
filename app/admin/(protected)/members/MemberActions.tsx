@@ -29,7 +29,7 @@ export function ResendButton({ email }: { email: string }) {
     <div className="flex flex-col items-end gap-1">
       <button onClick={handleResend} disabled={isPending}
         className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest border transition-all disabled:opacity-50
-          ${status === 'ok' ? 'text-green-500 border-green-900/40' : status === 'err' ? 'text-red-500 border-red-900/40' : 'text-gray-500 border-white/5 hover:text-white hover:border-white/15'}`}>
+          ${status === 'ok' ? 'text-green-500 border-green-900/40' : status === 'err' ? 'text-red-500 border-red-900/40' : 'text-ink-muted border-white/5 hover:text-white hover:border-white/15'}`}>
         {status === 'ok' ? <CheckCircle size={11} /> : status === 'err' ? <AlertCircle size={11} /> : <RefreshCw size={11} className={isPending ? 'animate-spin' : ''} />}
         {status === 'ok' ? 'Sent!' : status === 'err' ? 'Failed' : 'Resend'}
       </button>
@@ -56,7 +56,7 @@ export function DeleteMemberButton({ id }: { id: string }) {
 
   return (
     <button onClick={handleDelete} disabled={isPending}
-      className="px-4 py-2 rounded-xl text-gray-700 text-[10px] font-black uppercase tracking-widest hover:text-red-500 border border-white/5 hover:border-red-900/30 transition-all disabled:opacity-50">
+      className="px-4 py-2 rounded-xl text-ink-muted text-[10px] font-black uppercase tracking-widest hover:text-red-500 border border-white/5 hover:border-red-900/30 transition-all disabled:opacity-50">
       <Trash2 size={12} />
     </button>
   );

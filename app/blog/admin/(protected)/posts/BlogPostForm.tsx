@@ -78,7 +78,7 @@ export default function BlogPostForm({ post, defaults, redirectTo = '/blog/admin
   return (
     <form onSubmit={handleSave} className="space-y-6 max-w-2xl">
       <div>
-        <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-2">Title</label>
+        <label className="text-[10px] font-black uppercase tracking-widest text-ink-muted block mb-2">Title</label>
         <input
           value={form.title}
           onChange={e => set('title', e.target.value)}
@@ -89,9 +89,9 @@ export default function BlogPostForm({ post, defaults, redirectTo = '/blog/admin
       </div>
 
       <div>
-        <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-2">Slug</label>
+        <label className="text-[10px] font-black uppercase tracking-widest text-ink-muted block mb-2">Slug</label>
         <div className="flex items-center bg-black border border-white/10 rounded-xl overflow-hidden focus-within:border-red-700 transition-colors">
-          <span className="text-gray-700 text-xs px-4 border-r border-white/10 py-4 select-none">/blog/</span>
+          <span className="text-ink-muted text-xs px-4 border-r border-white/10 py-4 select-none">/blog/</span>
           <input
             value={form.slug}
             onChange={e => { setSlugEdited(true); set('slug', e.target.value); }}
@@ -103,7 +103,7 @@ export default function BlogPostForm({ post, defaults, redirectTo = '/blog/admin
 
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-2">Author</label>
+          <label className="text-[10px] font-black uppercase tracking-widest text-ink-muted block mb-2">Author</label>
           <input
             value={form.author}
             onChange={e => set('author', e.target.value)}
@@ -113,7 +113,7 @@ export default function BlogPostForm({ post, defaults, redirectTo = '/blog/admin
           />
         </div>
         <div>
-          <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-2">Date</label>
+          <label className="text-[10px] font-black uppercase tracking-widest text-ink-muted block mb-2">Date</label>
           <input
             type="date"
             value={form.published_at}
@@ -125,12 +125,12 @@ export default function BlogPostForm({ post, defaults, redirectTo = '/blog/admin
       </div>
 
       <div>
-        <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-3">Cover Image</label>
+        <label className="text-[10px] font-black uppercase tracking-widest text-ink-muted block mb-3">Cover Image</label>
         <ImageUpload value={form.cover_image} onChange={url => set('cover_image', url)} folder="blog" />
       </div>
 
       <div>
-        <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-2">Excerpt</label>
+        <label className="text-[10px] font-black uppercase tracking-widest text-ink-muted block mb-2">Excerpt</label>
         <textarea
           value={form.excerpt}
           onChange={e => set('excerpt', e.target.value)}
@@ -141,8 +141,8 @@ export default function BlogPostForm({ post, defaults, redirectTo = '/blog/admin
       </div>
 
       <div>
-        <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-2">Content</label>
-        <p className="text-gray-700 text-[10px] mb-3">Use the toolbar to format. Separate paragraphs with a blank line.</p>
+        <label className="text-[10px] font-black uppercase tracking-widest text-ink-muted block mb-2">Content</label>
+        <p className="text-ink-muted text-[10px] mb-3">Use the toolbar to format. Separate paragraphs with a blank line.</p>
         <MarkdownEditor
           value={form.content}
           onChange={v => set('content', v)}
@@ -152,7 +152,7 @@ export default function BlogPostForm({ post, defaults, redirectTo = '/blog/admin
       </div>
 
       <div>
-        <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-2">Status</label>
+        <label className="text-[10px] font-black uppercase tracking-widest text-ink-muted block mb-2">Status</label>
         <select value={form.status} onChange={e => set('status', e.target.value)}
           className="w-full bg-black border border-white/10 rounded-xl px-5 py-4 text-white text-sm focus:outline-none focus:border-red-700 transition-colors">
           <option value="draft">Draft</option>
@@ -169,7 +169,7 @@ export default function BlogPostForm({ post, defaults, redirectTo = '/blog/admin
           {saving ? 'Saving...' : form.id ? 'Update Post' : 'Create Post'}
         </button>
         <button type="button" onClick={() => router.back()}
-          className="px-8 py-4 rounded-xl text-gray-400 text-xs font-black uppercase tracking-widest bg-white/5 hover:bg-white/10 transition-all">
+          className="px-8 py-4 rounded-xl text-ink-muted text-xs font-black uppercase tracking-widest bg-white/5 hover:bg-white/10 transition-all">
           Cancel
         </button>
       </div>

@@ -55,7 +55,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       <div className="container mx-auto px-6 max-w-4xl">
         <Link
           href="/blog"
-          className="inline-flex items-center gap-2 text-gray-500 text-[10px] font-black uppercase tracking-widest hover:text-white transition-colors mb-10"
+          className="inline-flex items-center gap-2 text-ink-muted text-[10px] font-black uppercase tracking-widest hover:text-white transition-colors mb-10"
         >
           <ArrowLeft size={12} /> Back to Blog
         </Link>
@@ -72,11 +72,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         )}
 
         <div className="flex items-center gap-6 mb-8">
-          <span className="flex items-center gap-2 text-gray-500 text-[10px] font-black uppercase tracking-widest">
+          <span className="flex items-center gap-2 text-ink-muted text-[10px] font-black uppercase tracking-widest">
             <User size={12} />
             {post.author}
           </span>
-          <span className="flex items-center gap-2 text-gray-500 text-[10px] font-black uppercase tracking-widest">
+          <span className="flex items-center gap-2 text-ink-muted text-[10px] font-black uppercase tracking-widest">
             <Calendar size={12} />
             {formatDate(post.published_at)}
           </span>
@@ -87,7 +87,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         </h1>
 
         {post.excerpt && (
-          <p className="text-gray-400 text-lg leading-relaxed mb-10 border-l-2 border-red-800 pl-5">
+          <p className="text-ink-muted text-lg leading-relaxed mb-10 border-l-2 border-red-800 pl-5">
             {post.excerpt}
           </p>
         )}

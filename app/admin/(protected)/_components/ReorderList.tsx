@@ -67,7 +67,7 @@ export default function ReorderList({ initialItems, orderField = 'sort_order' }:
   return (
     <div>
       <div className="flex items-center justify-between mb-4">
-        <p className="text-[10px] font-black uppercase tracking-widest text-gray-600">
+        <p className="text-[10px] font-black uppercase tracking-widest text-ink-muted">
           {items.length} items &mdash; drag to reorder
         </p>
         <button
@@ -124,13 +124,13 @@ export default function ReorderList({ initialItems, orderField = 'sort_order' }:
               <Link
                 href={item.editHref}
                 onClick={e => e.stopPropagation()}
-                className="p-2 text-gray-600 hover:text-white transition-colors rounded-lg hover:bg-white/5"
+                className="p-2 text-ink-muted hover:text-white transition-colors rounded-lg hover:bg-white/5"
               >
                 <Pencil size={15} />
               </Link>
               <button
                 onClick={e => { e.stopPropagation(); handleDelete(item); }}
-                className="p-2 text-gray-600 hover:text-red-500 transition-colors rounded-lg hover:bg-white/5"
+                className="p-2 text-ink-muted hover:text-red-500 transition-colors rounded-lg hover:bg-white/5"
               >
                 <Trash2 size={15} />
               </button>

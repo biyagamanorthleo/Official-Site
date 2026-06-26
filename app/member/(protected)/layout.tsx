@@ -39,24 +39,24 @@ export default async function MemberLayout({ children }: { children: React.React
             {profile?.mylci_number && (
               <div className="flex items-center gap-2">
                 <Hash size={10} className="text-white/20 flex-shrink-0" />
-                <span className="text-[10px] font-black uppercase tracking-widest text-gray-500">{profile.mylci_number}</span>
+                <span className="text-[10px] font-black uppercase tracking-widest text-ink-muted">{profile.mylci_number}</span>
               </div>
             )}
             {profile?.position && (
               <div className="flex items-center gap-2">
                 <Briefcase size={10} className="text-white/20 flex-shrink-0" />
-                <span className="text-[10px] font-bold text-gray-600 truncate">{profile.position}</span>
+                <span className="text-[10px] font-bold text-ink-muted truncate">{profile.position}</span>
               </div>
             )}
             {profile?.phone && (
               <div className="flex items-center gap-2">
                 <Phone size={10} className="text-white/20 flex-shrink-0" />
-                <span className="text-[10px] font-bold text-gray-600">{profile.phone}</span>
+                <span className="text-[10px] font-bold text-ink-muted">{profile.phone}</span>
               </div>
             )}
             <div className="flex items-center gap-2">
               <Mail size={10} className="text-white/20 flex-shrink-0" />
-              <span className="text-[10px] font-bold text-gray-600 truncate">{user.email}</span>
+              <span className="text-[10px] font-bold text-ink-muted truncate">{user.email}</span>
             </div>
           </div>
         </div>
@@ -69,7 +69,7 @@ export default async function MemberLayout({ children }: { children: React.React
             <p className="px-4 pt-2 pb-1 text-[9px] font-black uppercase tracking-[0.25em] text-white/20">Resources</p>
             <div className="space-y-0.5">
               <Link href="/member/starter-pack"
-                className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-gray-500 hover:text-white hover:bg-white/[0.04] transition-all text-[11px] font-black uppercase tracking-widest group">
+                className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-ink-muted hover:text-white hover:bg-white/[0.04] transition-all text-[11px] font-black uppercase tracking-widest group">
                 <Package size={13} className="group-hover:text-red-500 transition-colors" />
                 Starter Pack
               </Link>
@@ -81,17 +81,17 @@ export default async function MemberLayout({ children }: { children: React.React
             <p className="px-4 pt-2 pb-1 text-[9px] font-black uppercase tracking-[0.25em] text-white/20">Blog</p>
             <div className="space-y-0.5">
               <Link href="/member"
-                className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-gray-500 hover:text-white hover:bg-white/[0.04] transition-all text-[11px] font-black uppercase tracking-widest group">
+                className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-ink-muted hover:text-white hover:bg-white/[0.04] transition-all text-[11px] font-black uppercase tracking-widest group">
                 <FileText size={13} className="group-hover:text-red-500 transition-colors" />
                 My Posts
               </Link>
               <Link href="/member/blog/new"
-                className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-gray-500 hover:text-white hover:bg-white/[0.04] transition-all text-[11px] font-black uppercase tracking-widest group">
+                className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-ink-muted hover:text-white hover:bg-white/[0.04] transition-all text-[11px] font-black uppercase tracking-widest group">
                 <PenSquare size={13} className="group-hover:text-red-500 transition-colors" />
                 Write a Post
               </Link>
               <Link href="/blog" target="_blank" rel="noopener noreferrer"
-                className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-gray-500 hover:text-white hover:bg-white/[0.04] transition-all text-[11px] font-black uppercase tracking-widest group">
+                className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-ink-muted hover:text-white hover:bg-white/[0.04] transition-all text-[11px] font-black uppercase tracking-widest group">
                 <ExternalLink size={13} className="group-hover:text-red-500 transition-colors" />
                 View Blog
               </Link>
@@ -103,7 +103,7 @@ export default async function MemberLayout({ children }: { children: React.React
         {/* Sign out */}
         <form action="/api/member/signout" method="POST" className="p-3 border-t border-white/[0.04]">
           <button type="submit"
-            className="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 hover:text-red-500 transition-all text-[11px] font-black uppercase tracking-widest w-full">
+            className="flex items-center gap-3 px-4 py-3 rounded-xl text-ink-muted hover:text-red-500 transition-all text-[11px] font-black uppercase tracking-widest w-full">
             <LogOut size={15} /> Sign Out
           </button>
         </form>

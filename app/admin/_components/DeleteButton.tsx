@@ -15,7 +15,7 @@ export default function DeleteButton({ id, table }: { id: string; table: string 
   }
 
   return (
-    <button onClick={handleDelete} className="p-2 text-gray-600 hover:text-red-500 transition-colors">
+    <button onClick={handleDelete} className="p-2 text-ink-muted hover:text-red-500 transition-colors">
       <Trash2 size={16} />
     </button>
   );

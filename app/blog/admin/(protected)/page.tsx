@@ -21,7 +21,7 @@ export default async function BlogAdminDashboard() {
     <div className="max-w-4xl">
       <div className="mb-12">
         <h1 className="text-3xl font-heading font-black text-white uppercase tracking-tighter">Dashboard</h1>
-        <p className="text-gray-600 text-xs font-bold uppercase tracking-widest mt-2">Blog Content Overview</p>
+        <p className="text-ink-muted text-xs font-bold uppercase tracking-widest mt-2">Blog Content Overview</p>
       </div>
 
       <div className="grid grid-cols-3 gap-4 mb-12">
@@ -30,7 +30,7 @@ export default async function BlogAdminDashboard() {
             className="bg-[#050505] border border-white/5 rounded-2xl p-6 hover:border-red-900/30 transition-all group">
             <Icon size={20} className="text-red-800 mb-4 group-hover:text-red-600 transition-colors" />
             <p className="text-3xl font-heading font-black text-white">{value}</p>
-            <p className="text-gray-600 text-[10px] font-black uppercase tracking-widest mt-1">{label}</p>
+            <p className="text-ink-muted text-[10px] font-black uppercase tracking-widest mt-1">{label}</p>
           </Link>
         ))}
       </div>

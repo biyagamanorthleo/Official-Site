@@ -17,7 +17,7 @@ export default async function AdminTestimonials() {
       <div className="flex items-center justify-between mb-10">
         <div>
           <h1 className="text-3xl font-heading font-black text-white uppercase tracking-tight">Testimonials</h1>
-          <p className="text-gray-600 text-xs uppercase tracking-widest font-bold mt-1">{rows.length} total</p>
+          <p className="text-ink-muted text-xs uppercase tracking-widest font-bold mt-1">{rows.length} total</p>
         </div>
         <Link
           href="/admin/testimonials/new"
@@ -30,7 +30,7 @@ export default async function AdminTestimonials() {
 
       <div className="space-y-3">
         {rows.length === 0 && (
-          <p className="text-gray-600 text-sm uppercase tracking-widest font-black text-center py-20">
+          <p className="text-ink-muted text-sm uppercase tracking-widest font-black text-center py-20">
             No testimonials yet
           </p>
         )}
@@ -50,8 +50,8 @@ export default async function AdminTestimonials() {
             {/* Info */}
             <div className="flex-1 min-w-0">
               <p className="text-white font-black text-sm uppercase tracking-tight">{t.name}</p>
-              <p className="text-gray-600 text-[10px] uppercase tracking-widest font-black mt-0.5 truncate">{t.role}</p>
-              <p className="text-gray-500 text-[11px] mt-1.5 line-clamp-1">&ldquo;{t.quote}&rdquo;</p>
+              <p className="text-ink-muted text-[10px] uppercase tracking-widest font-black mt-0.5 truncate">{t.role}</p>
+              <p className="text-ink-muted text-[11px] mt-1.5 line-clamp-1">&ldquo;{t.quote}&rdquo;</p>
             </div>
 
             {/* Stars */}
@@ -70,7 +70,7 @@ export default async function AdminTestimonials() {
             <div className="flex items-center gap-1 flex-shrink-0">
               <Link
                 href={`/admin/testimonials/${t.id}`}
-                className="p-2 text-gray-600 hover:text-white transition-colors rounded-lg hover:bg-white/5"
+                className="p-2 text-ink-muted hover:text-white transition-colors rounded-lg hover:bg-white/5"
               >
                 <Pencil size={15} />
               </Link>

@@ -7,7 +7,7 @@ const statusStyle: Record<string, string> = {
   published: 'bg-green-950/40 text-green-500 border-green-900/30',
   pending:   'bg-amber-950/20 text-amber-500 border-amber-800/30',
   rejected:  'bg-red-950/20 text-red-600 border-red-900/20',
-  draft:     'bg-white/5 text-gray-500 border-white/5',
+  draft:     'bg-white/5 text-ink-muted border-white/5',
 };
 
 function formatDate(dateStr: string) {
@@ -28,7 +28,7 @@ export default async function BlogPostsAdminPage() {
       <div className="flex items-center justify-between mb-10">
         <div>
           <h1 className="text-3xl font-heading font-black text-white uppercase tracking-tighter">Posts</h1>
-          <p className="text-gray-600 text-xs font-bold uppercase tracking-widest mt-1">{posts?.length ?? 0} total</p>
+          <p className="text-ink-muted text-xs font-bold uppercase tracking-widest mt-1">{posts?.length ?? 0} total</p>
         </div>
         <Link href="/blog/admin/posts/new"
           className="flex items-center gap-2 px-6 py-3 rounded-xl text-white text-[10px] font-black uppercase tracking-widest"
@@ -39,7 +39,7 @@ export default async function BlogPostsAdminPage() {
 
       {!posts?.length ? (
         <div className="text-center py-20 border border-dashed border-white/5 rounded-3xl">
-          <p className="text-gray-600 text-xs font-black uppercase tracking-widest">No posts yet</p>
+          <p className="text-ink-muted text-xs font-black uppercase tracking-widest">No posts yet</p>
         </div>
       ) : (
         <div className="space-y-3">
@@ -57,10 +57,10 @@ export default async function BlogPostsAdminPage() {
               <div className="flex-1 min-w-0">
                 <h3 className="text-white text-sm font-black uppercase tracking-tight truncate">{post.title}</h3>
                 <div className="flex items-center gap-4 mt-1">
-                  <span className="flex items-center gap-1 text-gray-600 text-[10px] font-bold uppercase tracking-wider">
+                  <span className="flex items-center gap-1 text-ink-muted text-[10px] font-bold uppercase tracking-wider">
                     <User size={10} /> {post.author}
                   </span>
-                  <span className="flex items-center gap-1 text-gray-600 text-[10px] font-bold uppercase tracking-wider">
+                  <span className="flex items-center gap-1 text-ink-muted text-[10px] font-bold uppercase tracking-wider">
                     <Calendar size={10} /> {formatDate(post.published_at)}
                   </span>
                 </div>
@@ -72,11 +72,11 @@ export default async function BlogPostsAdminPage() {
 
               <div className="flex items-center gap-2 flex-shrink-0">
                 <Link href={`/blog/${post.slug}`} target="_blank"
-                  className="px-4 py-2 rounded-xl text-gray-500 text-[10px] font-black uppercase tracking-widest hover:text-white border border-white/5 hover:border-white/15 transition-all">
+                  className="px-4 py-2 rounded-xl text-ink-muted text-[10px] font-black uppercase tracking-widest hover:text-white border border-white/5 hover:border-white/15 transition-all">
                   View
                 </Link>
                 <Link href={`/blog/admin/posts/${post.id}`}
-                  className="px-4 py-2 rounded-xl text-gray-400 text-[10px] font-black uppercase tracking-widest hover:text-white border border-white/5 hover:border-white/15 transition-all">
+                  className="px-4 py-2 rounded-xl text-ink-muted text-[10px] font-black uppercase tracking-widest hover:text-white border border-white/5 hover:border-white/15 transition-all">
                   Edit
                 </Link>
                 <DeletePostButton id={post.id} />

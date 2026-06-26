@@ -35,7 +35,7 @@ export default function ProjectsClient({ projects }: { projects: Project[] }) {
               className={`px-6 py-2.5 rounded-full text-[9px] font-black tracking-[0.25em] uppercase transition-all duration-300 ${
                 activeTab === tab
                   ? 'bg-red-600 text-white shadow-[0_0_20px_rgba(220,38,38,0.4)]'
-                  : 'text-gray-600 hover:text-gray-300'
+                  : 'text-ink-muted hover:text-ink-muted'
               }`}
             >
               {tab}
@@ -114,19 +114,19 @@ export default function ProjectsClient({ projects }: { projects: Project[] }) {
                 </h2>
                 <div className="grid grid-cols-2 gap-8 mb-12 border-y border-white/5 py-10">
                   <div>
-                    <p className="text-[10px] font-black text-gray-600 uppercase tracking-widest mb-2">Deployed</p>
-                    <p className="font-bold text-gray-200 flex items-center"><Calendar size={14} className="mr-2 text-red-500" /> {selectedProject.date}</p>
+                    <p className="text-[10px] font-black text-ink-muted uppercase tracking-widest mb-2">Deployed</p>
+                    <p className="font-bold text-ink-muted flex items-center"><Calendar size={14} className="mr-2 text-red-500" /> {selectedProject.date}</p>
                   </div>
                   {selectedProject.impact && (
                     <div>
-                      <p className="text-[10px] font-black text-gray-600 uppercase tracking-widest mb-2">Metrics</p>
-                      <p className="font-bold text-gray-200 flex items-center"><TrendingUp size={14} className="mr-2 text-red-500" /> {selectedProject.impact}</p>
+                      <p className="text-[10px] font-black text-ink-muted uppercase tracking-widest mb-2">Metrics</p>
+                      <p className="font-bold text-ink-muted flex items-center"><TrendingUp size={14} className="mr-2 text-red-500" /> {selectedProject.impact}</p>
                     </div>
                   )}
                 </div>
                 <div className="mb-12">
                   <h4 className="text-[10px] font-black text-red-500 mb-6 uppercase tracking-[0.4em]">Official Narrative</h4>
-                  <p className="leading-relaxed text-gray-400 text-base font-medium">{selectedProject.long_description}</p>
+                  <p className="leading-relaxed text-ink-muted text-base font-medium">{selectedProject.long_description}</p>
                 </div>
                 <button className="btn-shimmer w-full text-white py-6 rounded-2xl font-black uppercase tracking-[0.3em] text-[11px] shadow-2xl transition-transform hover:scale-[1.02]">
                   Join Next Mission

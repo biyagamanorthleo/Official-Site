@@ -19,7 +19,7 @@ export default async function MembersPage() {
       <div className="flex items-center justify-between mb-10">
         <div>
           <h1 className="text-3xl font-heading font-black text-white uppercase tracking-tighter">Members</h1>
-          <p className="text-gray-600 text-xs font-bold uppercase tracking-widest mt-1">{members?.length ?? 0} registered</p>
+          <p className="text-ink-muted text-xs font-bold uppercase tracking-widest mt-1">{members?.length ?? 0} registered</p>
         </div>
         <Link href="/admin/members/new"
           className="flex items-center gap-2 px-6 py-3 rounded-xl text-white text-[10px] font-black uppercase tracking-widest"
@@ -30,7 +30,7 @@ export default async function MembersPage() {
 
       {!members?.length ? (
         <div className="py-20 text-center border border-dashed border-white/5 rounded-3xl">
-          <p className="text-gray-600 text-xs font-black uppercase tracking-widest mb-6">No members yet</p>
+          <p className="text-ink-muted text-xs font-black uppercase tracking-widest mb-6">No members yet</p>
           <Link href="/admin/members/new"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-white text-[10px] font-black uppercase tracking-widest"
             style={{ background: 'linear-gradient(to bottom, #980016, #3d0009)' }}>
@@ -56,23 +56,23 @@ export default async function MembersPage() {
                   )}
                 </div>
                 <div className="flex items-center gap-4 mt-1 flex-wrap">
-                  <span className="flex items-center gap-1 text-gray-600 text-[10px] font-bold uppercase tracking-wider">
+                  <span className="flex items-center gap-1 text-ink-muted text-[10px] font-bold uppercase tracking-wider">
                     <Mail size={10} /> {member.email}
                   </span>
                   {member.position && (
-                    <span className="flex items-center gap-1 text-gray-600 text-[10px] font-bold uppercase tracking-wider">
+                    <span className="flex items-center gap-1 text-ink-muted text-[10px] font-bold uppercase tracking-wider">
                       <Briefcase size={10} /> {member.position}
                     </span>
                   )}
                   {member.phone && (
-                    <span className="flex items-center gap-1 text-gray-600 text-[10px] font-bold uppercase tracking-wider">
+                    <span className="flex items-center gap-1 text-ink-muted text-[10px] font-bold uppercase tracking-wider">
                       <Phone size={10} /> {member.phone}
                     </span>
                   )}
                 </div>
               </div>
 
-              <span className="hidden sm:block text-gray-700 text-[10px] font-bold uppercase tracking-wider flex-shrink-0">
+              <span className="hidden sm:block text-ink-muted text-[10px] font-bold uppercase tracking-wider flex-shrink-0">
                 {formatDate(member.created_at)}
               </span>
 
@@ -86,8 +86,8 @@ export default async function MembersPage() {
       )}
 
       <div className="mt-8 p-5 bg-[#050505] border border-white/5 rounded-2xl">
-        <p className="text-gray-600 text-[10px] font-black uppercase tracking-widest mb-1">Member Portal</p>
-        <p className="text-gray-500 text-xs">Members log in at <span className="text-white">/member/login</span>. Use &ldquo;Resend&rdquo; to send another setup email if they missed it.</p>
+        <p className="text-ink-muted text-[10px] font-black uppercase tracking-widest mb-1">Member Portal</p>
+        <p className="text-ink-muted text-xs">Members log in at <span className="text-white">/member/login</span>. Use &ldquo;Resend&rdquo; to send another setup email if they missed it.</p>
       </div>
     </div>
   );

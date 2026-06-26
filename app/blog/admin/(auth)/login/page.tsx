@@ -35,12 +35,12 @@ export default function BlogAdminLoginPage() {
             <BookOpen size={24} className="text-red-600" />
           </div>
           <span className="block text-2xl font-heading font-black text-white tracking-widest">LCBN Blog</span>
-          <p className="text-gray-600 text-[10px] font-black uppercase tracking-[0.4em] mt-2">Content Admin</p>
+          <p className="text-ink-muted text-[10px] font-black uppercase tracking-[0.4em] mt-2">Content Admin</p>
         </div>
 
         <form onSubmit={handleLogin} className="bg-[#050505] border border-white/10 rounded-[2rem] p-10 space-y-6">
           <div>
-            <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-2">Email</label>
+            <label className="text-[10px] font-black uppercase tracking-widest text-ink-muted block mb-2">Email</label>
             <input
               type="email"
               value={email}
@@ -50,7 +50,7 @@ export default function BlogAdminLoginPage() {
             />
           </div>
           <div>
-            <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-2">Password</label>
+            <label className="text-[10px] font-black uppercase tracking-widest text-ink-muted block mb-2">Password</label>
             <input
               type="password"
               value={password}
@@ -70,8 +70,8 @@ export default function BlogAdminLoginPage() {
           </button>
         </form>
 
-        <p className="text-center text-gray-700 text-[10px] font-black uppercase tracking-widest mt-8">
-          <a href="/admin" className="hover:text-gray-400 transition-colors">Main Admin →</a>
+        <p className="text-center text-ink-muted text-[10px] font-black uppercase tracking-widest mt-8">
+          <a href="/admin" className="hover:text-ink-muted transition-colors">Main Admin →</a>
         </p>
       </div>
     </div>

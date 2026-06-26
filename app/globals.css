@@ -1,6 +1,11 @@
 @import "tailwindcss";
 
 @theme {
+  /* The only two whites used for text across the UI:
+     text-white      → headings / primary (bright #fff)
+     text-ink-muted  → all secondary / body text (soft, readable) */
+  --color-ink-muted: #b8bec9;
+
   --color-red-400: #ff5262;
   --color-red-500: #ff1f35;
   --color-red-600: #e8001d;

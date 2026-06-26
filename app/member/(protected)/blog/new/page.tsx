@@ -9,7 +9,7 @@ export default async function MemberNewPostPage() {
     <div className="max-w-2xl">
       <div className="mb-10">
         <h1 className="text-3xl font-heading font-black text-white uppercase tracking-tighter">Write a Post</h1>
-        <p className="text-gray-600 text-xs font-bold uppercase tracking-widest mt-1">
+        <p className="text-ink-muted text-xs font-bold uppercase tracking-widest mt-1">
           Submit for review — admin will approve before it goes live
         </p>
       </div>

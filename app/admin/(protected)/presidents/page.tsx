@@ -21,7 +21,7 @@ export default async function AdminPresidents() {
       <div className="flex items-center justify-between mb-10">
         <div>
           <h1 className="text-3xl font-heading font-black text-white uppercase tracking-tight">Hall of Honor</h1>
-          <p className="text-gray-600 text-xs uppercase tracking-widest font-bold mt-1">{items.length} past presidents</p>
+          <p className="text-ink-muted text-xs uppercase tracking-widest font-bold mt-1">{items.length} past presidents</p>
         </div>
         <Link href="/admin/presidents/new"
           className="flex items-center gap-2 px-6 py-3 rounded-xl text-white text-xs font-black uppercase tracking-widest"

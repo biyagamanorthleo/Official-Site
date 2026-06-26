@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { PenSquare, Calendar } from 'lucide-react';
 
 const statusStyle: Record<string, { label: string; cls: string }> = {
-  draft:     { label: 'Draft',            cls: 'bg-white/5 text-gray-500 border-white/5' },
+  draft:     { label: 'Draft',            cls: 'bg-white/5 text-ink-muted border-white/5' },
   pending:   { label: 'Awaiting Approval', cls: 'bg-amber-950/20 text-amber-500 border-amber-800/30' },
   published: { label: 'Published',         cls: 'bg-green-950/40 text-green-500 border-green-900/30' },
   rejected:  { label: 'Rejected',          cls: 'bg-red-950/20 text-red-600 border-red-900/20' },
@@ -28,7 +28,7 @@ export default async function MemberDashboard() {
       <div className="flex items-center justify-between mb-10">
         <div>
           <h1 className="text-3xl font-heading font-black text-white uppercase tracking-tighter">My Posts</h1>
-          <p className="text-gray-600 text-xs font-bold uppercase tracking-widest mt-1">{posts?.length ?? 0} total</p>
+          <p className="text-ink-muted text-xs font-bold uppercase tracking-widest mt-1">{posts?.length ?? 0} total</p>
         </div>
         <Link href="/member/blog/new"
           className="flex items-center gap-2 px-6 py-3 rounded-xl text-white text-[10px] font-black uppercase tracking-widest"
@@ -39,7 +39,7 @@ export default async function MemberDashboard() {
 
       {!posts?.length ? (
         <div className="py-24 text-center border border-dashed border-white/5 rounded-3xl">
-          <p className="text-gray-600 text-xs font-black uppercase tracking-widest mb-6">No posts yet</p>
+          <p className="text-ink-muted text-xs font-black uppercase tracking-widest mb-6">No posts yet</p>
           <Link href="/member/blog/new"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-white text-[10px] font-black uppercase tracking-widest"
             style={{ background: 'linear-gradient(to bottom, #980016, #3d0009)' }}>
@@ -55,7 +55,7 @@ export default async function MemberDashboard() {
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex-1 min-w-0">
                     <h3 className="text-white font-black uppercase tracking-tight text-sm truncate mb-2">{post.title}</h3>
-                    <span className="flex items-center gap-1.5 text-gray-600 text-[10px] font-bold uppercase tracking-widest">
+                    <span className="flex items-center gap-1.5 text-ink-muted text-[10px] font-bold uppercase tracking-widest">
                       <Calendar size={10} /> {formatDate(post.published_at)}
                     </span>
                     {post.status === 'rejected' && post.rejection_note && (
@@ -70,7 +70,7 @@ export default async function MemberDashboard() {
                     </span>
                     {post.status === 'published' && (
                       <Link href={`/blog/${post.slug}`} target="_blank"
-                        className="text-gray-600 text-[10px] font-black uppercase tracking-widest hover:text-white transition-colors">
+                        className="text-ink-muted text-[10px] font-black uppercase tracking-widest hover:text-white transition-colors">
                         View →
                       </Link>
                     )}
@@ -83,8 +83,8 @@ export default async function MemberDashboard() {
       )}
 
       <div className="mt-10 p-5 bg-[#050505] border border-white/5 rounded-2xl">
-        <p className="text-gray-600 text-[10px] font-black uppercase tracking-widest mb-2">How it works</p>
-        <p className="text-gray-500 text-xs leading-relaxed">Write a post and submit for review. The admin will approve it and it goes live on the blog. If rejected, you&apos;ll see a note here.</p>
+        <p className="text-ink-muted text-[10px] font-black uppercase tracking-widest mb-2">How it works</p>
+        <p className="text-ink-muted text-xs leading-relaxed">Write a post and submit for review. The admin will approve it and it goes live on the blog. If rejected, you&apos;ll see a note here.</p>
       </div>
     </div>
   );

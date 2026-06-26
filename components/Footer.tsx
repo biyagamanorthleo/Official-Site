@@ -17,20 +17,20 @@ const Footer: React.FC = () => {
               <span className="text-2xl font-heading font-black text-white tracking-widest">LCBN</span>
               <p className="text-xs text-red-700 font-semibold mt-1 tracking-wide">{CLUB_DISTRICT}</p>
             </Link>
-            <p className="text-gray-400 text-sm leading-relaxed mb-8 max-w-xs">
+            <p className="text-ink-muted text-sm leading-relaxed mb-8 max-w-xs">
               Forging leaders, gaining experience, and creating opportunity across Sri Lanka and the Maldives.
             </p>
             <div className="flex gap-3">
               <a href={SOCIAL_LINKS.facebook} aria-label="Facebook" target="_blank" rel="noopener noreferrer"
-                className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-red-900/40 hover:border-red-900/40 transition-all">
+                className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-ink-muted hover:text-white hover:bg-red-900/40 hover:border-red-900/40 transition-all">
                 <Facebook size={16} />
               </a>
               <a href={SOCIAL_LINKS.instagram} aria-label="Instagram" target="_blank" rel="noopener noreferrer"
-                className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-red-900/40 hover:border-red-900/40 transition-all">
+                className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-ink-muted hover:text-white hover:bg-red-900/40 hover:border-red-900/40 transition-all">
                 <Instagram size={16} />
               </a>
               <a href={SOCIAL_LINKS.linkedin} aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"
-                className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-red-900/40 hover:border-red-900/40 transition-all">
+                className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-ink-muted hover:text-white hover:bg-red-900/40 hover:border-red-900/40 transition-all">
                 <Linkedin size={16} />
               </a>
             </div>
@@ -50,7 +50,7 @@ const Footer: React.FC = () => {
               ].map(({ label, href }) => (
                 <li key={href}>
                   <Link href={href}
-                    className="text-gray-400 hover:text-white transition-colors text-sm font-medium block">
+                    className="text-ink-muted hover:text-white transition-colors text-sm font-medium block">
                     {label}
                   </Link>
                 </li>
@@ -65,17 +65,17 @@ const Footer: React.FC = () => {
               <li className="flex items-start gap-3">
                 <Mail size={15} className="text-red-800 mt-0.5 flex-shrink-0" />
                 <a href={`mailto:${CONTACT_DETAILS.email}`}
-                  className="text-gray-400 hover:text-white transition-colors text-sm break-all">
+                  className="text-ink-muted hover:text-white transition-colors text-sm break-all">
                   {CONTACT_DETAILS.email}
                 </a>
               </li>
               <li className="flex items-start gap-3">
                 <Phone size={15} className="text-red-800 mt-0.5 flex-shrink-0" />
-                <span className="text-gray-400 text-sm">{CONTACT_DETAILS.phone}</span>
+                <span className="text-ink-muted text-sm">{CONTACT_DETAILS.phone}</span>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin size={15} className="text-red-800 mt-0.5 flex-shrink-0" />
-                <span className="text-gray-400 text-sm">{CONTACT_DETAILS.address}</span>
+                <span className="text-ink-muted text-sm">{CONTACT_DETAILS.address}</span>
               </li>
             </ul>
           </div>
@@ -83,14 +83,14 @@ const Footer: React.FC = () => {
           {/* Newsletter */}
           <div>
             <h3 className="text-xs font-black uppercase tracking-[0.3em] text-red-700 mb-6">Stay Updated</h3>
-            <p className="text-gray-400 text-sm mb-5 leading-relaxed">
+            <p className="text-ink-muted text-sm mb-5 leading-relaxed">
               Subscribe to the North Star bulletin for updates and announcements.
             </p>
             <div className="flex gap-2">
               <input
                 type="email"
                 placeholder="your@email.com"
-                className="flex-1 bg-black border border-white/10 px-4 py-3 rounded-lg text-sm text-white placeholder-gray-600 focus:outline-none focus:border-red-800 transition-all"
+                className="flex-1 bg-black border border-white/10 px-4 py-3 rounded-lg text-sm text-white placeholder-ink-muted focus:outline-none focus:border-red-800 transition-all"
               />
               <button
                 className="px-4 py-3 rounded-lg text-white text-sm font-bold flex-shrink-0 transition-all hover:opacity-90"
@@ -106,10 +106,10 @@ const Footer: React.FC = () => {
       {/* Bottom bar */}
       <div className="border-t border-white/5">
         <div className="container mx-auto px-6 md:px-12 py-6 flex flex-col sm:flex-row justify-between items-center gap-3">
-          <p className="text-gray-500 text-sm">
+          <p className="text-ink-muted text-sm">
             © {new Date().getFullYear()} {CLUB_NAME}. All rights reserved.
           </p>
-          <p className="text-gray-600 text-sm">
+          <p className="text-ink-muted text-sm">
             Leo District 306 D4 - Sri Lanka & Maldives
           </p>
         </div>

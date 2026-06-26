@@ -25,7 +25,7 @@ export default function StarterPackPage() {
             {STARTER_PACK_PAGE_CONTENT.titlePrefix}{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-b from-red-600 via-red-800 to-red-950">{STARTER_PACK_PAGE_CONTENT.titleSuffix}</span>
           </h1>
-          <p className="text-base text-gray-400 font-medium uppercase tracking-wider leading-relaxed max-w-2xl mx-auto">
+          <p className="text-base text-ink-muted font-medium uppercase tracking-wider leading-relaxed max-w-2xl mx-auto">
             {STARTER_PACK_PAGE_CONTENT.description}
           </p>
         </header>
@@ -45,7 +45,7 @@ export default function StarterPackPage() {
                       <h2 className="text-2xl md:text-3xl font-heading font-black text-white uppercase tracking-tighter">{section.title}</h2>
                     </div>
                   </div>
-                  <div className="text-base text-gray-500 leading-relaxed mb-12 font-medium uppercase tracking-wide">{section.content}</div>
+                  <div className="text-base text-ink-muted leading-relaxed mb-12 font-medium uppercase tracking-wide">{section.content}</div>
                   <a href={section.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-red-500 font-black uppercase tracking-[0.3em] text-[10px] group border-b-2 border-red-600 pb-3 hover:text-white hover:border-white transition-all">
                     Browse Records <ExternalLink size={14} className="ml-3 group-hover:rotate-45 transition-transform" />
                   </a>
@@ -67,7 +67,7 @@ export default function StarterPackPage() {
                       <a href={resource.downloadUrl} className="w-full flex items-center justify-between p-6 bg-white/5 hover:bg-white/10 rounded-2xl transition-all group border border-white/5">
                         <div>
                           <span className="font-black text-[10px] uppercase tracking-widest text-white block mb-1">{resource.title}</span>
-                          <span className="text-[8px] text-gray-500 uppercase tracking-widest">{resource.description}</span>
+                          <span className="text-[8px] text-ink-muted uppercase tracking-widest">{resource.description}</span>
                         </div>
                         <Download size={18} className="text-red-500 group-hover:scale-125 transition-transform" />
                       </a>
@@ -78,7 +78,7 @@ export default function StarterPackPage() {
 
               <div className="bg-gradient-to-br from-red-900/40 to-black p-12 rounded-[3rem] border border-red-500/40 shadow-2xl text-center">
                 <h3 className="text-xl font-heading font-black mb-6 uppercase tracking-tighter text-white">{STARTER_PACK_PAGE_CONTENT.contactTitle}</h3>
-                <p className="text-gray-400 text-[10px] mb-10 leading-relaxed font-black uppercase tracking-[0.2em]">{CONTACT_DETAILS.email}</p>
+                <p className="text-ink-muted text-[10px] mb-10 leading-relaxed font-black uppercase tracking-[0.2em]">{CONTACT_DETAILS.email}</p>
                 <a href={`mailto:${CONTACT_DETAILS.email}`} className="btn-shimmer block w-full py-5 text-white rounded-2xl font-black uppercase tracking-[0.4em] text-[11px] shadow-3xl">
                   {STARTER_PACK_PAGE_CONTENT.contactBtnText}
                 </a>
@@ -123,7 +123,7 @@ export default function StarterPackPage() {
                   <h3 className="font-heading font-black text-white text-xl uppercase tracking-tight mb-3">
                     {cause.title}
                   </h3>
-                  <p className="text-gray-300 text-sm leading-relaxed tracking-tight flex-1 mb-6">
+                  <p className="text-ink-muted text-sm leading-relaxed tracking-tight flex-1 mb-6">
                     {cause.description}
                   </p>
                   <div className="flex flex-wrap gap-1.5">
@@ -151,7 +151,7 @@ export default function StarterPackPage() {
           <div className="border border-white/5 rounded-2xl p-5 md:p-8 bg-[#060606]">
             <div className="flex flex-col md:flex-row items-start md:items-center gap-8">
               <div className="flex-shrink-0">
-                <span className="text-[9px] font-black uppercase tracking-[0.4em] text-gray-600 block mb-2">Committed to</span>
+                <span className="text-[9px] font-black uppercase tracking-[0.4em] text-ink-muted block mb-2">Committed to</span>
                 <p className="text-white font-heading font-black text-xl uppercase leading-tight">
                   All 17<br />UN SDGs
                 </p>

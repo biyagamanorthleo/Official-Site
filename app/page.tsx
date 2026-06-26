@@ -73,7 +73,7 @@ export default function HomePage() {
             <p className="text-[11px] font-bold uppercase tracking-[0.35em] text-red-700/80 mb-10">
               Leo District 306 D4 - Sri Lanka & Maldives
             </p>
-            <p className="text-sm md:text-base max-w-2xl mx-auto mb-16 text-gray-400 font-medium leading-relaxed tracking-tight">
+            <p className="text-sm md:text-base max-w-2xl mx-auto mb-16 text-ink-muted font-medium leading-relaxed tracking-tight">
               {HERO_CONTENT.description}
             </p>
             <div className="flex flex-col md:flex-row justify-center items-center space-y-5 md:space-y-0 md:space-x-10">
@@ -99,7 +99,7 @@ export default function HomePage() {
                   <div className="text-3xl md:text-6xl font-heading font-black mb-2 text-white group-hover:text-red-500 transition-colors">
                     {stat.value.toLocaleString()}{stat.suffix}
                   </div>
-                  <div className="text-gray-500 text-[10px] uppercase tracking-[0.3em] font-black">
+                  <div className="text-ink-muted text-[10px] uppercase tracking-[0.3em] font-black">
                     {stat.label}
                   </div>
                 </div>
@@ -148,7 +148,7 @@ export default function HomePage() {
               Leo Lion<br />Anjana Dineth<br />
               <span className="text-red-600">MAF</span>
             </h3>
-            <p className="text-gray-700 text-[10px] uppercase tracking-[0.4em] font-black mt-4">
+            <p className="text-ink-muted text-[10px] uppercase tracking-[0.4em] font-black mt-4">
               Leo Club of Biyagama North
             </p>
           </div>
@@ -197,7 +197,7 @@ export default function HomePage() {
                       {project.status}
                     </span>
                     <h3 className="text-[11px] font-heading font-black text-white leading-tight uppercase tracking-tight line-clamp-2">{project.title}</h3>
-                    <div className="flex items-center text-gray-500 text-[8px] uppercase tracking-widest mt-1">
+                    <div className="flex items-center text-ink-muted text-[8px] uppercase tracking-widest mt-1">
                       <Calendar size={8} className="mr-1" /> {project.date}
                     </div>
                   </div>
@@ -256,7 +256,7 @@ export default function HomePage() {
                   </div>
 
                   {/* Quote */}
-                  <p className="text-gray-300 text-sm leading-relaxed tracking-tight mb-8">
+                  <p className="text-ink-muted text-sm leading-relaxed tracking-tight mb-8">
                     &ldquo;{t.quote}&rdquo;
                   </p>
                 </div>

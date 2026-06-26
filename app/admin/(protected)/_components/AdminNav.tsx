@@ -45,14 +45,14 @@ export default function AdminNav() {
           <button
             type="button"
             onClick={() => setOpen(false)}
-            className="lg:hidden text-gray-500 hover:text-white p-1"
+            className="lg:hidden text-ink-muted hover:text-white p-1"
             aria-label="Close menu"
           >
             <X size={20} />
           </button>
         </div>
         <Link href="/" target="_blank" rel="noopener noreferrer"
-          className="mt-4 flex items-center gap-2 px-3 py-2 rounded-xl text-gray-500 hover:text-white text-[10px] font-black uppercase tracking-widest border border-white/5 hover:border-white/15 transition-all">
+          className="mt-4 flex items-center gap-2 px-3 py-2 rounded-xl text-ink-muted hover:text-white text-[10px] font-black uppercase tracking-widest border border-white/5 hover:border-white/15 transition-all">
           <ExternalLink size={12} /> View Site
         </Link>
       </div>
@@ -60,7 +60,7 @@ export default function AdminNav() {
         {navItems.map(({ href, label, icon: Icon }) => (
           <Link key={href} href={href}
             className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all text-xs font-bold uppercase tracking-widest group ${
-              isActive(href) ? 'text-white bg-white/5' : 'text-gray-400 hover:text-white hover:bg-white/5'
+              isActive(href) ? 'text-white bg-white/5' : 'text-ink-muted hover:text-white hover:bg-white/5'
             }`}>
             <Icon size={16} className={`transition-colors ${isActive(href) ? 'text-red-500' : 'group-hover:text-red-500'}`} />
             {label}
@@ -68,7 +68,7 @@ export default function AdminNav() {
         ))}
       </nav>
       <form action="/api/auth/signout" method="POST" className="p-4 border-t border-white/5">
-        <button type="submit" className="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-600 hover:text-red-500 transition-all text-xs font-bold uppercase tracking-widest w-full">
+        <button type="submit" className="flex items-center gap-3 px-4 py-3 rounded-xl text-ink-muted hover:text-red-500 transition-all text-xs font-bold uppercase tracking-widest w-full">
           <LogOut size={16} /> Sign Out
         </button>
       </form>
@@ -82,7 +82,7 @@ export default function AdminNav() {
         <button
           type="button"
           onClick={() => setOpen(true)}
-          className="flex items-center justify-center w-9 h-9 rounded-xl text-gray-300 hover:text-white border border-white/10 hover:border-white/20 transition-all"
+          className="flex items-center justify-center w-9 h-9 rounded-xl text-ink-muted hover:text-white border border-white/10 hover:border-white/20 transition-all"
           aria-label="Open menu"
         >
           <Menu size={18} />

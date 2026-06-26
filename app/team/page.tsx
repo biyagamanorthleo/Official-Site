@@ -58,7 +58,7 @@ function MemberCard({ member, size = 'md' }: { member: Member; size?: 'lg' | 'md
           {member.name}
         </h3>
         <span className="text-[9px] font-black text-red-500 uppercase tracking-[0.3em] block opacity-80">
-          {member.position}{member.avenue && <span className="text-gray-500 ml-1"> {member.avenue}</span>}
+          {member.position}{member.avenue && <span className="text-ink-muted ml-1"> {member.avenue}</span>}
         </span>
       </div>
     </div>

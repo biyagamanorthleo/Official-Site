@@ -75,11 +75,11 @@ export default function ImageUpload({
       {/* Mode toggle */}
       <div className="flex gap-2">
         <button type="button" onClick={() => setMode('upload')}
-          className={`px-4 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all ${mode === 'upload' ? 'bg-red-900/40 text-red-400 border border-red-800/50' : 'bg-white/5 text-gray-500 border border-white/5 hover:text-white'}`}>
+          className={`px-4 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all ${mode === 'upload' ? 'bg-red-900/40 text-red-400 border border-red-800/50' : 'bg-white/5 text-ink-muted border border-white/5 hover:text-white'}`}>
           Upload File
         </button>
         <button type="button" onClick={() => setMode('url')}
-          className={`px-4 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all ${mode === 'url' ? 'bg-red-900/40 text-red-400 border border-red-800/50' : 'bg-white/5 text-gray-500 border border-white/5 hover:text-white'}`}>
+          className={`px-4 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all ${mode === 'url' ? 'bg-red-900/40 text-red-400 border border-red-800/50' : 'bg-white/5 text-ink-muted border border-white/5 hover:text-white'}`}>
           Paste URL
         </button>
       </div>
@@ -100,11 +100,11 @@ export default function ImageUpload({
           onClick={() => !uploading && inputRef.current?.click()}
           className={`border-2 border-dashed rounded-xl p-8 text-center transition-all ${uploading ? 'border-red-700/50 cursor-wait' : 'border-white/10 cursor-pointer hover:border-red-700/50'}`}
         >
-          <Upload size={22} className="mx-auto mb-3 text-gray-600" />
-          <p className="text-gray-500 text-[10px] font-black uppercase tracking-widest">
+          <Upload size={22} className="mx-auto mb-3 text-ink-muted" />
+          <p className="text-ink-muted text-[10px] font-black uppercase tracking-widest">
             {uploading ? 'Uploading...' : 'Click to choose image'}
           </p>
-          <p className="text-gray-700 text-[9px] mt-1">PNG, JPG, WEBP</p>
+          <p className="text-ink-muted text-[9px] mt-1">PNG, JPG, WEBP</p>
           <input ref={inputRef} type="file" accept="image/*" className="hidden" onChange={handleFile} disabled={uploading} />
         </div>
       ) : (

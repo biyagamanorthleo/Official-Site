@@ -26,12 +26,12 @@ export default function GalleryForm() {
   return (
     <form onSubmit={handleAdd} className="space-y-5">
       <div>
-        <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-3">Photo</label>
+        <label className="text-[10px] font-black uppercase tracking-widest text-ink-muted block mb-3">Photo</label>
         <ImageUpload value={url} onChange={setUrl} folder="gallery" />
       </div>
 
       <div>
-        <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 block mb-2">Caption (optional)</label>
+        <label className="text-[10px] font-black uppercase tracking-widest text-ink-muted block mb-2">Caption (optional)</label>
         <input
           type="text"
           placeholder="e.g. Vision For All 2024"

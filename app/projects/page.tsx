@@ -37,7 +37,7 @@ export default async function ProjectsPage() {
             {PROJECTS_PAGE_CONTENT.titlePrefix} <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-b from-red-600 via-red-800 to-red-950">{PROJECTS_PAGE_CONTENT.titleSuffix}</span>
           </h1>
-          <p className="text-gray-400 text-base font-medium leading-relaxed uppercase tracking-wider max-w-2xl mx-auto">
+          <p className="text-ink-muted text-base font-medium leading-relaxed uppercase tracking-wider max-w-2xl mx-auto">
             {PROJECTS_PAGE_CONTENT.description}
           </p>
         </header>
