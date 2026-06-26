@@ -1,8 +1,6 @@
 'use client';
 
-import dynamic from 'next/dynamic';
-
-const LoadingScreen = dynamic(() => import('@/components/LoadingScreen'), { ssr: false });
+import LoadingScreen from '@/components/LoadingScreen';
 
 export default function LoadingScreenWrapper() {
   return <LoadingScreen />;

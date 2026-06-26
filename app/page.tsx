@@ -13,10 +13,14 @@ const IconMap: Record<string, React.ComponentType<{ size?: number; className?: s
   CheckCircle, Users, Clock, DollarSign,
 };
 
+// Used for the skewed hero panels until gallery photos load (or if the gallery is empty)
+const FALLBACK_PANELS = ['/president.webp', '/lions-history.webp', '/herobg.webp', '/sdgs/sdg-04.jpg', '/sdgs/sdg-13.jpg'];
+
 export default function HomePage() {
   const [featuredProjects, setFeaturedProjects] = useState<typeof PROJECTS>(PROJECTS);
   const [testimonials, setTestimonials] = useState<typeof TESTIMONIALS>(TESTIMONIALS);
   const [carouselPhotos, setCarouselPhotos] = useState<{ id: string; url: string; caption: string | null }[]>([]);
+  const [panelPhotos, setPanelPhotos] = useState<string[] | null>(null);
 
   useEffect(() => {
     const supabase = createClient();
@@ -44,6 +48,19 @@ export default function HomePage() {
       .then(({ data }) => {
         if (data && data.length > 0) setCarouselPhotos(data);
       });
+    supabase
+      .from('gallery_photos')
+      .select('url')
+      .order('sort_order', { ascending: true })
+      .limit(5)
+      .then(({ data }) => {
+        const urls = (data ?? []).map((p) => p.url).filter(Boolean);
+        setPanelPhotos(
+          urls.length > 0
+            ? Array.from({ length: 5 }, (_, i) => urls[i % urls.length])
+            : FALLBACK_PANELS,
+        );
+      });
   }, []);
 
   return (
@@ -60,32 +77,51 @@ export default function HomePage() {
             />
           </div>
           <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.012)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.012)_1px,transparent_1px)] bg-[size:60px_60px] opacity-40" />
+          {/* Skewed gallery panels dropping in from the top on load */}
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute -left-[25%] -top-[10%] flex h-[120%] w-[150%] skew-x-[-18deg]">
+              {[0, 1, 2, 3, 4].map((i) => (
+                <div key={i} className="relative flex-1 overflow-hidden">
+                  {panelPhotos && (
+                    <div
+                      className="absolute inset-0 animate-panel-drop"
+                      style={{ animationDelay: `${i * 0.18}s` }}
+                    >
+                      <div className="absolute inset-0 skew-x-[18deg] scale-[1.15]">
+                        <Image src={i === 1 ? '/img1.jpg' : i === 3 ? '/img2.jpg' : panelPhotos[i]} alt="" fill sizes="(max-width: 768px) 60vw, 40vw" quality={85} className={`object-cover grayscale ${i === 3 ? 'object-[65%_center]' : 'object-center'}`} />
+                      </div>
+                    </div>
+                  )}
+                  {/* Black shadow fading in from the top and bottom */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-black via-black/50 to-black" />
+                  {/* Diagonal divider line, fading to black at both ends */}
+                  <div className="absolute left-0 top-0 h-full w-px bg-gradient-to-b from-transparent via-white/25 to-transparent" />
+                </div>
+              ))}
+            </div>
+          </div>
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black" />
         </div>
         <div className="container mx-auto px-6 relative z-10 text-center">
-          <div className="animate-hero-in">
+          <div className="animate-hero-in translate-y-24">
             <h1 className="font-heading font-black mb-4 leading-[0.9] tracking-tighter uppercase">
               <span className="block text-3xl sm:text-4xl md:text-6xl text-white">{HERO_CONTENT.titlePrefix}</span>
-              <span className="block text-[clamp(2.2rem,11vw,8rem)] animate-shimmer-text">
+              <span className="block whitespace-nowrap text-[8.5vw] sm:text-[clamp(2.2rem,11vw,8rem)] bg-gradient-to-b from-[#e02828] via-[#9c1422] to-[#5c0a16] bg-clip-text text-transparent">
                 {HERO_CONTENT.titleMain}
               </span>
             </h1>
-            <p className="text-[11px] font-bold uppercase tracking-[0.35em] text-red-700/80 mb-10">
-              Leo District 306 D4 - Sri Lanka & Maldives
-            </p>
-            <p className="text-sm md:text-base max-w-2xl mx-auto mb-16 text-ink-muted font-medium leading-relaxed tracking-tight">
-              {HERO_CONTENT.description}
-            </p>
-            <div className="flex flex-col md:flex-row justify-center items-center space-y-5 md:space-y-0 md:space-x-10">
-              <Link href="/projects" className="btn-shimmer w-full md:w-auto text-white px-14 py-5 rounded-full font-black text-[12px] uppercase tracking-[0.2em] shadow-2xl transition-all transform hover:scale-105 active:scale-95">
+            <div className="mt-10 flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-5">
+              <Link href="/projects" className="btn-shimmer w-auto text-white px-8 py-3 md:px-14 md:py-5 rounded-full font-black text-[10px] md:text-[12px] uppercase tracking-[0.2em] shadow-2xl transition-all transform hover:scale-105 active:scale-95">
                 {HERO_CONTENT.primaryBtnText}
               </Link>
-              <Link href="/about" className="w-full md:w-auto bg-white/5 border border-white/10 text-white px-14 py-5 rounded-full font-black text-[12px] uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all">
+              <Link href="/about" className="w-auto bg-white/5 border border-white/10 text-white px-8 py-3 md:px-14 md:py-5 rounded-full font-black text-[10px] md:text-[12px] uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all">
                 {HERO_CONTENT.secondaryBtnText}
               </Link>
             </div>
           </div>
         </div>
+        {/* Red divider marking the end of the hero */}
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-black via-red-600 to-black shadow-[0_0_8px_rgba(232,0,29,0.3)]" />
       </section>
 
       {/* Stats */}
