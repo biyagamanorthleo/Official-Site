@@ -81,14 +81,17 @@ export default function HomePage() {
           <div className="absolute inset-0 overflow-hidden">
             <div className="absolute -left-[25%] -top-[10%] flex h-[120%] w-[150%] skew-x-[-18deg]">
               {[0, 1, 2, 3, 4].map((i) => (
-                <div key={i} className="relative flex-1 overflow-hidden">
+                <div
+                  key={i}
+                  className={`relative flex-1 overflow-hidden ${i >= 3 ? 'hidden md:block' : ''}`}
+                >
                   {panelPhotos && (
                     <div
                       className="absolute inset-0 animate-panel-drop"
                       style={{ animationDelay: `${i * 0.18}s` }}
                     >
                       <div className="absolute inset-0 skew-x-[18deg] scale-[1.15]">
-                        <Image src={i === 1 ? '/img1.jpg' : i === 2 ? '/img3.jpg' : i === 3 ? '/img2.jpg' : panelPhotos[i]} alt="" fill sizes="(max-width: 768px) 60vw, 40vw" quality={85} className={`object-cover grayscale ${i === 3 ? 'object-[65%_center]' : 'object-center'}`} />
+                        <Image src={i === 1 ? '/img1.jpg' : i === 2 ? '/img3.jpg' : i === 3 ? '/img2.jpg' : panelPhotos[i]} alt="" fill sizes="(max-width: 768px) 50vw, 30vw" quality={85} className={`object-cover grayscale ${i === 3 ? 'object-[65%_center]' : 'object-center'}`} />
                       </div>
                     </div>
                   )}
