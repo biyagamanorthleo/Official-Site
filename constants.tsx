@@ -109,8 +109,8 @@ export const STARTER_PACK_PAGE_CONTENT = {
 
 // Contact Details
 export const CONTACT_DETAILS = {
-  email: "contact@leobiyagamanorth.org",
-  phone: "+94 11 234 5678",
+  email: "biyagamanorthleo@gmail.com",
+  phone: "+94 77 468 2475",
   address: "Biyagama, Western Province, Sri Lanka",
   officeHours: "Mon - Sat: 9.00 AM - 5.00 PM"
 };
