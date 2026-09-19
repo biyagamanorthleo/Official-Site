@@ -125,7 +125,7 @@ export const SOCIAL_LINKS = {
 
 // Impact Metrics
 export const CLUB_STATS: ClubStat[] = [
-  { label: "Completed Projects", value: 52, suffix: "+", icon: "CheckCircle" },
+  { label: "Completed Projects", value: 54, suffix: "+", icon: "CheckCircle" },
   { label: "Lives Impacted", value: 15000, suffix: "+", icon: "Users" },
   { label: "Service Hours", value: 4500, suffix: " hrs", icon: "Clock" },
   { label: "Years of Legacy", value: 14, suffix: "+", icon: "DollarSign" },

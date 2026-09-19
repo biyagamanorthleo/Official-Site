@@ -77,8 +77,15 @@ export default function HomePage() {
             />
           </div>
           <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.012)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.012)_1px,transparent_1px)] bg-[size:60px_60px] opacity-40" />
+          {/* Mobile: one full-screen photo, since the skewed panels are too narrow to read on a phone */}
+          <div className="absolute inset-0 overflow-hidden md:hidden">
+            <div className="absolute inset-0 animate-panel-drop">
+              <Image src="/img3.jpg" alt="" fill priority sizes="100vw" quality={85} className="object-cover object-center grayscale" />
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black" />
+          </div>
           {/* Skewed gallery panels dropping in from the top on load */}
-          <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute inset-0 overflow-hidden hidden md:block">
             <div className="absolute -left-[25%] -top-[10%] flex h-[120%] w-[150%] skew-x-[-18deg]">
               {[0, 1, 2, 3, 4].map((i) => (
                 <div
