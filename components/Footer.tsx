@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone } from 'lucide-react';
-import { CLUB_NAME, CONTACT_DETAILS, SOCIAL_LINKS, CLUB_DISTRICT } from '@/constants';
+import { CLUB_NAME, CONTACT_DETAILS, SOCIAL_LINKS, CLUB_DISTRICT, SUBSTACK_URL } from '@/constants';
 
 const Footer: React.FC = () => {
   return (
@@ -84,21 +84,27 @@ const Footer: React.FC = () => {
           <div>
             <h3 className="text-xs font-black uppercase tracking-[0.3em] text-red-700 mb-6">Stay Updated</h3>
             <p className="text-ink-muted text-sm mb-5 leading-relaxed">
-              Subscribe to the North Star bulletin for updates and announcements.
+              Subscribe to the LCBN Substack for updates and announcements.
             </p>
-            <div className="flex gap-2">
+            {/* Substack blocks AJAX, so this must be a real form post; it opens Substack's confirmation page in a new tab */}
+            <form action={`${SUBSTACK_URL}/api/v1/free?nojs=true`} method="post" target="_blank" className="flex gap-2">
+              <input type="hidden" name="source" value="embed" />
               <input
                 type="email"
+                name="email"
+                required
+                aria-label="Email address"
                 placeholder="your@email.com"
-                className="flex-1 bg-black border border-white/10 px-4 py-3 rounded-lg text-sm text-white placeholder-ink-muted focus:outline-none focus:border-red-800 transition-all"
+                className="flex-1 min-w-0 bg-black border border-white/10 px-4 py-3 rounded-lg text-sm text-white placeholder-ink-muted focus:outline-none focus:border-red-800 transition-all"
               />
               <button
+                type="submit"
                 className="px-4 py-3 rounded-lg text-white text-sm font-bold flex-shrink-0 transition-all hover:opacity-90"
                 style={{ background: 'linear-gradient(to bottom, #980016, #3d0009)' }}
               >
                 Go
               </button>
-            </div>
+            </form>
           </div>
         </div>
       </div>

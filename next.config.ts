@@ -22,7 +22,7 @@ const securityHeaders = [
       "frame-src 'none'",
       "object-src 'none'",
       "base-uri 'self'",
-      "form-action 'self'",
+      "form-action 'self' https://*.substack.com",
     ].join('; '),
   },
 ];

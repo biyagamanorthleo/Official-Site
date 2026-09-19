@@ -36,7 +36,7 @@ export const ABOUT_CONTENT = {
 export const FOOTER_CONTENT = {
   tagline: "Forging leaders, gaining experience, and creating opportunity across Sri Lanka and the Maldives.",
   subscriptionHeading: "Engagement",
-  subscriptionSubtext: "Subscribe to the North Star bulletin.",
+  subscriptionSubtext: "Subscribe to the LCBN Substack.",
   copyrightText: "ALL RIGHTS RESERVED.",
   craftedBy: "BY THE NORTH SECRETARIAT"
 };
@@ -122,6 +122,8 @@ export const SOCIAL_LINKS = {
   twitter: "https://twitter.com/leobnorth",
   linkedin: "https://linkedin.com/company/leo-club-of-biyagama-north"
 };
+
+export const SUBSTACK_URL = "https://lcbn.substack.com";
 
 // Impact Metrics
 export const CLUB_STATS: ClubStat[] = [
