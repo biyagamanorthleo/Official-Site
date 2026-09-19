@@ -12,7 +12,7 @@ const navLinks = [
   { name: 'Team',      path: '/team' },
   { name: 'Honors',    path: '/achievements' },
   { name: 'Blog',      path: '/blog' },
-  { name: 'Terminal',  path: '/starter-pack' },
+  // { name: 'Terminal',  path: '/starter-pack' },
 ];
 
 const Navbar: React.FC = () => {
