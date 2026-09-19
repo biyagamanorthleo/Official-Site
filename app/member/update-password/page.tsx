@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useRef, Suspense } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { KeyRound } from 'lucide-react';
@@ -14,21 +14,13 @@ function UpdatePasswordForm() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [done, setDone] = useState(false);
-  const resolvedRef = useRef(false);
 
   useEffect(() => {
     const supabase = createClient();
     const code = searchParams.get('code');
 
-    function markReady() {
-      resolvedRef.current = true;
-      setReady(true);
-    }
-
-    function markError(msg: string) {
-      resolvedRef.current = true;
-      setError(msg);
-    }
+    const markReady = () => setReady(true);
+    const markError = (msg: string) => setError(msg);
 
     if (code) {
       // PKCE flow — code in query param
@@ -39,26 +31,35 @@ function UpdatePasswordForm() {
       return;
     }
 
-    // Hash / implicit flow — token arrives as #access_token=xxx&type=recovery
-    // Supabase client processes the hash automatically and fires PASSWORD_RECOVERY
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event) => {
-      if (event === 'PASSWORD_RECOVERY') markReady();
-    });
+    // Reset emails are sent by the server-side client (implicit flow), so the token arrives as
+    // #access_token=...; the browser client is PKCE-only and rejects that, so set the session by hand.
+    const hash = new URLSearchParams(window.location.hash.slice(1));
+    const hashError = hash.get('error_code') || hash.get('error');
+    if (hashError) {
+      markError(hashError === 'otp_expired'
+        ? 'This link has expired or already been used. Please request a new one.'
+        : 'Invalid or missing reset link. Please request a new one.');
+      return;
+    }
+    const accessToken = hash.get('access_token');
+    const refreshToken = hash.get('refresh_token');
+    if (accessToken && refreshToken) {
+      supabase.auth.setSession({ access_token: accessToken, refresh_token: refreshToken }).then(({ error }) => {
+        if (error) {
+          markError('This link has expired or already been used. Please request a new one.');
+          return;
+        }
+        window.history.replaceState(null, '', window.location.pathname);
+        markReady();
+      });
+      return;
+    }
 
-    // Fallback: if the session was already established before listener attached
+    // No link token: allow it only if the member is already signed in.
     supabase.auth.getSession().then(({ data: { session } }) => {
-      if (session && !resolvedRef.current) markReady();
+      if (session) markReady();
+      else markError('Invalid or missing reset link. Please request a new one.');
     });
-
-    // After 5s with no result → invalid link
-    const timer = setTimeout(() => {
-      if (!resolvedRef.current) markError('Invalid or missing reset link. Please request a new one.');
-    }, 5000);
-
-    return () => {
-      subscription.unsubscribe();
-      clearTimeout(timer);
-    };
   }, [searchParams]);
 
   async function handleSubmit(e: React.FormEvent) {
