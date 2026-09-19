@@ -46,7 +46,7 @@ export default function MemberPostForm({ userId }: { userId: string }) {
       submitted_by: userId,
     });
     if (error) { alert(error.message); setSaving(false); return; }
-    window.location.href = '/member';
+    window.location.href = '/member/blog';
   }
 
   return (

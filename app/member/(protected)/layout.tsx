@@ -1,7 +1,7 @@
 import { createClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
-import { Users, PenSquare, LogOut, ExternalLink, Package, FileText, Hash, Briefcase, Phone, Mail } from 'lucide-react';
+import { Users, PenSquare, LogOut, ExternalLink, Package, FileText, Hash, Briefcase, Phone, Mail, LayoutDashboard } from 'lucide-react';
 
 export default async function MemberLayout({ children }: { children: React.ReactNode }) {
   const supabase = await createClient();
@@ -64,6 +64,12 @@ export default async function MemberLayout({ children }: { children: React.React
         {/* Nav */}
         <nav className="flex-1 p-3 overflow-y-auto space-y-5">
 
+          <Link href="/member"
+            className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-ink-muted hover:text-white hover:bg-white/[0.04] transition-all text-[11px] font-black uppercase tracking-widest group">
+            <LayoutDashboard size={13} className="group-hover:text-red-500 transition-colors" />
+            Dashboard
+          </Link>
+
           {/* Resources */}
           <div>
             <p className="px-4 pt-2 pb-1 text-[9px] font-black uppercase tracking-[0.25em] text-white/20">Resources</p>
@@ -80,7 +86,7 @@ export default async function MemberLayout({ children }: { children: React.React
           <div>
             <p className="px-4 pt-2 pb-1 text-[9px] font-black uppercase tracking-[0.25em] text-white/20">Blog</p>
             <div className="space-y-0.5">
-              <Link href="/member"
+              <Link href="/member/blog"
                 className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-ink-muted hover:text-white hover:bg-white/[0.04] transition-all text-[11px] font-black uppercase tracking-widest group">
                 <FileText size={13} className="group-hover:text-red-500 transition-colors" />
                 My Posts
