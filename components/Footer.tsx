@@ -86,25 +86,15 @@ const Footer: React.FC = () => {
             <p className="text-ink-muted text-sm mb-5 leading-relaxed">
               Subscribe to the LCBN Substack for updates and announcements.
             </p>
-            {/* Substack blocks AJAX, so this must be a real form post; it opens Substack's confirmation page in a new tab */}
-            <form action={`${SUBSTACK_URL}/api/v1/free?nojs=true`} method="post" target="_blank" className="flex gap-2">
-              <input type="hidden" name="source" value="embed" />
-              <input
-                type="email"
-                name="email"
-                required
-                aria-label="Email address"
-                placeholder="your@email.com"
-                className="flex-1 min-w-0 bg-black border border-white/10 px-4 py-3 rounded-lg text-sm text-white placeholder-ink-muted focus:outline-none focus:border-red-800 transition-all"
-              />
-              <button
-                type="submit"
-                className="px-4 py-3 rounded-lg text-white text-sm font-bold flex-shrink-0 transition-all hover:opacity-90"
-                style={{ background: 'linear-gradient(to bottom, #980016, #3d0009)' }}
-              >
-                Go
-              </button>
-            </form>
+            <a
+              href={`${SUBSTACK_URL}/subscribe`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-6 py-3 rounded-lg text-white text-sm font-bold transition-all hover:opacity-90"
+              style={{ background: 'linear-gradient(to bottom, #980016, #3d0009)' }}
+            >
+              Subscribe
+            </a>
           </div>
         </div>
       </div>
